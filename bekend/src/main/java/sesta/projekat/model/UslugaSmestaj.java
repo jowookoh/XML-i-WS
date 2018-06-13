@@ -2,9 +2,10 @@ package sesta.projekat.model;
 
 import javax.persistence.*;
 
+@Entity
 public class UslugaSmestaj {
     @Id
-    @Column(name = "uslugasmestaj_id")
+    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
