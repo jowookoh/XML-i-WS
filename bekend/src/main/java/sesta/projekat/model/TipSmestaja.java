@@ -3,6 +3,7 @@ package sesta.projekat.model;
 import javax.persistence.*;
 
 @Entity
+@Table
 public class TipSmestaja {
     @Id
     @Column

@@ -5,6 +5,7 @@ import java.sql.Time;
 import java.util.Date;
 
 @Entity
+@Table
 public class Rezervacija {
 	@Id
 	@Column
