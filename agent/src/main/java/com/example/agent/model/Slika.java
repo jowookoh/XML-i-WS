@@ -1,10 +1,9 @@
-package sesta.projekat.model;
+package com.example.agent.model;
 
 import javax.persistence.*;
 import java.sql.Blob;
 
 @Entity
-@Table
 public class Slika {
 	@Id
 	@Column

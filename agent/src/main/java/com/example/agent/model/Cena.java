@@ -1,10 +1,9 @@
-package sesta.projekat.model;
+package com.example.agent.model;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table
 public class Cena {
 	@Id
 	@Column

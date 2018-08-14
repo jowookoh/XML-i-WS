@@ -1,9 +1,8 @@
-package sesta.projekat.model;
+package com.example.agent.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table
 public class UslugaSmestaj {
     @Id
     @Column

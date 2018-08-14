@@ -1,10 +1,9 @@
-package sesta.projekat.model;
+package com.example.agent.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table
-public class TipSmestaja {
+public class Usluga {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,19 +12,19 @@ public class TipSmestaja {
     @Column
     private String naziv;
 
-    public String getNaziv() {
-        return naziv;
-    }
-
-    public void setNaziv(String naziv) {
-        this.naziv = naziv;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
     }
 }
