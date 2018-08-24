@@ -17,6 +17,7 @@ public class DtoUSmestaj implements Converter<SmestajDto, Smestaj> {
     @Override
     public Smestaj convert(SmestajDto source) {
         Smestaj smestaj = new Smestaj();
+        smestaj.setId(source.getId());
         smestaj.setBrojOsoba(source.getBrojOsoba());
         smestaj.setKategorijaSmestaja(dtoUKategorijuSmestaja.convert(source.getKategorijaSmestajaDto()));
         smestaj.setTipSmestaja(dtoUTipSmestaja.convert(source.getTipSmestajaDto()));

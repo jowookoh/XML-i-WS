@@ -1,23 +1,23 @@
-package sesta.projekat.dto;
+package sesta.projekat.model;
 
-public class PorukaDto {
+import javax.persistence.*;
+
+@Entity
+@Table
+public class Poruka {
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long posiljalacId;
+    @Column
+    private Long idPosiljalac;
 
+    @Column
     private Long rezervacijaId;
 
+    @Column
     private String tekst;
-
-    public PorukaDto() {
-    }
-
-    public PorukaDto(Long id, Long posiljalacId, Long rezervacijaId, String tekst) {
-        this.id = id;
-        this.posiljalacId = posiljalacId;
-        this.rezervacijaId = rezervacijaId;
-        this.tekst = tekst;
-    }
 
     public Long getId() {
         return id;
@@ -27,12 +27,12 @@ public class PorukaDto {
         this.id = id;
     }
 
-    public Long getPosiljalacId() {
-        return posiljalacId;
+    public Long getIdPosiljalac() {
+        return idPosiljalac;
     }
 
-    public void setPosiljalacId(Long posiljalacId) {
-        this.posiljalacId = posiljalacId;
+    public void setIdPosiljalac(Long idPosiljalac) {
+        this.idPosiljalac = idPosiljalac;
     }
 
     public Long getRezervacijaId() {

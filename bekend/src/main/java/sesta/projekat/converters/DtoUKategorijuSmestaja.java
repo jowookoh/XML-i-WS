@@ -10,6 +10,7 @@ public class DtoUKategorijuSmestaja implements Converter<KategorijaSmestajaDto, 
     @Override
     public KategorijaSmestaja convert(KategorijaSmestajaDto source) {
         KategorijaSmestaja kategorijaSmestaja = new KategorijaSmestaja();
+        kategorijaSmestaja.setId(source.getId());
         kategorijaSmestaja.setNaziv(source.getNaziv());
 
         return kategorijaSmestaja;

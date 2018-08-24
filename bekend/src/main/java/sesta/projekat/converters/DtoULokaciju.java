@@ -12,6 +12,7 @@ public class DtoULokaciju implements Converter<LokacijaDto, Lokacija> {
     @Override
     public Lokacija convert(LokacijaDto source) {
         Lokacija lokacija = new Lokacija();
+        lokacija.setId(source.getId());
         lokacija.setDrzava(source.getDrzava());
         lokacija.setMesto(source.getMesto());
 

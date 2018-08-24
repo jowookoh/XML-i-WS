@@ -33,12 +33,4 @@ public class RezervacijaController {
         rezervacijaService.save(rezervacija);
         return ResponseEntity.ok(rezervacija);
     }
-
-
-    @RequestMapping(method = RequestMethod.GET, value = "/dodajPoruku")
-    public ResponseEntity dodajPoruku(@RequestBody PorukaDto porukaDto){
-        Rezervacija rezervacija = rezervacijaService.findOne(porukaDto.getRezervacijaId());
-        rezervacija.setKomentar(porukaDto.getTekst());
-        return ResponseEntity.ok(rezervacija);
-    }
 }

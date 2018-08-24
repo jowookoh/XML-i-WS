@@ -11,6 +11,7 @@ public class DtoUTipSmestaja implements Converter<TipSmestajaDto, TipSmestaja> {
     @Override
     public TipSmestaja convert(TipSmestajaDto source) {
         TipSmestaja tipSmestaja = new TipSmestaja();
+        tipSmestaja.setId(source.getId());
         tipSmestaja.setNaziv(source.getNaziv());
 
         return tipSmestaja;

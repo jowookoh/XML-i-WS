@@ -19,6 +19,7 @@ public class DtoURezervaciju implements Converter<RezervacijaDto, Rezervacija> {
     @Override
     public Rezervacija convert(RezervacijaDto rezervacijaDto){
         Rezervacija rezervacija = new Rezervacija();
+        rezervacija.setId(rezervacijaDto.getId());
         rezervacija.setSmestaj(smestajService.findOne(rezervacijaDto.getSmestajId()));
         rezervacija.setOd(rezervacijaDto.getPocetak());
         rezervacija.setPaOndaDo(rezervacijaDto.getKraj());
