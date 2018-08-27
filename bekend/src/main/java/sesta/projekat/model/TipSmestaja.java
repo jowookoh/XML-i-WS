@@ -11,7 +11,7 @@ public class TipSmestaja {
     private Long id;
 
     @Column
-    private String naziv;
+    private String naziv;//(hotel, bad&breakfast, apartman)
 
     public String getNaziv() {
         return naziv;

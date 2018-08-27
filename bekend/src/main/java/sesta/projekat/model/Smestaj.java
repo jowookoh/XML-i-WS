@@ -33,6 +33,7 @@ public class Smestaj {
 	
 	@Column
 	private int brojOsoba;
+
 	@OneToMany(mappedBy = "smestaj")
 	private List<Cena> cene = new ArrayList();
 	

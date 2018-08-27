@@ -13,8 +13,9 @@ public class Poruka {
     @Column
     private Long idPosiljalac;
 
-    @Column
-    private Long rezervacijaId;
+    @ManyToOne
+    @JoinColumn
+    private Rezervacija rezervacija;
 
     @Column
     private String tekst;
@@ -35,12 +36,12 @@ public class Poruka {
         this.idPosiljalac = idPosiljalac;
     }
 
-    public Long getRezervacijaId() {
-        return rezervacijaId;
+    public Rezervacija getRezervacija() {
+        return rezervacija;
     }
 
-    public void setRezervacijaId(Long rezervacijaId) {
-        this.rezervacijaId = rezervacijaId;
+    public void setRezervacijaId(Rezervacija rezervacija) {
+        this.rezervacija = rezervacija;
     }
 
     public String getTekst() {
