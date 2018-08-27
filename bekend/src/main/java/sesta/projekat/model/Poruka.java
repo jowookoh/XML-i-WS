@@ -40,7 +40,7 @@ public class Poruka {
         return rezervacija;
     }
 
-    public void setRezervacijaId(Rezervacija rezervacija) {
+    public void setRezervacija(Rezervacija rezervacija) {
         this.rezervacija = rezervacija;
     }
 

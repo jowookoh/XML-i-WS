@@ -12,7 +12,7 @@ public class PorukaUDto implements Converter<Poruka, PorukaDto> {
         PorukaDto porukaDto = new PorukaDto();
         porukaDto.setId(source.getId());
         porukaDto.setPosiljalacId(source.getIdPosiljalac());
-        porukaDto.setRezervacijaId(source.getRezervacijaId());
+        porukaDto.setRezervacijaId(source.getRezervacija().getId());
         porukaDto.setTekst(source.getTekst());
         return porukaDto;
     }
