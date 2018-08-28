@@ -1,0 +1,125 @@
+<div class="features-boxed" >
+    <div class="container">
+        <div class="row justify-content-center features" style="padding:0px;background-size:cover;width:1193px;height:1000px;padding-top:200px;">
+            <div class="col item">
+                <div class="box"><i class="fa fa-list-alt icon"></i>
+                    <a class="btn btn-light action-button" data-toggle="modal" data-target="#modalDodavanje">dodavanje smeštaja</a>
+                </div>
+            </div>
+            <div class="col item">
+                <div class="box"><i class="fa fa-list-alt icon"></i><br>
+                    <a class="btn btn-light action-button" data-toggle="modal" data-target="#modalPoruke">poruke</a>
+                </div>
+            </div>
+            <div class="col item">
+                <div class="box"><i class="fa fa-list-alt icon"></i>
+                    <a class="btn btn-light action-button" data-toggle="modal" data-target="#modalZauzetost">zauzetost smeštaja</a>
+                </div>
+            </div>
+            <div class="col item">
+                <div class="box"><i class="fa fa-list-alt icon"></i>
+                    <a class="btn btn-light action-button" data-toggle="modal" data-target="#modalPotvrda">potvrda rezervacija</a>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- MODAL DODAVANJE-->
+        <div class="modal fade" id="modalDodavanje" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="d-flex flex-column justify-content-center align-items-center" style="padding:100px;">
+                            <form style="padding:0px;margin:0px;"><label class="d-flex flex-row justify-content-center"style="padding:0px;font-size:20px;">Dodaj smeštajnu jedinicu</label>
+                                <input class="form-control" type="text" placeholder="Država" ng-model="smestaj.drzava" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" type="text" placeholder="Mesto" ng-model="smestaj.mesto" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" type="number" placeholder="Kapacitet" maxlength="20" ng-model="smestaj.brOsoba" style="margin-bottom:20px;padding:0px;">
+                                <textarea class="form-control form-control-lg" placeholder="Opis" ng-model="smestaj.opis" style="margin-bottom:20px;padding:0px;"></textarea>
+                                <label>Tip smeštaja:</label>
+                                <select class="form-control" ng-model="izabraniTip" ng-options="tip.naziv for tip in tipovi" style="margin-bottom:20px;padding:0px;"></select>
+                                <label>Kategorija smeštaja:</label>
+                                <select class="form-control" ng-model="izabranaKategorija" ng-options="kategorija.naziv for kategorija in kategorije" style="margin-bottom:20px;padding:0px;"></select>
+                                <label>Dodatne usluge:</label>
+                                <select class="form-control" ng-model="izabraniTip" ng-options="usluga.naziv for usluga in usluge" style="margin-bottom:20px;padding:0px;"></select>
+                                <button ng-click="dodajSmestaj()" class="btn btn-primary btn-block" type="submit" >Dodaj</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- MODAL POTVRDA-->
+        <div class="modal fade" id="modalPotvrda" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div  class="span3">
+                            <div class="form-group pull-left">
+                                <h4> Pristigle rezervacije </h4>
+                            </div>
+                            <span class="counter pull-right"></span>
+
+                            <table data-toggle="table" class="table table-hover table-striped table-bordered results">
+                                <tr>
+                                    <th> Rezervacija </th>
+                                    <th></th>
+                                </tr>
+                                <tr ng-repeat="zahtev in zahtevni | orderBy:ime ">
+                                    <td >{{zahtev.ime}}&nbsp{{zahtev.prezime}}</td>
+                                    <td >
+                                        <button class="btn btn-primary" type="button" ng-click="prihvatiPriku(zahtev.prijateljstvoId)" >Prihvati</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- MODAL PORUKE-->
+        <div class="modal fade" id="modalPoruke" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>proro</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- MODAL ZAUZETOST-->
+        <div class="modal fade" id="modalZauzetost" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>zaza</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

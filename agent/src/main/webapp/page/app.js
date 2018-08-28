@@ -1,12 +1,17 @@
 var livadeApp= angular.module('livadeApp',['ui.router'])
 
 livadeApp.config(['$urlRouterProvider','$stateProvider',function($urlRouterProvider,$stateProvider) {
-    $urlRouterProvider.otherwise('/pocetnaGost');
+    $urlRouterProvider.otherwise('/login');
     $stateProvider
-        .state('pocetnaGost',{
-            url:'/pocetnaGost',
-            controller: 'pocetnaGostCtrl',
-            templateUrl: 'pageDelovi/pocetnaGost.html'
+        .state('login',{
+            url:'/login',
+            controller: 'loginCtrl',
+            templateUrl: 'pageDelovi/login.html'
+        })
+        .state('osnovna',{
+            url:'/osnovna',
+            controller: 'osnovnaCtrl',
+            templateUrl: 'pageDelovi/osnovna.html'
         })
 
 }])

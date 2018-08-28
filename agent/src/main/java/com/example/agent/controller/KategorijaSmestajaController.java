@@ -16,7 +16,7 @@ public class KategorijaSmestajaController {
     @Autowired KategorijaSmestajaRepository kategorijaSmestajaRepository;
 
     @RequestMapping(method = RequestMethod.GET, value = "/secured/svi")
-    public ResponseEntity getSveTipSmestaja() {
+    public ResponseEntity getSveKategorijeSmestaja() {
         return new ResponseEntity<>(kategorijaSmestajaRepository.findAll(), HttpStatus.OK);
     }
 }
