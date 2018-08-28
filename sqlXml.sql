@@ -21,13 +21,13 @@ INSERT INTO `tip_smestaja`(`id`,`naziv`)VALUES(1,'hotel');
 INSERT INTO `tip_smestaja`(`id`,`naziv`)VALUES(2,'bad&breakfast');
 INSERT INTO `tip_smestaja`(`id`,`naziv`)VALUES(3,'apartman');
 
-INSERT INTO `szynka`.`smestaj`(`id`,`broj_osoba`,`opis`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
+INSERT INTO `smestaj`(`id`,`broj_osoba`,`opis`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
 VALUES (1,4,'mala kuća',1,1,3);
-INSERT INTO `szynka`.`smestaj`(`id`,`broj_osoba`,`opis`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
+INSERT INTO `smestaj`(`id`,`broj_osoba`,`opis`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
 VALUES (2,3,'mali stan',1,1,2);
-INSERT INTO `szynka`.`smestaj`(`id`,`broj_osoba`,`opis`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
+INSERT INTO `smestaj`(`id`,`broj_osoba`,`opis`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
 VALUES (3,12,'hotel na obali mora',5,1,1);
-INSERT INTO `szynka`.`smestaj`(`id`,`broj_osoba`,`opis`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
+INSERT INTO `smestaj`(`id`,`broj_osoba`,`opis`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
 VALUES (4,2,'apartman u centru',1,2,3);
 
 INSERT INTO `rezervacija`(`id`,`komentar`,`ocena`,`od`,`odobren_komentar`,`pa_onda_do`,`realizovana`,`smestaj_id`)
