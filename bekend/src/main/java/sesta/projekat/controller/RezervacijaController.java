@@ -17,7 +17,7 @@ public class RezervacijaController {
     @Autowired
     private RezervacijaService rezervacijaService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/rezervisiSmestaj")
+    @RequestMapping(method = RequestMethod.POST, value = "/rezervisiSmestaj")
     public ResponseEntity novaRezervacija(@RequestBody Rezervacija rezervacija){
         Rezervacija rezervacijaSacuvana = rezervacijaService.save(rezervacija);
         return ResponseEntity.ok(rezervacijaSacuvana);

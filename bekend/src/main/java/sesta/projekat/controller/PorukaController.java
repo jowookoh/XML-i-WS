@@ -16,7 +16,7 @@ public class PorukaController {
     @Autowired
     private PorukaService porukaService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/rezervisiSmestaj")
+    @RequestMapping(method = RequestMethod.POST, value = "/rezervisiSmestaj")
     public ResponseEntity novaPoruka(@RequestBody Poruka poruka){
         Poruka porukaSacuvana = porukaService.save(poruka);
         return ResponseEntity.ok(porukaSacuvana);
