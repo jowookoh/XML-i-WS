@@ -46,6 +46,9 @@ public class Rezervacija {
 	
 	@Column
 	private boolean realizovana;
+
+	@Column
+	private boolean fejk;
 	
 	public Long getId() {
 		return id;
@@ -117,5 +120,13 @@ public class Rezervacija {
 	
 	public void setPaOndaDo(Date paOndaDo) {
 		this.paOndaDo = paOndaDo;
+	}
+
+	public boolean isFejk() {
+		return fejk;
+	}
+
+	public void setFejk(boolean fejk) {
+		this.fejk = fejk;
 	}
 }

@@ -7,9 +7,6 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import sesta.projekat.service.UslugaService;
-import soap.Hello;
-import soap.Usluga;
-
 @Endpoint
 @Scope
 public class HelloWorldEndpoint {
@@ -17,7 +14,7 @@ public class HelloWorldEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "hello")
     @ResponsePayload
-    public Hello hello(@RequestPayload String tekst) {
+    public String hello(@RequestPayload String tekst) {
         return "end world";
 
     }

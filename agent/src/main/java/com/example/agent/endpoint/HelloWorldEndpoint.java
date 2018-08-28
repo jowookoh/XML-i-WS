@@ -5,7 +5,7 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-import soap.Usluga;
+
 
 @Endpoint
 @Scope
@@ -15,10 +15,9 @@ public class HelloWorldEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "hello")
     @ResponsePayload
-    public Usluga hello(@RequestPayload Usluga usluga) {
-        Usluga response = new Usluga();
-        response.setNaziv(usluga.getNaziv());
-        return response;
+    public String hello(@RequestPayload String usluga) {
+
+        return "helljo";
 
     }
 }

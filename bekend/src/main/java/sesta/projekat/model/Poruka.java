@@ -10,7 +10,8 @@ public class Poruka {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @ManyToOne
+    @JoinColumn
     private Korisnik posiljalac;
 
     @ManyToOne
