@@ -20,8 +20,9 @@ public class Poruka {
 	public void setBekendId(Long bekendId) {
 		this.bekendId = bekendId;
 	}
-
-    @Column
+	
+	@ManyToOne
+	@JoinColumn
     private Korisnik posiljalac;
 
     @ManyToOne

@@ -1,6 +1,6 @@
 package com.example.agent.controller;
 
-import com.example.agent.model.dto.PorukaDTO;
+import com.example.agent.model.Poruka;
 import com.example.agent.service.PorukaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class PorukaController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/porukeRezervacije/{id}")
     public ResponseEntity getPorukeRezervacije(@PathVariable Long id) {
-        List<PorukaDTO> porukeDTO = porukaService.porukaRezervacije(id);
-        return ResponseEntity.ok(porukeDTO);
+        List<Poruka> poruke = porukaService.porukaRezervacije(id);
+        return ResponseEntity.ok(poruke);
     }
 }
