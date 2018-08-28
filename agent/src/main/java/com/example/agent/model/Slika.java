@@ -15,5 +15,5 @@ public class Slika {
 	private Smestaj smestaj;
 	
 	@Column
-	private Blob slika;
+	private String slika;
 }

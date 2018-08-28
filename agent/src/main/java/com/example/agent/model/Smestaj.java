@@ -1,6 +1,8 @@
 package com.example.agent.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Smestaj {
@@ -30,6 +32,9 @@ public class Smestaj {
 	
 	@Column
 	private int brojOsoba;
+
+    @OneToMany(mappedBy = "smestaj")
+	private List<Cena> cene = new ArrayList();
 	
 	public Long getId() {
 		return id;
@@ -78,4 +83,12 @@ public class Smestaj {
 	public void setBrojOsoba(int brojOsoba) {
 		this.brojOsoba = brojOsoba;
 	}
+
+    public List<Cena> getCene() {
+        return cene;
+    }
+
+    public void setCene(List<Cena> cene) {
+        this.cene = cene;
+    }
 }
