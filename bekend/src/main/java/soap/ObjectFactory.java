@@ -30,67 +30,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Rezervacija }
+     * Create an instance of {@link Hello }
      * 
      */
-    public Rezervacija createRezervacija() {
-        return new Rezervacija();
-    }
-
-    /**
-     * Create an instance of {@link Slika }
-     * 
-     */
-    public Slika createSlika() {
-        return new Slika();
-    }
-
-    /**
-     * Create an instance of {@link Smestaj }
-     * 
-     */
-    public Smestaj createSmestaj() {
-        return new Smestaj();
-    }
-
-    /**
-     * Create an instance of {@link Lokacija }
-     * 
-     */
-    public Lokacija createLokacija() {
-        return new Lokacija();
-    }
-
-    /**
-     * Create an instance of {@link Poruka }
-     * 
-     */
-    public Poruka createPoruka() {
-        return new Poruka();
-    }
-
-    /**
-     * Create an instance of {@link TipSmestaja }
-     * 
-     */
-    public TipSmestaja createTipSmestaja() {
-        return new TipSmestaja();
-    }
-
-    /**
-     * Create an instance of {@link Cena }
-     * 
-     */
-    public Cena createCena() {
-        return new Cena();
-    }
-
-    /**
-     * Create an instance of {@link Usluga }
-     * 
-     */
-    public Usluga createUsluga() {
-        return new Usluga();
+    public Hello createHello() {
+        return new Hello();
     }
 
 }
