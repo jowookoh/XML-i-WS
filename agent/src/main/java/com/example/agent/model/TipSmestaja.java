@@ -8,6 +8,17 @@ public class TipSmestaja {
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+	
+	@Column
+	private Long bekendId;
+	
+	public Long getBekendId() {
+		return bekendId;
+	}
+	
+	public void setBekendId(Long bekendId) {
+		this.bekendId = bekendId;
+	}
 
     @Column
     private String naziv;

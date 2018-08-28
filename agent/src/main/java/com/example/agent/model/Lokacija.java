@@ -10,6 +10,17 @@ public class Lokacija {
 	private Long id;
 	
 	@Column
+	private Long bekendId;
+	
+	public Long getBekendId() {
+		return bekendId;
+	}
+	
+	public void setBekendId(Long bekendId) {
+		this.bekendId = bekendId;
+	}
+	
+	@Column
 	private String drzava;
 	
 	@Column

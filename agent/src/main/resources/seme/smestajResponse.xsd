@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://xml/ws/smestaj"
+           xmlns:smestaj="http://xml/ws/smestaj">
+
+    <xs:element name="smestaj" type="smestaj:smestaj"/>
+
+    <xs:complexType name="smestaj">
+        <xs:sequence>
+            <xs:element name="bekendId" type="xs:long"/>
+            <xs:element name="tipSmestaja" type="xs:long"/>
+            <xs:element name="kategorijaSmestaja" type="xs:long"/>
+            <xs:element name="agent" type="xs:long"/>
+            <xs:element name="lokacija" type="xs:long"/>
+            <xs:element name="opis" type="xs:string"/>
+            <xs:element name="brojOsoba" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

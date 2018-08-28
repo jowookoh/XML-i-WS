@@ -20,9 +20,9 @@ public class Smestaj {
 	@JoinColumn
 	private KategorijaSmestaja kategorijaSmestaja;
 	
-	/*@ManyToOne
+	@ManyToOne
 	@JoinColumn
-	private Agent agent;*/
+	private Korisnik agent;
 	
 	@ManyToOne
 	@JoinColumn
@@ -59,6 +59,14 @@ public class Smestaj {
 	
 	public void setKategorijaSmestaja(KategorijaSmestaja kategorijaSmestaja) {
 		this.kategorijaSmestaja = kategorijaSmestaja;
+	}
+	
+	public Korisnik getAgent() {
+		return agent;
+	}
+	
+	public void setAgent(Korisnik agent) {
+		this.agent = agent;
 	}
 	
 	public Lokacija getLokacija() {

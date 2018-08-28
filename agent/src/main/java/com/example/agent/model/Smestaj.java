@@ -11,6 +11,17 @@ public class Smestaj {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column
+	private Long bekendId;
+	
+	public Long getBekendId() {
+		return bekendId;
+	}
+	
+	public void setBekendId(Long bekendId) {
+		this.bekendId = bekendId;
+	}
+	
 	@ManyToOne
 	@JoinColumn
 	private TipSmestaja tipSmestaja;
@@ -19,9 +30,9 @@ public class Smestaj {
 	@JoinColumn
 	private KategorijaSmestaja kategorijaSmestaja;
 	
-	/*@ManyToOne
+	@ManyToOne
 	@JoinColumn
-	private Agent agent;*/
+	private Korisnik agent;
 	
 	@ManyToOne
 	@JoinColumn
@@ -32,9 +43,9 @@ public class Smestaj {
 	
 	@Column
 	private int brojOsoba;
-
+	
     @OneToMany(mappedBy = "smestaj")
-	private List<Cena> cene = new ArrayList();
+	private List<Cena> cene = new ArrayList(); // Koga zbuni nek ignorise
 	
 	public Long getId() {
 		return id;
@@ -58,6 +69,14 @@ public class Smestaj {
 	
 	public void setKategorijaSmestaja(KategorijaSmestaja kategorijaSmestaja) {
 		this.kategorijaSmestaja = kategorijaSmestaja;
+	}
+	
+	public Korisnik getAgent() {
+		return agent;
+	}
+	
+	public void setAgent(Korisnik agent) {
+		this.agent = agent;
 	}
 	
 	public Lokacija getLokacija() {
