@@ -25,9 +25,9 @@ public class Rezervacija {
 	@JoinColumn
 	private Smestaj smestaj;
 	
-	/*@ManyToOne
+	@ManyToOne
 	@JoinColumn
-	private Klijent klijent;*/
+	private Korisnik klijent;
 	
 	@Column
 	private Date od;
@@ -93,6 +93,14 @@ public class Rezervacija {
 	
 	public void setRealizovana(boolean realizovana) {
 		this.realizovana = realizovana;
+	}
+	
+	public Korisnik getKlijent() {
+		return klijent;
+	}
+	
+	public void setKlijent(Korisnik klijent) {
+		this.klijent = klijent;
 	}
 	
 	public Date getOd() {

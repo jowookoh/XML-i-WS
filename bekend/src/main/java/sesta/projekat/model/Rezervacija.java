@@ -16,9 +16,9 @@ public class Rezervacija {
 	@JoinColumn
 	private Smestaj smestaj;
 	
-	/*@ManyToOne
+	@ManyToOne
 	@JoinColumn
-	private Klijent klijent;*/
+	private Korisnik klijent;
 	
 	@Column
 	private Date od;
@@ -60,6 +60,14 @@ public class Rezervacija {
 	
 	public void setOcena(int ocena) {
 		this.ocena = ocena;
+	}
+	
+	public Korisnik getKlijent() {
+		return klijent;
+	}
+	
+	public void setKlijent(Korisnik klijent) {
+		this.klijent = klijent;
 	}
 	
 	public String getKomentar() {
