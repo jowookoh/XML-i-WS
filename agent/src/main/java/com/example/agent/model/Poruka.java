@@ -32,6 +32,9 @@ public class Poruka {
     @Column
     private String tekst;
 
+    @Column
+    private int poRedu;
+
     public Long getId() {
         return id;
     }
@@ -62,5 +65,13 @@ public class Poruka {
 
     public void setTekst(String tekst) {
         this.tekst = tekst;
+    }
+
+    public int getPoRedu() {
+        return poRedu;
+    }
+
+    public void setPoRedu(int poRedu) {
+        this.poRedu = poRedu;
     }
 }

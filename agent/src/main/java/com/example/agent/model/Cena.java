@@ -27,6 +27,9 @@ public class Cena {
 	
 	@Column
 	private Date mesec;
+
+	@Column
+	private int vrednost;
 	
 	public Long getId() {
 		return id;
@@ -50,5 +53,13 @@ public class Cena {
 	
 	public void setMesec(Date mesec) {
 		this.mesec = mesec;
+	}
+
+	public int getVrednost() {
+		return vrednost;
+	}
+
+	public void setVrednost(int vrednost) {
+		this.vrednost = vrednost;
 	}
 }

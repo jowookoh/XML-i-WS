@@ -21,4 +21,18 @@ public class PorukaService {
         List<Poruka> poruke = porukaRepository.findByRezervacija(rezervacijaRepository.findById(id));
         return poruke;
     }
+
+    public Poruka novaPoruka(Poruka poruka){
+        porukaRepository.save(poruka);
+        return poruka;
+    }
+
+    public void izbrisiPoruke(List<Poruka> poruke){
+        for (Poruka p : poruke) {
+            p.setPosiljalac(null);
+            p.setRezervacija(null);
+            p=porukaRepository.save(p);
+            porukaRepository.delete(p);
+        }
+    }
 }

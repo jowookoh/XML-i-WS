@@ -3,11 +3,9 @@ package com.example.agent.controller;
 import com.example.agent.model.Poruka;
 import com.example.agent.service.PorukaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,26 @@ public class PorukaController {
     public ResponseEntity getPorukeRezervacije(@PathVariable Long id) {
         List<Poruka> poruke = porukaService.porukaRezervacije(id);
         return ResponseEntity.ok(poruke);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/nova")
+    public ResponseEntity napisiPoruku(@RequestBody Poruka poruka) {
+        Poruka pora = porukaService.novaPoruka(poruka);
+        if (pora != null) {
+            return ResponseEntity.ok(pora);
+        } else {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/izbrisi/{id}")
+    public  ResponseEntity izbrisiPorukeRezervacije(@PathVariable Long id){
+        List<Poruka> poruke = porukaService.porukaRezervacije(id);
+        if (poruke != null) {
+            porukaService.izbrisiPoruke(poruke);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 }
