@@ -1,9 +1,3 @@
-delete from rezervacija;
-delete from smestaj;
-delete from lokacija;
-delete from tip_smestaja;
-delete from kategorija_smestaja;
-
 INSERT INTO `kategorija_smestaja` (`id`, `naziv`) VALUES (1, '0');
 INSERT INTO `kategorija_smestaja` (`id`, `naziv`) VALUES (2, '1');
 INSERT INTO `kategorija_smestaja` (`id`, `naziv`) VALUES (3, '2');
