@@ -35,15 +35,16 @@
                             <form style="padding:0px;margin:0px;"><label class="d-flex flex-row justify-content-center"style="padding:0px;font-size:20px;">Dodaj smeštajnu jedinicu</label>
                                 <input class="form-control" type="text" placeholder="Država" ng-model="smestaj.drzava" style="margin-bottom:20px;padding:0px;">
                                 <input class="form-control" type="text" placeholder="Mesto" ng-model="smestaj.mesto" style="margin-bottom:20px;padding:0px;">
-                                <input class="form-control" type="number" placeholder="Kapacitet" maxlength="20" ng-model="smestaj.brOsoba" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" type="number" placeholder="Kapacitet" max="20" ng-model="smestaj.brOsoba" style="margin-bottom:20px;padding:0px;">
                                 <textarea class="form-control form-control-lg" placeholder="Opis" ng-model="smestaj.opis" style="margin-bottom:20px;padding:0px;"></textarea>
                                 <label>Tip smeštaja:</label>
                                 <select class="form-control" ng-model="izabraniTip" ng-options="tip.naziv for tip in tipovi" style="margin-bottom:20px;padding:0px;"></select>
                                 <label>Kategorija smeštaja:</label>
                                 <select class="form-control" ng-model="izabranaKategorija" ng-options="kategorija.naziv for kategorija in kategorije" style="margin-bottom:20px;padding:0px;"></select>
                                 <label>Dodatne usluge:</label>
-                                <select class="form-control" ng-model="izabraniTip" ng-options="usluga.naziv for usluga in usluge" style="margin-bottom:20px;padding:0px;"></select>
-                                <button ng-click="dodajSmestaj()" class="btn btn-primary btn-block" type="submit" >Dodaj</button>
+                                <div ng-dropdown-multiselect="" options="usluge" selected-model="izabraneUsluge" extra-settings="prikazSettings"></div>
+
+                                <button ng-click="dodajSmestaj()" class="btn btn-primary btn-block" type="submit" style="margin-top:30px;padding:0px;" >Dodaj</button>
                             </form>
                         </div>
                     </div>

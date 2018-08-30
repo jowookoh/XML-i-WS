@@ -16,12 +16,12 @@
     <form id="lakisrc" style="width:550px;background-color:#ffffff;">
         <h1 class="text-center" style="font-weight:bold;color:rgb(150,196,49);">LIVADE</h1>
         <h4 class="text-center" style="margin-top:-15px;color:rgb(231,84,21);font-family:Allan, cursive;">Turizam</h4>
-        <input class="form-control" type="text" ng-model="pretraga.lokacija" placeholder="Lokacija" style="margin-bottom:25px;">
+        <input class="form-control" type="text" ng-model="pretraga.idLokacije" placeholder="Lokacija" style="margin-bottom:25px;">
         <div class="form-row">
-            <div class="col"><label>Datum polaska</label><input class="form-control" type="date" ng-model="pretraga.datum1"></div>
-            <div class="col"><label>Datum povratka</label><input class="form-control" type="date" ng-model="pretraga.datum2"></div>
-            <div class="col"><label>Broj osoba</label><input class="form-control" type="number" ng-model="pretraga.brOsoba" min="1" max="12"></div>
-        </div><button class="btn btn-info float-right"  type="button" style="margin-top:10px;background-color:rgb(150,196,49);">Pretraga</button></form>
+            <div class="col"><label>Datum polaska</label><input class="form-control" type="date" ng-model="pretraga.prvi"></div>
+            <div class="col"><label>Datum povratka</label><input class="form-control" type="date" ng-model="pretraga.drugi"></div>
+            <div class="col"><label>Broj osoba</label><input class="form-control" type="number" ng-model="pretraga.brojOsoba" min="1" max="12"></div>
+        </div><button class="btn btn-info float-right" ng-click="pretrazi()" type="button" style="margin-top:10px;background-color:rgb(150,196,49);">Pretraga</button></form>
 </div>
 <button class="btn btn-primary" ng-click="ngNapredna(napredna)" type="button" style="background-color:rgb(78,163,246);margin-left:10px;margin-top:20px;">Napredna pretraga&nbsp;<i class="fa fa-chevron-down"></i></button>
 <div class="row" style="margin-top:0px;">
@@ -111,5 +111,5 @@
         </div>
     </div>
 </div>
-
+{{sara}}
 
