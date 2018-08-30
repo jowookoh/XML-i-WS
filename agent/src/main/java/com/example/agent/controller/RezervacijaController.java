@@ -1,5 +1,6 @@
 package com.example.agent.controller;
 
+import com.example.agent.model.Korisnik;
 import com.example.agent.model.Rezervacija;
 import com.example.agent.service.RezervacijaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/rezervacija")
@@ -31,5 +34,10 @@ public class RezervacijaController {
     public ResponseEntity realizujRezu(@RequestBody Rezervacija rezervacija) {
         rezervacijaService.realizujRezervaciju(rezervacija);
         return ResponseEntity.ok(rezervacija);
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/moje")
+    public ResponseEntity rezeMojihSmestaja(@RequestBody Korisnik trenutniAgent){
+        List<Rezervacija> rezervacije = rezervacijaService.rezervacijeMojihSmestaja(trenutniAgent);
+        return ResponseEntity.ok(rezervacije);
     }
 }
