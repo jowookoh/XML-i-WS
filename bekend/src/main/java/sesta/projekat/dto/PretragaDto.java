@@ -3,7 +3,7 @@ package sesta.projekat.dto;
 import java.util.Date;
 
 public class PretragaDto {
-    private Long idLokacije;
+    private String lokacija;
     private Date prvi;
     private Date drugi;
     private int brojOsoba;
@@ -11,19 +11,19 @@ public class PretragaDto {
     public PretragaDto() {
     }
 
-    public PretragaDto(Long idLokacije, Date prvi, Date drugi, int brojOsoba) {
-        this.idLokacije = idLokacije;
+    public PretragaDto(String lokacija, Date prvi, Date drugi, int brojOsoba) {
+        this.lokacija = lokacija;
         this.prvi = prvi;
         this.drugi = drugi;
         this.brojOsoba = brojOsoba;
     }
 
-    public Long getIdLokacije() {
-        return idLokacije;
+    public String getLokacija() {
+        return this.lokacija;
     }
 
-    public void setIdLokacije(Long idLokacije) {
-        this.idLokacije = idLokacije;
+    public void setIdLokacije(String lokacija) {
+        this.lokacija = lokacija;
     }
 
     public Date getPrvi() {
