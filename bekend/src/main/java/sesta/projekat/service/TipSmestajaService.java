@@ -24,4 +24,8 @@ public class TipSmestajaService {
     public List<TipSmestaja> getAll() {
         return tipSmestajaRepository.findAll();
     }
+
+    public void deleteOne(Long id){ tipSmestajaRepository.delete(id);}
+
+    public void deleteOne(TipSmestaja ts) { tipSmestajaRepository.delete(ts);}
 }
