@@ -42,6 +42,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SmestajRequest }
+     * 
+     */
+    public SmestajRequest createSmestajRequest() {
+        return new SmestajRequest();
+    }
+
+    /**
+     * Create an instance of {@link SmestajJedan }
+     * 
+     */
+    public SmestajJedan createSmestajJedan() {
+        return new SmestajJedan();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SmestajResponse }{@code >}}
      * 
      */

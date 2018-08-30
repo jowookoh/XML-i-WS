@@ -1,10 +1,9 @@
 
 package sesta.projekat.ws;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.annotation.*;
 
 
 /**
@@ -17,13 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="bekendId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="tipSmestaja" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="kategorijaSmestaja" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="agent" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="lokacija" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="opis" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="brojOsoba" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="smestaji" type="{http://xml/ws/smestaj}smestajJedan" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,149 +27,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "smestajResponse", namespace = "http://xml/ws/smestaj", propOrder = {
-    "bekendId",
-    "tipSmestaja",
-    "kategorijaSmestaja",
-    "agent",
-    "lokacija",
-    "opis",
-    "brojOsoba"
+    "smestaji"
 })
+@XmlRootElement
 public class SmestajResponse {
 
-    @XmlElement(namespace = "http://xml/ws/smestaj")
-    protected long bekendId;
-    @XmlElement(namespace = "http://xml/ws/smestaj")
-    protected long tipSmestaja;
-    @XmlElement(namespace = "http://xml/ws/smestaj")
-    protected long kategorijaSmestaja;
-    @XmlElement(namespace = "http://xml/ws/smestaj")
-    protected long agent;
-    @XmlElement(namespace = "http://xml/ws/smestaj")
-    protected long lokacija;
     @XmlElement(namespace = "http://xml/ws/smestaj", required = true)
-    protected String opis;
-    @XmlElement(namespace = "http://xml/ws/smestaj")
-    protected int brojOsoba;
+    protected List<SmestajJedan> smestaji;
 
     /**
-     * Gets the value of the bekendId property.
+     * Gets the value of the smestaji property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the smestaji property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSmestaji().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link SmestajJedan }
+     * 
      * 
      */
-    public long getBekendId() {
-        return bekendId;
-    }
-
-    /**
-     * Sets the value of the bekendId property.
-     * 
-     */
-    public void setBekendId(long value) {
-        this.bekendId = value;
-    }
-
-    /**
-     * Gets the value of the tipSmestaja property.
-     * 
-     */
-    public long getTipSmestaja() {
-        return tipSmestaja;
-    }
-
-    /**
-     * Sets the value of the tipSmestaja property.
-     * 
-     */
-    public void setTipSmestaja(long value) {
-        this.tipSmestaja = value;
-    }
-
-    /**
-     * Gets the value of the kategorijaSmestaja property.
-     * 
-     */
-    public long getKategorijaSmestaja() {
-        return kategorijaSmestaja;
-    }
-
-    /**
-     * Sets the value of the kategorijaSmestaja property.
-     * 
-     */
-    public void setKategorijaSmestaja(long value) {
-        this.kategorijaSmestaja = value;
-    }
-
-    /**
-     * Gets the value of the agent property.
-     * 
-     */
-    public long getAgent() {
-        return agent;
-    }
-
-    /**
-     * Sets the value of the agent property.
-     * 
-     */
-    public void setAgent(long value) {
-        this.agent = value;
-    }
-
-    /**
-     * Gets the value of the lokacija property.
-     * 
-     */
-    public long getLokacija() {
-        return lokacija;
-    }
-
-    /**
-     * Sets the value of the lokacija property.
-     * 
-     */
-    public void setLokacija(long value) {
-        this.lokacija = value;
-    }
-
-    /**
-     * Gets the value of the opis property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getOpis() {
-        return opis;
-    }
-
-    /**
-     * Sets the value of the opis property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setOpis(String value) {
-        this.opis = value;
-    }
-
-    /**
-     * Gets the value of the brojOsoba property.
-     * 
-     */
-    public int getBrojOsoba() {
-        return brojOsoba;
-    }
-
-    /**
-     * Sets the value of the brojOsoba property.
-     * 
-     */
-    public void setBrojOsoba(int value) {
-        this.brojOsoba = value;
+    public List<SmestajJedan> getSmestaji() {
+        if (smestaji == null) {
+            smestaji = new ArrayList<SmestajJedan>();
+        }
+        return this.smestaji;
     }
 
 }
