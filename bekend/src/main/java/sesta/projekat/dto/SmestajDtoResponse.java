@@ -5,6 +5,7 @@ import java.util.List;
 
 public class SmestajDtoResponse {
     /*slike objekta, opis, cene, ocenu korisnika, kategoriju, sve dodatne pogodnosti, tip objekta*/
+    private Long id;
     private List<String> slike;
     private String opis;
     private List<CenaDto> cene;
@@ -15,13 +16,22 @@ public class SmestajDtoResponse {
     public SmestajDtoResponse() {
     }
 
-    public SmestajDtoResponse(List<String> slike, String opis, List<CenaDto> cene, String kategorija, String tipSmestaja, List<String> usluge) {
+    public SmestajDtoResponse(Long id, List<String> slike, String opis, List<CenaDto> cene, String kategorija, String tipSmestaja, List<String> usluge) {
+        this.id = id;
         this.slike = slike;
         this.opis = opis;
         this.cene = cene;
         this.kategorija = kategorija;
         this.tipSmestaja = tipSmestaja;
         this.usluge = usluge;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public List<String> getSlike() {
