@@ -1,6 +1,5 @@
 package com.example.agent.controller;
 
-import com.example.agent.client.SmestajClient;
 import com.example.agent.repository.TipSmestajaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -15,7 +15,7 @@ import org.springframework.xml.xsd.XsdSchema;
 @EnableWs
 @Configuration
 public class WebServiceConfig extends WsConfigurerAdapter {
-    @Bean
+    /*@Bean
     public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
@@ -37,5 +37,20 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     public XsdSchema smestajResponseSchema() {
         return new SimpleXsdSchema(new ClassPathResource("seme/smestajResponse.xsd"));
     }
+
+    @Bean(name = "loginResponse")
+    public DefaultWsdl11Definition login(XsdSchema loginResponseSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("loginResponsePort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://xml/ws/login");
+        wsdl11Definition.setSchema(loginResponseSchema);
+        return wsdl11Definition;
+    }
+
+    @Bean
+    public XsdSchema loginResponseSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("seme/loginResponse.xsd"));
+    }*/
 }
 

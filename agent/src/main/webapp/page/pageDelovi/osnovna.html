@@ -33,9 +33,9 @@
                     <div class="modal-body">
                         <div class="d-flex flex-column justify-content-center align-items-center" style="padding:100px;">
                             <form style="padding:0px;margin:0px;"><label class="d-flex flex-row justify-content-center"style="padding:0px;font-size:20px;">Dodaj smeštajnu jedinicu</label>
-                                <input class="form-control" type="text" placeholder="Država" ng-model="smestaj.drzava" style="margin-bottom:20px;padding:0px;">
-                                <input class="form-control" type="text" placeholder="Mesto" ng-model="smestaj.mesto" style="margin-bottom:20px;padding:0px;">
-                                <input class="form-control" type="number" placeholder="Kapacitet" max="20" ng-model="smestaj.brOsoba" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" requestType="text" placeholder="Država" ng-model="smestaj.drzava" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" requestType="text" placeholder="Mesto" ng-model="smestaj.mesto" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" requestType="number" placeholder="Kapacitet" max="20" ng-model="smestaj.brOsoba" style="margin-bottom:20px;padding:0px;">
                                 <textarea class="form-control form-control-lg" placeholder="Opis" ng-model="smestaj.opis" style="margin-bottom:20px;padding:0px;"></textarea>
                                 <label>Tip smeštaja:</label>
                                 <select class="form-control" ng-model="izabraniTip" ng-options="tip.naziv for tip in tipovi" style="margin-bottom:20px;padding:0px;"></select>
@@ -44,12 +44,12 @@
                                 <label>Dodatne usluge:</label>
                                 <div ng-dropdown-multiselect="" options="usluge" selected-model="izabraneUsluge" extra-settings="prikazSettings"></div>
 
-                                <button ng-click="dodajSmestaj()" class="btn btn-primary btn-block" type="submit" style="margin-top:30px;padding:0px;" >Dodaj</button>
+                                <button ng-click="dodajSmestaj()" class="btn btn-primary btn-block" requestType="submit" style="margin-top:30px;padding:0px;" >Dodaj</button>
                             </form>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                        <button requestType="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
                     </div>
                 </div>
 
@@ -84,14 +84,14 @@
                                     <td>{{reza.od | date}}</td>
                                     <td>{{reza.paOndaDo | date}}</td>
                                     <td >
-                                        <button class="btn btn-primary" type="button" ng-click="potvrdiRezu(reza)" >Potvrdi</button>
+                                        <button class="btn btn-primary" requestType="button" ng-click="potvrdiRezu(reza)" >Potvrdi</button>
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                        <button requestType="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
                     </div>
                 </div>
 
@@ -126,7 +126,7 @@
                                     <td>{{reza.od | date}}</td>
                                     <td>{{reza.paOndaDo | date}}</td>
                                     <td >
-                                        <button class="btn btn-primary" type="button" ng-click="otvoriPoruke(reza)" >Poruke</button>
+                                        <button class="btn btn-primary" requestType="button" ng-click="otvoriPoruke(reza)" >Poruke</button>
                                     </td>
                                 </tr>
                             </table>
@@ -141,11 +141,11 @@
                                 </tr>
                             </table>
                             <textarea class="form-control form-control-lg" placeholder="Poruka" ng-model="novaPoruka.tekst" style="margin-bottom:20px;padding:0px;"></textarea>
-                            <button class="btn btn-primary" type="button" ng-click="posaljiPoruku()" >Pošalji</button>
+                            <button class="btn btn-primary" requestType="button" ng-click="posaljiPoruku()" >Pošalji</button>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                        <button requestType="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
                     </div>
                 </div>
 
@@ -163,13 +163,13 @@
                         <label>smeštaj:</label>
                         <select class="form-control" ng-model="rezervacija.smestaj" ng-options="smes.opis for smes in smestaji" style="margin-bottom:20px;padding:0px;"></select>
                         <label>od:</label>
-                        <input type="date" ng-model="rezervacija.od" class="form-control" style="margin-bottom:20px;"/>
+                        <input requestType="date" ng-model="rezervacija.od" class="form-control" style="margin-bottom:20px;"/>
                         <label>do:</label>
-                        <input type="date" ng-model="rezervacija.paOndaDo" class="form-control" style="margin-bottom:20px;"/>
+                        <input requestType="date" ng-model="rezervacija.paOndaDo" class="form-control" style="margin-bottom:20px;"/>
                         <button ng-click="postaviFejk()" class="btn btn-primary btn-block"  style="margin-top:20px;padding:0px;" >Postavi</button>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                        <button requestType="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
                     </div>
                 </div>
 

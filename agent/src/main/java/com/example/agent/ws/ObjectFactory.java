@@ -1,10 +1,7 @@
 
 package com.example.agent.ws;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
-import javax.xml.namespace.QName;
 
 
 /**
@@ -24,7 +21,6 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _SmestajResponse_QNAME = new QName("http://xml/ws/smestaj", "smestajResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.example.agent.ws
@@ -34,36 +30,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SmestajResponse }
+     * Create an instance of {@link LoginResponse }
      * 
      */
-    public SmestajResponse createSmestajResponse() {
-        return new SmestajResponse();
+    public LoginResponse createLoginResponse() {
+        return new LoginResponse();
     }
 
     /**
-     * Create an instance of {@link SmestajRequest }
+     * Create an instance of {@link LoginRequest }
      * 
      */
-    public SmestajRequest createSmestajRequest() {
-        return new SmestajRequest();
-    }
-
-    /**
-     * Create an instance of {@link SmestajJedan }
-     * 
-     */
-    public SmestajJedan createSmestajJedan() {
-        return new SmestajJedan();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SmestajResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://xml/ws/smestaj", name = "smestajResponse")
-    public JAXBElement<SmestajResponse> createSmestajResponse(SmestajResponse value) {
-        return new JAXBElement<SmestajResponse>(_SmestajResponse_QNAME, SmestajResponse.class, null, value);
+    public LoginRequest createLoginRequest() {
+        return new LoginRequest();
     }
 
 }

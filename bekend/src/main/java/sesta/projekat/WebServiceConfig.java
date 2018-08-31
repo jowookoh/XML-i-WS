@@ -37,4 +37,19 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     public XsdSchema smestajSema() {
         return new SimpleXsdSchema(new ClassPathResource("seme/smestajResponse.xsd"));
     }
+	
+	@Bean(name = "login")
+	public DefaultWsdl11Definition login(XsdSchema loginResponseSchema) {
+		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+		wsdl11Definition.setPortTypeName("LoginPort");
+		wsdl11Definition.setLocationUri("/ws");
+		wsdl11Definition.setTargetNamespace("http://xml/ws/login");
+		wsdl11Definition.setSchema(loginResponseSchema);
+		return wsdl11Definition;
+	}
+	
+	@Bean
+	public XsdSchema loginResponseSchema() {
+		return new SimpleXsdSchema(new ClassPathResource("seme/login.xsd"));
+	}
 }
