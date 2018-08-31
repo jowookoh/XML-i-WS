@@ -44,7 +44,7 @@ public class KlijentController {
     }
 
     @Transactional
-    @RequestMapping(method = RequestMethod.GET, value = "/obrisi")
+    @RequestMapping(method = RequestMethod.GET, value = "/obrisi/{id}")
     public ResponseEntity obrisi(@PathVariable Long id) {
         Korisnik korisnik = korisnikService.findOne(id);
         korisnik.setTipKorisnika("oklijent");
