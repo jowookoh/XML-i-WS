@@ -31,8 +31,8 @@ public class RezervacijaService {
         rezervacijaRepository.save(rezervacija);
     }
 
-    public List<Rezervacija> rezervacijeMojihSmestaja(Korisnik agent){
-        List<Smestaj> mojiSmestaji = smestajRepository.findByAgent(agent);
+    public List<Rezervacija> rezervacijeMojihSmestaja(Long agent){
+        List<Smestaj> mojiSmestaji = smestajRepository.findByAgent_Id(agent);
         List<Rezervacija> rezeMojih = new ArrayList<>();
         for (Smestaj smestaj: mojiSmestaji) {
             rezeMojih.addAll(rezervacijaRepository.findBySmestaj(smestaj));
