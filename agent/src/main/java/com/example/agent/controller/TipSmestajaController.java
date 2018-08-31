@@ -18,8 +18,6 @@ public class TipSmestajaController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/secured/svi")
     public ResponseEntity getSveTipSmestaja() {
-		SmestajClient smestajClient = new SmestajClient();
-    	System.out.println(smestajClient.getSmestaji().getSmestaji().get(0).getOpis());
         return new ResponseEntity<>(tipSmestajaRepository.findAll(), HttpStatus.OK);
     }
 }
