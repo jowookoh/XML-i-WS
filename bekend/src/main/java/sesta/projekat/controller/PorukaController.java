@@ -15,9 +15,12 @@ public class PorukaController {
 
     @Autowired
     private PorukaService porukaService;
+    @Autowired
 
-    @RequestMapping(method = RequestMethod.POST, value = "/rezervisiSmestaj")
+
+    @RequestMapping(method = RequestMethod.POST, value = "/dodajPoruku")
     public ResponseEntity novaPoruka(@RequestBody Poruka poruka){
+
         Poruka porukaSacuvana = porukaService.save(poruka);
         return ResponseEntity.ok(porukaSacuvana);
     }
