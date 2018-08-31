@@ -38,13 +38,13 @@ INSERT INTO `tip_smestaja`(`id`,`bekend_id`,`naziv`)VALUES(2,1,'bad&breakfast');
 INSERT INTO `tip_smestaja`(`id`,`bekend_id`,`naziv`)VALUES(3,1,'apartman');
 
 INSERT INTO `smestaj`(`id`,`bekend_id`,`broj_osoba`,`opis`,`agent_id`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
-VALUES (1,1,4,'mala kuća',1,1,1,3);
+VALUES (1,1,4,'mala kuća',3,1,1,3);
 INSERT INTO `smestaj`(`id`,`bekend_id`,`broj_osoba`,`opis`,`agent_id`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
-VALUES (2,1,3,'mali stan',1,1,1,2);
+VALUES (2,1,3,'mali stan',3,1,1,2);
 INSERT INTO `smestaj`(`id`,`bekend_id`,`broj_osoba`,`opis`,`agent_id`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
-VALUES (3,1,12,'hotel na obali mora',1,5,1,1);
+VALUES (3,1,12,'hotel na obali mora',3,5,1,1);
 INSERT INTO `smestaj`(`id`,`bekend_id`,`broj_osoba`,`opis`,`agent_id`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
-VALUES (4,1,2,'apartman u centru',2,1,2,3);
+VALUES (4,1,2,'apartman u centru',4,1,2,3);
 
 INSERT INTO `rezervacija`(`id`,`bekend_id`,`fejk`,`komentar`,`ocena`,`od`,`odobren_komentar`,`pa_onda_do`,`realizovana`,`klijent_id`,`smestaj_id`)
 VALUES(1,1,false,'nama je bilo super',3,'20181015',true,'20181025',false,1,1);

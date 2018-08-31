@@ -39,31 +39,19 @@ INSERT INTO `tip_smestaja`(`id`,`naziv`)VALUES(2,'bad&breakfast');
 INSERT INTO `tip_smestaja`(`id`,`naziv`)VALUES(3,'apartman');
 
 INSERT INTO `smestaj`(`id`,`broj_osoba`,`opis`,`agent_id`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
-VALUES (1,4,'mala kuća',1,1,1,3);
+VALUES (1,4,'mala kuća',3,1,1,3);
 INSERT INTO `smestaj`(`id`,`broj_osoba`,`opis`,`agent_id`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
-VALUES (2,3,'mali stan',1,1,1,2);
+VALUES (2,3,'mali stan',3,1,1,2);
 INSERT INTO `smestaj`(`id`,`broj_osoba`,`opis`,`agent_id`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
-VALUES (3,12,'hotel na obali mora',1,5,1,1);
+VALUES (3,12,'hotel na obali mora',3,5,1,1);
 INSERT INTO `smestaj`(`id`,`broj_osoba`,`opis`,`agent_id`,`kategorija_smestaja_id`,`lokacija_id`,`tip_smestaja_id`)
-VALUES (4,2,'apartman u centru',2,1,2,3);
+VALUES (4,2,'apartman u centru',4,1,2,3);
 
 INSERT INTO `rezervacija`(`id`,`fejk`,`komentar`,`ocena`,`od`,`odobren_komentar`,`pa_onda_do`,`realizovana`,`klijent_id`,`smestaj_id`)
 VALUES(1,false,'nama je bilo super',3,'20181015',true,'20181025',false,1,1);
 INSERT INTO `rezervacija`(`id`,`fejk`,`komentar`,`ocena`,`od`,`odobren_komentar`,`pa_onda_do`,`realizovana`,`klijent_id`,`smestaj_id`)
 VALUES(2,false,'nama je bilo srednje',2,'20180215',true,'20180225',true,2,1);
 
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(1,1,10,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(2,2,20,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(3,3,10,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(4,4,10,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(5,5,30,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(6,6,40,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(7,7,510,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(8,8,30,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(9,9,10,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(10,10,10,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(11,11,20,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(12,12,20,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(13,1,100,2);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(14,2,100,2);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(15,3,100,2);
+INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(1,'20181025',10,1);
+INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(2,'20181125',20,1);
+INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(3,'20181225',10,1);
