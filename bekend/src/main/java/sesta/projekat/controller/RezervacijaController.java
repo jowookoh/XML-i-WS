@@ -27,7 +27,7 @@ public class RezervacijaController {
         return ResponseEntity.ok(rezervacijaSacuvana);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/sveRezervacijeKorisnika")
+    @RequestMapping(method = RequestMethod.GET, value = "/sveRezervacijeKorisnika/{kime}")
     public ResponseEntity sveRezervacijeKorisnika(@PathVariable String kime){
         List<Rezervacija> sveRezervacije = rezervacijaService.getAll();
 

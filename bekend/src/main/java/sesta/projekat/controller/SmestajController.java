@@ -29,6 +29,8 @@ public class SmestajController {
     private SlikaService slikaService;
     @Autowired
     private UslugaSmestajService uslugaSmestajService;
+    @Autowired
+    private CenaService cenaService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/uzmiSve")
     public ResponseEntity uzmiSve() {
@@ -52,12 +54,17 @@ public class SmestajController {
                 tempLokacije.add(lokacija);
             }
         }
-
         //prvo nadji sve sa tom lokacijom koji uopste imaju listu cena
         for (Smestaj smestaj : allSmestajs) {
             for(Lokacija lokacija : tempLokacije) {
                 if (smestaj.getLokacija().getId() == lokacija.getId()) {
-                    if (smestaj.getCene().size() > 0) {
+                    List<Cena> ceneSmestaja = new ArrayList<>();
+                    for(Cena cena : cenaService.getAll()){
+                        if(cena.getSmestaj().getId() == smestaj.getId()){
+                            ceneSmestaja.add(cena);
+                        }
+                    }
+                    if (ceneSmestaja.size() > 0) {
                         tempSmestaji.add(smestaj);
                     }
                 }
@@ -95,7 +102,13 @@ public class SmestajController {
             s.setSlike(slike);
 
             List<CenaDto> cene = new ArrayList<>();
-            for(Cena cena : smestaj.getCene()){
+            List<Cena> ceneSmestaja = new ArrayList<>();
+            for(Cena cena : cenaService.getAll()){
+                if(cena.getSmestaj().getId() == smestaj.getId()){
+                    ceneSmestaja.add(cena);
+                }
+            }
+            for(Cena cena : ceneSmestaja){
                 CenaDto c = new CenaDto();
                 c.setMesec(cena.getMesec());
                 c.setVrednost(cena.getVrednost());
