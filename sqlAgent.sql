@@ -1,3 +1,4 @@
+delete from poruka;
 delete from rezervacija;
 delete from smestaj;
 delete from lokacija;
@@ -47,6 +48,13 @@ INSERT INTO `smestaj`(`id`,`bekend_id`,`broj_osoba`,`opis`,`agent_id`,`kategorij
 VALUES (4,1,2,'apartman u centru',4,1,2,3);
 
 INSERT INTO `rezervacija`(`id`,`bekend_id`,`fejk`,`komentar`,`ocena`,`od`,`odobren_komentar`,`pa_onda_do`,`realizovana`,`klijent_id`,`smestaj_id`)
-VALUES(1,1,false,'nama je bilo super',3,'2015-02-15',true,'1818-10-25',false,1,1);
+VALUES(1,1,false,'nama je bilo super',3,'20160215',true,'1818-10-25',false,1,1);
 INSERT INTO `rezervacija`(`id`,`bekend_id`,`fejk`,`komentar`,`ocena`,`od`,`odobren_komentar`,`pa_onda_do`,`realizovana`,`klijent_id`,`smestaj_id`)
-VALUES(2,1,false,'nama je bilo srednje',2,'2016-02-15',true,'1718-02-25',true,2,1);
+VALUES(2,1,false,'nama je bilo srednje',2,'2016-02-15',true,'1718-02-25',false,2,1);
+
+INSERT INTO `poruka`(`id`,`bekend_id`,`po_redu`,`tekst`,`posiljalac_id`,`rezervacija_id`)
+VALUES(1,1,1,'cao kako ste',1,1);
+INSERT INTO `poruka`(`id`,`bekend_id`,`po_redu`,`tekst`,`posiljalac_id`,`rezervacija_id`)
+VALUES(2,1,2,'cao sta ima novo',1,1);
+INSERT INTO `poruka`(`id`,`bekend_id`,`po_redu`,`tekst`,`posiljalac_id`,`rezervacija_id`)
+VALUES(3,1,3,'postovani',2,2);

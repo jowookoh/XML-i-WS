@@ -8,7 +8,7 @@
             </div>
             <div class="col item">
                 <div class="box"><i class="fa fa-list-alt icon"></i><br>
-                    <a class="btn btn-light action-button" data-toggle="modal" data-target="#modalPoruke">poruke</a>
+                    <a class="btn btn-light action-button" ng-click="ucitajPristigle()" data-toggle="modal" data-target="#modalPoruke">poruke</a>
                 </div>
             </div>
             <div class="col item">
@@ -104,7 +104,45 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-body">
-                        <p>proro</p>
+                        <div  class="span3">
+                            <div class="form-group pull-left">
+                                <h4> Rezervacije </h4>
+                            </div>
+                            <span class="counter pull-right"></span>
+
+                            <table data-toggle="table" class="table table-hover table-striped table-bordered results">
+                                <tr>
+                                    <th> klijent </th>
+                                    <th> rezervacija </th>
+                                    <th> opis smeštaja </th>
+                                    <th> od </th>
+                                    <th> do </th>
+                                    <th></th>
+                                </tr>
+                                <tr ng-repeat="reza in rezervacije | orderBy:od ">
+                                    <td >{{reza.klijent.kime}}</td>
+                                    <td>{{reza.id}}</td>
+                                    <td>{{reza.smestaj.opis}}</td>
+                                    <td>{{reza.od | date}}</td>
+                                    <td>{{reza.paOndaDo | date}}</td>
+                                    <td >
+                                        <button class="btn btn-primary" type="button" ng-click="otvoriPoruke(reza)" >Poruke</button>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table data-toggle="table" class="table table-hover table-striped table-bordered results">
+                                <tr>
+                                    <th> posiljalac </th>
+                                    <th> tekst poruke </th>
+                                </tr>
+                                <tr ng-repeat="poruka in poruke | orderBy:poRedu ">
+                                    <td >{{poruka.posiljalac.kime}}</td>
+                                    <td >{{poruka.tekst}}</td>
+                                </tr>
+                            </table>
+                            <textarea class="form-control form-control-lg" placeholder="Poruka" ng-model="novaPoruka.tekst" style="margin-bottom:20px;padding:0px;"></textarea>
+                            <button class="btn btn-primary" type="button" ng-click="posaljiPoruku()" >Pošalji</button>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
@@ -123,7 +161,7 @@
                         <h4> Postavi zauzetost </h4>
                         <br>
                         <label>smeštaj:</label>
-                        <select class="form-control" ng-model="rezervacija.smestaj" ng-options="smestaj.opis for smestaj in smestaji" style="margin-bottom:20px;padding:0px;"></select>
+                        <select class="form-control" ng-model="rezervacija.smestaj" ng-options="smes.opis for smes in smestaji" style="margin-bottom:20px;padding:0px;"></select>
                         <label>od:</label>
                         <input type="date" ng-model="rezervacija.od" class="form-control" style="margin-bottom:20px;"/>
                         <label>do:</label>
