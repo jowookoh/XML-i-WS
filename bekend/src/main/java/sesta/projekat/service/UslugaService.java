@@ -24,4 +24,8 @@ public class UslugaService {
     public List<Usluga> getAll() {
         return uslugaRepository.findAll();
     }
+
+    public void deleteOne(Long id){ uslugaRepository.delete(id);}
+
+    public void deleteOne(Usluga u) { uslugaRepository.delete(u);}
 }

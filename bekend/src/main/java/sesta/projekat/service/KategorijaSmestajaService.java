@@ -24,4 +24,8 @@ public class KategorijaSmestajaService {
     public List<KategorijaSmestaja> getAll() {
         return kategorijaSmestajaRepository.findAll();
     }
+
+    public void deleteOne(Long id){ kategorijaSmestajaRepository.delete(id);}
+
+    public void deleteOne(KategorijaSmestaja ks) { kategorijaSmestajaRepository.delete(ks);}
 }
