@@ -15,7 +15,6 @@ public class PorukaController {
 
     @Autowired
     private PorukaService porukaService;
-    @Autowired
 
 
     @RequestMapping(method = RequestMethod.POST, value = "/dodajPoruku")
