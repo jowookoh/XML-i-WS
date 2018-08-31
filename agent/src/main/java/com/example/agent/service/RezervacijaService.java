@@ -1,6 +1,5 @@
 package com.example.agent.service;
 
-import com.example.agent.model.Korisnik;
 import com.example.agent.model.Rezervacija;
 import com.example.agent.model.Smestaj;
 import com.example.agent.repository.RezervacijaRepository;
@@ -22,6 +21,7 @@ public class RezervacijaService {
 
     public Rezervacija novaFejk(Rezervacija rezervacija){
         rezervacija.setFejk(true);
+        rezervacija.setRealizovana(true);
         rezervacijaRepository.save(rezervacija);
         return rezervacija;
     }
