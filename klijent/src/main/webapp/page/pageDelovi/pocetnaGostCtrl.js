@@ -22,8 +22,7 @@ livadeApp.controller('pocetnaGostCtrl', ['$scope','$state','$http', function ($s
 
 
     $scope.pretrazi = function () {
-        alert("prvo");
-        $http.post('/someUrl', data, config).then(successCallback, errorCallback);
+        alert($scope.pretraga);
     };
 
     /*$http.get("http://localhost:8080/tip/poz/")

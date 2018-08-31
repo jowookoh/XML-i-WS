@@ -13,12 +13,12 @@
             </div>
             <div class="col item">
                 <div class="box"><i class="fa fa-list-alt icon"></i>
-                    <a class="btn btn-light action-button" data-toggle="modal" data-target="#modalZauzetost">zauzetost smeštaja</a>
+                    <a class="btn btn-light action-button" data-toggle="modal" data-target="#modalZauzetost">postavljanje zauzetosti</a>
                 </div>
             </div>
             <div class="col item">
                 <div class="box"><i class="fa fa-list-alt icon"></i>
-                    <a class="btn btn-light action-button" data-toggle="modal" data-target="#modalPotvrda">potvrda rezervacija</a>
+                    <a class="btn btn-light action-button" ng-click="ucitajPristigle()" data-toggle="modal" data-target="#modalPotvrda">potvrda rezervacija</a>
                 </div>
             </div>
 
@@ -70,13 +70,21 @@
 
                             <table data-toggle="table" class="table table-hover table-striped table-bordered results">
                                 <tr>
-                                    <th> Rezervacija </th>
+                                    <th> klijent </th>
+                                    <th> id smeštaja </th>
+                                    <th> opis smeštaja </th>
+                                    <th> od </th>
+                                    <th> do </th>
                                     <th></th>
                                 </tr>
-                                <tr ng-repeat="zahtev in zahtevni | orderBy:ime ">
-                                    <td >{{zahtev.ime}}&nbsp{{zahtev.prezime}}</td>
+                                <tr ng-repeat="reza in rezervacije | orderBy:od ">
+                                    <td >{{reza.klijent.kime}}</td>
+                                    <td>{{reza.smestaj.id}}</td>
+                                    <td>{{reza.smestaj.opis}}</td>
+                                    <td>{{reza.od | date}}</td>
+                                    <td>{{reza.paOndaDo | date}}</td>
                                     <td >
-                                        <button class="btn btn-primary" type="button" ng-click="prihvatiPriku(zahtev.prijateljstvoId)" >Prihvati</button>
+                                        <button class="btn btn-primary" type="button" ng-click="potvrdiRezu(reza)" >Potvrdi</button>
                                     </td>
                                 </tr>
                             </table>
@@ -112,7 +120,15 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-body">
-                        <p>zaza</p>
+                        <h4> Postavi zauzetost </h4>
+                        <br>
+                        <label>smeštaj:</label>
+                        <select class="form-control" ng-model="rezervacija.smestaj" ng-options="smestaj.opis for smestaj in smestaji" style="margin-bottom:20px;padding:0px;"></select>
+                        <label>od:</label>
+                        <input type="date" ng-model="rezervacija.od" class="form-control" style="margin-bottom:20px;"/>
+                        <label>do:</label>
+                        <input type="date" ng-model="rezervacija.paOndaDo" class="form-control" style="margin-bottom:20px;"/>
+                        <button ng-click="postaviFejk()" class="btn btn-primary btn-block"  style="margin-top:20px;padding:0px;" >Postavi</button>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
@@ -124,3 +140,4 @@
 
     </div>
 </div>
+{{rezervacije}}

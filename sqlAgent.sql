@@ -47,6 +47,6 @@ INSERT INTO `smestaj`(`id`,`bekend_id`,`broj_osoba`,`opis`,`agent_id`,`kategorij
 VALUES (4,1,2,'apartman u centru',4,1,2,3);
 
 INSERT INTO `rezervacija`(`id`,`bekend_id`,`fejk`,`komentar`,`ocena`,`od`,`odobren_komentar`,`pa_onda_do`,`realizovana`,`klijent_id`,`smestaj_id`)
-VALUES(1,1,false,'nama je bilo super',3,'20181015',true,'20181025',false,1,1);
+VALUES(1,1,false,'nama je bilo super',3,'2015-02-15',true,'1818-10-25',false,1,1);
 INSERT INTO `rezervacija`(`id`,`bekend_id`,`fejk`,`komentar`,`ocena`,`od`,`odobren_komentar`,`pa_onda_do`,`realizovana`,`klijent_id`,`smestaj_id`)
-VALUES(2,1,false,'nama je bilo srednje',2,'20180215',true,'20180225',true,2,1);
+VALUES(2,1,false,'nama je bilo srednje',2,'2016-02-15',true,'1718-02-25',true,2,1);
