@@ -21,7 +21,7 @@ public class PorukaController {
         return ResponseEntity.ok(poruke);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/nova")
+    @RequestMapping(method = RequestMethod.PUT, value = "/nova")
     public ResponseEntity napisiPoruku(@RequestBody Poruka poruka) {
         Poruka pora = porukaService.novaPoruka(poruka);
         if (pora != null) {
