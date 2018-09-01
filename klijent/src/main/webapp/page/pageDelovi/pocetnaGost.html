@@ -16,7 +16,7 @@
     <form id="lakisrc" style="width:550px;background-color:#ffffff;">
         <h1 class="text-center" style="font-weight:bold;color:rgb(150,196,49);">LIVADE</h1>
         <h4 class="text-center" style="margin-top:-15px;color:rgb(231,84,21);font-family:Allan, cursive;">Turizam</h4>
-        <input class="form-control" type="text" ng-model="pretraga.idLokacije" placeholder="Lokacija" style="margin-bottom:25px;">
+        <input class="form-control" type="text" ng-model="pretraga.lokacija" placeholder="Lokacija" style="margin-bottom:25px;">
         <div class="form-row">
             <div class="col"><label>Datum polaska</label><input class="form-control" type="date" ng-model="pretraga.prvi"></div>
             <div class="col"><label>Datum povratka</label><input class="form-control" type="date" ng-model="pretraga.drugi"></div>
@@ -27,87 +27,77 @@
 <div class="row" style="margin-top:0px;">
     <div  class="col-3">
         <div ng-show="napredna" style="margin:15px;margin-right:15px;margin-left:50px;width:260px;">
-            <select ng-model="pretraga.tip">
+            <label>Tip smeštaja:</label><br>
+            <select ng-change="switchPretip(pretip)" ng-model="pretip">
                 <optgroup label="Tip smeštaja">
+                    <option value="" selected="">Svi tipovi</option>
                     <option value="hotel" selected="">Hotel</option>
-                    <option value="breakfast">Bad&amp;Breakfast</option>
+                    <option value="bad&breakfast">Bad&amp;Breakfast</option>
                     <option value="apartman">Apartman</option>
                 </optgroup>
             </select>
-            <p style="margin-bottom:0px;margin-top:10px;">Ocena smeštaja:</p>
-            <p style="margin-bottom:10px;"><i class="fa fa-star"></i></p>
-            <p style="margin-bottom:10px;"></p>
-            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-park"><label class="form-check-label" for="formCheck-park">Parking&nbsp;</label></div>
-            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-wifi"><label class="form-check-label" for="formCheck-wifi">WiFi<br></label></div>
-            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-doruc"><label class="form-check-label" for="formCheck-doruc">Doručak<br></label></div>
-            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-polup"><label class="form-check-label" for="formCheck-polup">Polupansion<br></label></div>
-            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-punp"><label class="form-check-label" for="formCheck-punp">Pansion<br></label></div>
-            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-tv"><label class="form-check-label" for="formCheck-tv">TV<br></label></div>
-            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-kuhi"><label class="form-check-label" for="formCheck-kuhi">Mini kuhinja/kuhinja<br></label></div>
-            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-kupa"><label class="form-check-label" for="formCheck-kupa">Privatno kupatilo<br></label></div>
-            <button class="btn btn-info float-left"   type="button" style="margin-top:10px;background-color:rgb(150,196,49);">Pretraga</button>
+            <label style="margin-top:20px;">Kategorija smeštaja:</label>
+            <select style="margin-bottom:20px;" ng-change="switchPrekat(prekat)" ng-model="prekat">
+                <optgroup label="Kategorija smeštaja">
+                    <option value="" selected="">Sve kategorije</option>
+                    <option value="nekategorisan" selected="">Nekategorisan</option>
+                    <option value="1 zvezdica">1 zvezdica</option>
+                    <option value="2 zvezdice">2 zvezdice</option>
+                    <option value="3 zvezdice">3 zvezdice</option>
+                    <option value="4 zvezdica">4 zvezdica</option>
+                    <option value="5 zvezdica">5 zvezdica</option>
+                </optgroup>
+            </select>
+            <div class="form-check"><input ng-click="switchMod1()" class="form-check-input" type="checkbox" id="formCheck-park"><label class="form-check-label" for="formCheck-park">Parking&nbsp;</label></div>
+            <div class="form-check"><input ng-click="switchMod2()" class="form-check-input" type="checkbox" id="formCheck-wifi"><label class="form-check-label" for="formCheck-wifi">WiFi<br></label></div>
+            <div class="form-check"><input ng-click="switchMod3()" class="form-check-input" type="checkbox" id="formCheck-doruc"><label class="form-check-label" for="formCheck-doruc">Doručak<br></label></div>
+            <div class="form-check"><input ng-click="switchMod4()" class="form-check-input" type="checkbox" id="formCheck-polup"><label class="form-check-label" for="formCheck-polup">Polupansion<br></label></div>
+            <div class="form-check"><input ng-click="switchMod5()" class="form-check-input" type="checkbox" id="formCheck-punp"><label class="form-check-label" for="formCheck-punp">Pansion<br></label></div>
+            <div class="form-check"><input ng-click="switchMod6()" class="form-check-input" type="checkbox" id="formCheck-tv"><label class="form-check-label" for="formCheck-tv">TV<br></label></div>
+            <div class="form-check"><input ng-click="switchMod7()" class="form-check-input" type="checkbox" id="formCheck-kuhi"><label class="form-check-label" for="formCheck-kuhi">Mini kuhinja/kuhinja<br></label></div>
+            <div class="form-check"><input ng-click="switchMod8()" class="form-check-input" type="checkbox" id="formCheck-kupa"><label class="form-check-label" for="formCheck-kupa">Privatno kupatilo<br></label></div>
+
         </div>
     </div>
     <div class="col-9">
         <div>
             <div class="row">
                 <div class="col">
-                    <p class="float-left" style="margin-bottom:0px;margin-right:10px;font-size:20px;"><strong>Rezultati pretrage:</strong></p><select class="float-right" style="margin-right:135px;"><option value="12" selected="">Cena</option><option value="13">Ocena korisnika</option><option value="14">Kategorija smeštaja</option></select>
-                    <p
-                            class="float-right" style="margin-bottom:0px;margin-right:10px;">Sortiraj po:</p>
+                    <p class="float-left" style="margin-bottom:0px;margin-right:10px;font-size:20px;"><strong>Rezultati pretrage:</strong></p>
+                    <select ng-change="switchKrit(krit)" ng-model="krit" class="float-right" style="margin-right:135px;">
+                        <option value="cena" selected="" >Cena</option>
+                        <option value="tipSmestaja" >Ocena korisnika</option>
+                        <option value="kategorija" >Kategorija smeštaja</option>
+                    </select>
+                    <p class="float-right" style="margin-bottom:0px;margin-right:10px;">Sortiraj po:</p>
                 </div>
             </div>
-            <div class="row" style="margin-top:25px;margin-right:40px;">
-                <div class="col-2 jednakol"><img src="img/hotel.jpg" style="width:100px;">
-                    <h5>Hotel Livade</h5><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                <div class="col-6 jednakol">
-                    <p>Ovaj hotel nudi sjajnu ponudu travnatih povrsina za decu i vas stare</p>
-                </div>
-                <div class="col-4 jednakol">
-                    <div class="row">
-                        <div class="col">
-                            <p>CENA PO OSOBI U LIRAMA: <strong>200e</strong></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col"><button class="btn btn-primary btn-lg" type="button">Rezerviši ovaj smeštaj</button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-top:25px;margin-right:40px;">
-                <div class="col-2 jednakol"><img src="img/hotel.jpg" style="width:100px;">
-                    <h5>Hotel Livade</h5><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                <div class="col-6 jednakol">
-                    <p>Ovaj hotel nudi sjajnu ponudu travnatih povrsina za decu i vas stare</p>
-                </div>
-                <div class="col-4 jednakol">
-                    <div class="row">
-                        <div class="col">
-                            <p>CENA PO OSOBI U LIRAMA: <strong>200e</strong></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col"><button class="btn btn-primary btn-lg" type="button">Rezerviši ovaj smeštaj</button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-top:25px;margin-right:40px;">
-                <div class="col-2 jednakol"><img src="img/hotel.jpg" style="width:100px;">
-                    <h5>Hotel Livade</h5><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                <div class="col-6 jednakol">
-                    <p>Ovaj hotel nudi sjajnu ponudu travnatih povrsina za decu i vas stare</p>
-                </div>
-                <div class="col-4 jednakol">
-                    <div class="row">
-                        <div class="col">
-                            <p>CENA PO OSOBI U LIRAMA: <strong>200e</strong></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col"><button class="btn btn-primary btn-lg" type="button">Rezerviši ovaj smeštaj</button></div>
-                    </div>
-                </div>
-            </div>
+            <table data-toggle="table" class="table table-hover table-striped table-bordered results">
+                <tr>
+                    <th> opis smeštaja </th>
+                    <th> tip smeštaja </th>
+                    <th> kategorija </th>
+                    <th> slike </th>
+                    <th> dodatne usluge </th>
+                    <th> cena </th>
+                    <th></th>
+                </tr>
+                {{pretip}}
+                {{prekat}}
+                {{vajfaj}}
+                <tr ng-repeat="stigla in stigle | filter:pretip | filter:prekat| filter:mod1| filter:mod2| filter:mod3| filter:mod4| filter:mod5| filter:mod6| filter:mod7| filter:mod8| orderBy:kriter:true ">
+                    <td >{{stigla.opis}}</td>
+                    <td>{{stigla.kategorija}}</td>
+                    <td>{{stigla.tipSmestaja}}</td>
+                    <td>{{stigla.slike}}</td>
+                    <td>{{stigla.usluge.join(", ")}}</td>
+                    <td>{{stigla.cena}}</td>
+                    <td >
+                        <button class="btn btn-primary" requestType="button" ng-click="rezervisi()" >Rezerviši</button>
+                    </td>
+                </tr>
+            </table>
+
         </div>
     </div>
 </div>
