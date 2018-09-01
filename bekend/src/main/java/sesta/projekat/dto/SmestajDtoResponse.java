@@ -8,7 +8,7 @@ public class SmestajDtoResponse {
     private Long id;
     private List<String> slike;
     private String opis;
-    private List<CenaDto> cene;
+    private int cena;
     private String kategorija;
     private String tipSmestaja;
     private List<String> usluge;
@@ -16,11 +16,11 @@ public class SmestajDtoResponse {
     public SmestajDtoResponse() {
     }
 
-    public SmestajDtoResponse(Long id, List<String> slike, String opis, List<CenaDto> cene, String kategorija, String tipSmestaja, List<String> usluge) {
+    public SmestajDtoResponse(Long id, List<String> slike, String opis, int cena, String kategorija, String tipSmestaja, List<String> usluge) {
         this.id = id;
         this.slike = slike;
         this.opis = opis;
-        this.cene = cene;
+        this.cena = cena;
         this.kategorija = kategorija;
         this.tipSmestaja = tipSmestaja;
         this.usluge = usluge;
@@ -50,8 +50,8 @@ public class SmestajDtoResponse {
         this.opis = opis;
     }
 
-    public List<CenaDto> getCene() {
-        return cene;
+    public int getCena() {
+        return cena;
     }
 
     public String getKategorija() {
@@ -62,11 +62,9 @@ public class SmestajDtoResponse {
         this.kategorija = kategorija;
     }
 
-    public void setCene(List<CenaDto> cene) {
-        this.cene = cene;
+    public void setCena(int cena) {
+        this.cena = cena;
     }
-
-
 
     public String getTipSmestaja() {
         return tipSmestaja;

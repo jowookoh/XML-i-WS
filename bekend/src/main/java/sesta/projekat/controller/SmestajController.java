@@ -12,6 +12,8 @@ import sesta.projekat.dto.SmestajDtoResponse;
 import sesta.projekat.model.*;
 import sesta.projekat.service.*;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,7 +52,7 @@ public class SmestajController {
         List<Smestaj> allSmestajs = smestajService.getAll();
 
         for(Lokacija lokacija : sveLokacija){
-            if(lokacija.getMesto().contains(pretragaDto.getLokacija()) || lokacija.getDrzava().contains(pretragaDto.getLokacija())){
+            if(lokacija.getMesto().toLowerCase().contains(pretragaDto.getLokacija().toLowerCase()) || lokacija.getDrzava().toLowerCase().contains(pretragaDto.getLokacija().toLowerCase())){
                 tempLokacije.add(lokacija);
             }
         }
@@ -108,13 +110,35 @@ public class SmestajController {
                     ceneSmestaja.add(cena);
                 }
             }
+            int vrednost = 0;
             for(Cena cena : ceneSmestaja){
                 CenaDto c = new CenaDto();
-                c.setMesec(cena.getMesec());
-                c.setVrednost(cena.getVrednost());
-                cene.add(c);
+                Date datum = cena.getMesec();
+                LocalDate date1 = pretragaDto.getPrvi().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate date2 = pretragaDto.getDrugi().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate dateCena = datum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if(date1.getMonth() == date2.getMonth()){
+                    if(date1.getMonth() == dateCena.getMonth()) {
+                        int brDana = date2.getDayOfMonth() - date1.getDayOfMonth();
+                        vrednost += brDana * cena.getVrednost();
+                    }
+                }else {
+                    if (date1.getMonth() == dateCena.getMonth()) {
+                        int mPocetak = date1.getMonth().getValue();
+                        int dPocetak = date1.getDayOfMonth();
+                        int brojDanaPrviDatum = uzmiBrojDana(mPocetak);
+                        int brDana = brojDanaPrviDatum - dPocetak;
+                        vrednost += brDana * cena.getVrednost();
+                    }
+                    if (date2.getMonth().getValue() == dateCena.getMonth().getValue()) {
+                        int mKraj = date2.getMonth().getValue();
+                        int dKraj = date2.getDayOfMonth();
+                        int brDana = dKraj;
+                        vrednost += brDana * cena.getVrednost();
+                    }
+                }
             }
-            s.setCene(cene);
+            s.setCena(vrednost);
 
             s.setKategorija(smestaj.getKategorijaSmestaja().getNaziv());
             s.setTipSmestaja(smestaj.getTipSmestaja().getNaziv());
@@ -131,5 +155,49 @@ public class SmestajController {
             response.add(s);
         }
         return ResponseEntity.ok(response);
+    }
+
+    private int uzmiBrojDana(int mesec){
+        int retVal = 0;
+        switch (mesec){
+            case 1:
+                retVal = 31;
+                break;
+            case 3:
+                retVal = 31;
+                break;
+            case 5:
+                retVal = 31;
+                break;
+            case 7:
+                retVal = 31;
+                break;
+            case 8:
+                retVal = 31;
+                break;
+            case 10:
+                retVal = 31;
+                break;
+            case 12:
+                retVal = 31;
+                break;
+            case 2:
+                retVal = 28;
+                break;
+            case 4:
+                retVal = 30;
+                break;
+            case 6:
+                retVal = 30;
+                break;
+            case 9:
+                retVal = 30;
+                break;
+            case 11:
+                retVal = 30;
+                break;
+
+        }
+        return retVal;
     }
 }

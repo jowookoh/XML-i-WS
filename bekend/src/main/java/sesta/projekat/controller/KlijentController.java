@@ -43,6 +43,17 @@ public class KlijentController {
         return ResponseEntity.ok(true);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/dajKorisnika/{kime}")
+    public ResponseEntity obrisi(@PathVariable String kime) {
+        Korisnik k  = new Korisnik();
+        for (Korisnik korisnik : korisnikService.getAll()) {
+            if (korisnik.getKime().equals(kime)) {
+                k = korisnikService.findOne(korisnik.getId());
+            }
+        }
+        return ResponseEntity.ok(k);
+    }
+
     @Transactional
     @RequestMapping(method = RequestMethod.GET, value = "/obrisi/{id}")
     public ResponseEntity obrisi(@PathVariable Long id) {
