@@ -120,7 +120,7 @@ public class SmestajController {
                 if(date1.getMonth() == date2.getMonth()){
                     if(date1.getMonth() == dateCena.getMonth()) {
                         int brDana = date2.getDayOfMonth() - date1.getDayOfMonth();
-                        vrednost += brDana * cena.getVrednost();
+                        vrednost += brDana * cena.getVrednost()*pretragaDto.getBrojOsoba();
                     }
                 }else {
                     if (date1.getMonth() == dateCena.getMonth()) {
@@ -128,13 +128,13 @@ public class SmestajController {
                         int dPocetak = date1.getDayOfMonth();
                         int brojDanaPrviDatum = uzmiBrojDana(mPocetak);
                         int brDana = brojDanaPrviDatum - dPocetak;
-                        vrednost += brDana * cena.getVrednost();
+                        vrednost += brDana * cena.getVrednost()*pretragaDto.getBrojOsoba();
                     }
                     if (date2.getMonth().getValue() == dateCena.getMonth().getValue()) {
                         int mKraj = date2.getMonth().getValue();
                         int dKraj = date2.getDayOfMonth();
                         int brDana = dKraj;
-                        vrednost += brDana * cena.getVrednost();
+                        vrednost += brDana * cena.getVrednost()*pretragaDto.getBrojOsoba();
                     }
                 }
             }

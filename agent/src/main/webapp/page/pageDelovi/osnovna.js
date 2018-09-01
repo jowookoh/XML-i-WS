@@ -1,11 +1,60 @@
-livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', '$window', function ($scope,$state,$http,$window) {
+livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope,$state,$http) {
 
+
+    $scope.korisnik={};
     $scope.smestaj={};
     $scope.rezervacija={}
     $scope.novaPoruka={};
     $scope.izabraneUsluge = [];
     $scope.prikazSettings = {displayProp: 'naziv'};
+    $scope.showDiv=true;
 
+    //#region meseci
+
+
+    $scope.m1={};
+    $scope.m1.
+
+    //#endregion
+
+    $('#modalLogin').modal('show');
+
+    $scope.zaloguj = function() {
+        $http.post("http://localhost:8082/login/login",$scope.korisnik)
+            .then(function(response) {
+                if(response.data===true){
+
+                    $http.get('/api/korisnik/'+$scope.korisnik.kime)
+                        .then(function(response) {
+                            $scope.ja=response.data;
+                            $scope.result = "Success";
+                            $scope.content = response;
+                            $http.get('/api/smestaj/moj/'+$scope.ja.id)
+                                .then(function(response) {
+                                    $scope.smestaji=response.data;
+                                    $scope.result = "Success";
+                                    $scope.content = response;
+                                }, function(response) {
+                                    $scope.result = "Error";
+                                    $scope.content = response;
+                                });
+                        }, function(response) {
+                            $scope.result = "Error";
+                            $scope.content = response;
+                        });
+                    $('#modalLogin').modal('hide');
+
+
+
+                }else{
+                    alert("Neispravno korisničko ime ili lozinka");
+                }
+
+            }, function(response) {
+
+            });
+
+    }
 
     $http.get('/api/kategorijasmestaja/secured/svi')
         .then(function(response) {
@@ -34,17 +83,11 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', '$window', funct
             $scope.result = "Error";
             $scope.content = response;
         });
-    $http.get('/api/smestaj/moj/3')
-        .then(function(response) {
-            $scope.smestaji=response.data;
-            $scope.result = "Success";
-            $scope.content = response;
-        }, function(response) {
-            $scope.result = "Error";
-            $scope.content = response;
-        });
+
+
     $scope.otvoriPoruke=function(reza){
         $scope.trenutnaReza=reza;
+        $scope.showDiv=false;
         $http.get('/api/poruka/porukeRezervacije/'+ reza.id)
             .then(function(response) {
                 $scope.poruke=response.data;
@@ -57,7 +100,9 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', '$window', funct
     }
 
     $scope.ucitajPristigle = function() {
-        $http.get('/api/rezervacija/moje/3')
+        $scope.showDiv=true;
+        $scope.novaPoruka.tekst='';
+        $http.get('/api/rezervacija/moje/'+$scope.ja.id)
             .then(function(response) {
                 $scope.rezervacije=response.data;
                 $scope.result = "Success";
@@ -69,28 +114,20 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', '$window', funct
     }
 
     $scope.dodajSmestaj = function() {
-
+        $('#modalDodavanje').modal('hide');
     }
-    $http.get('/api/korisnik/3')
-        .then(function(response) {
-            $scope.ja=response.data;
-            $scope.result = "Success";
-            $scope.content = response;
-        }, function(response) {
-            $scope.result = "Error";
-            $scope.content = response;
-        });
+
 
     $scope.potvrdiRezu=function (reza) {
         $http.put('/api/rezervacija/secured/izmeni', reza)
             .then(function(response) {
-                $window.location.reload();
+                $('#modalPotvrda').modal('hide');
             });
     }
     $scope.postaviFejk = function() {
         $http.post('/api/rezervacija/fejk',$scope.rezervacija)
             .then(function(response) {
-                $window.location.reload();
+                $('#modalZauzetost').modal('hide');
             }, function(response) {
                 alert("moze ito");
             });
@@ -103,11 +140,18 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', '$window', funct
         $scope.novaPoruka.poRedu=redni;
         $http.put('/api/poruka/nova', $scope.novaPoruka)
             .then(function(response) {
-                $window.location.reload();
+                $('#modalPoruke').modal('hide');
             });
 
     }
 
+    $scope.ngMesecno = function(flag) {
+        if (flag) {
+            $scope.mesecno = false;
+        } else {
+            $scope.mesecno = true;
+        }
+    };
 
 
 

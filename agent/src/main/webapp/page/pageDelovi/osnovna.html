@@ -24,8 +24,29 @@
 
 
         </div>
+
+        <!-- MODAL LOGIN-->
+        <div class="modal fade" data-backdrop="static" data-keyboard="false" id="modalLogin" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="login-dark" >
+                            <form method="post">
+                                <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+                                <div class="form-group"><input type="text" class="form-control" ng-model="korisnik.kime"  name="username" placeholder="Korisničko ime"></div>
+                                <div class="form-group"><input type="password" class="form-control" ng-model="korisnik.lozinka"  name="password" placeholder="Lozinka"></div>
+                                <div class="form-group"><button ng-click="zaloguj()" class="btn btn-primary btn-block" type="submit">Log In</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <!-- MODAL DODAVANJE-->
-        <div class="modal fade" id="modalDodavanje" role="dialog">
+        <div class="modal fade" data-backdrop="static" data-keyboard="false" id="modalDodavanje" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -33,23 +54,39 @@
                     <div class="modal-body">
                         <div class="d-flex flex-column justify-content-center align-items-center" style="padding:100px;">
                             <form style="padding:0px;margin:0px;"><label class="d-flex flex-row justify-content-center"style="padding:0px;font-size:20px;">Dodaj smeštajnu jedinicu</label>
-                                <input class="form-control" requestType="text" placeholder="Država" ng-model="smestaj.drzava" style="margin-bottom:20px;padding:0px;">
-                                <input class="form-control" requestType="text" placeholder="Mesto" ng-model="smestaj.mesto" style="margin-bottom:20px;padding:0px;">
-                                <input class="form-control" requestType="number" placeholder="Kapacitet" max="20" ng-model="smestaj.brOsoba" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" type="text" placeholder="Država" ng-model="smestaj.drzava" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" type="text" placeholder="Mesto" ng-model="smestaj.mesto" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" type="number" placeholder="Kapacitet" max="20" ng-model="smestaj.brOsoba" style="margin-bottom:20px;padding:0px;">
                                 <textarea class="form-control form-control-lg" placeholder="Opis" ng-model="smestaj.opis" style="margin-bottom:20px;padding:0px;"></textarea>
                                 <label>Tip smeštaja:</label>
                                 <select class="form-control" ng-model="izabraniTip" ng-options="tip.naziv for tip in tipovi" style="margin-bottom:20px;padding:0px;"></select>
                                 <label>Kategorija smeštaja:</label>
                                 <select class="form-control" ng-model="izabranaKategorija" ng-options="kategorija.naziv for kategorija in kategorije" style="margin-bottom:20px;padding:0px;"></select>
                                 <label>Dodatne usluge:</label>
-                                <div ng-dropdown-multiselect="" options="usluge" selected-model="izabraneUsluge" extra-settings="prikazSettings"></div>
-
+                                <div ng-dropdown-multiselect="" options="usluge" selected-model="izabraneUsluge" extra-settings="prikazSettings" style="margin-bottom:20px;padding:0px;"></div>
+                                <button class="btn btn-light" ng-click="ngMesecno(mesecno)" type="button" style="background-color:rgb(221,221,221);margin-bottom:20px;">Mesečni plan cena&nbsp;<i class="fa fa-chevron-down"></i></button>
+                                <div class="col-xs-2" ng-show="mesecno" >
+                                    <ul>
+                                        <li><label>Januar</label>&nbsp<input type="number" style="width: 60px" ng-model="m1"></li>
+                                        <li><label>Februar</label>&nbsp<input type="number" style="width: 60px" ng-model="m2"></li>
+                                        <li><label>Mart</label>&nbsp<input type="number" style="width: 60px" ng-model="m3"></li>
+                                        <li><label>April</label>&nbsp<input type="number" style="width: 60px" ng-model="m4"></li>
+                                        <li><label>Maj</label>&nbsp<input type="number" style="width: 60px" ng-model="m5"></li>
+                                        <li><label>Jun</label>&nbsp<input type="number" style="width: 60px" ng-model="m6"></li>
+                                        <li><label>Jul</label>&nbsp<input type="number" style="width: 60px" ng-model="m7"></li>
+                                        <li><label>Avgust</label>&nbsp<input type="number" style="width: 60px" ng-model="m8"></li>
+                                        <li><label>Septembar</label>&nbsp<input type="number" style="width: 60px" ng-model="m9"></li>
+                                        <li><label>Oktobar</label>&nbsp<input type="number" style="width: 60px" ng-model="m10"></li>
+                                        <li><label>Novembar</label>&nbsp<input type="number" style="width: 60px" ng-model="m11"></li>
+                                        <li><label>Decembar</label>&nbsp<input type="number" style="width: 60px" ng-model="m12"></li>
+                                    </ul>
+                                </div>
                                 <button ng-click="dodajSmestaj()" class="btn btn-primary btn-block" requestType="submit" style="margin-top:30px;padding:0px;" >Dodaj</button>
                             </form>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button requestType="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
                     </div>
                 </div>
 
@@ -84,14 +121,14 @@
                                     <td>{{reza.od | date}}</td>
                                     <td>{{reza.paOndaDo | date}}</td>
                                     <td >
-                                        <button class="btn btn-primary" requestType="button" ng-click="potvrdiRezu(reza)" >Potvrdi</button>
+                                        <button class="btn btn-primary" type="button" ng-click="potvrdiRezu(reza)" >Potvrdi</button>
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button requestType="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
                     </div>
                 </div>
 
@@ -126,26 +163,30 @@
                                     <td>{{reza.od | date}}</td>
                                     <td>{{reza.paOndaDo | date}}</td>
                                     <td >
-                                        <button class="btn btn-primary" requestType="button" ng-click="otvoriPoruke(reza)" >Poruke</button>
+                                        <button class="btn btn-primary" type="button" ng-click="otvoriPoruke(reza)" >Poruke</button>
                                     </td>
                                 </tr>
                             </table>
-                            <table data-toggle="table" class="table table-hover table-striped table-bordered results">
-                                <tr>
-                                    <th> posiljalac </th>
-                                    <th> tekst poruke </th>
-                                </tr>
-                                <tr ng-repeat="poruka in poruke | orderBy:poRedu ">
-                                    <td >{{poruka.posiljalac.kime}}</td>
-                                    <td >{{poruka.tekst}}</td>
-                                </tr>
-                            </table>
-                            <textarea class="form-control form-control-lg" placeholder="Poruka" ng-model="novaPoruka.tekst" style="margin-bottom:20px;padding:0px;"></textarea>
-                            <button class="btn btn-primary" requestType="button" ng-click="posaljiPoruku()" >Pošalji</button>
+                            <div ng-hide="showDiv">
+                                <table data-toggle="table" class="table table-hover table-striped table-bordered results">
+                                    <tr>
+                                        <th> posiljalac </th>
+                                        <th> tekst poruke </th>
+                                    </tr>
+                                    <tr ng-repeat="poruka in poruke | orderBy:poRedu ">
+                                        <td >{{poruka.posiljalac.kime}}</td>
+                                        <td >{{poruka.tekst}}</td>
+                                    </tr>
+                                </table>
+
+                                <textarea id="tekstporuka" class="form-control form-control-lg" placeholder="Poruka"  ng-model="novaPoruka.tekst" style="margin-bottom:20px;padding:0px;"></textarea>
+                                <button class="btn btn-primary" type="button" ng-click="posaljiPoruku()"  >Pošalji</button>
+                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button requestType="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
                     </div>
                 </div>
 
@@ -163,13 +204,13 @@
                         <label>smeštaj:</label>
                         <select class="form-control" ng-model="rezervacija.smestaj" ng-options="smes.opis for smes in smestaji" style="margin-bottom:20px;padding:0px;"></select>
                         <label>od:</label>
-                        <input requestType="date" ng-model="rezervacija.od" class="form-control" style="margin-bottom:20px;"/>
+                        <input type="date" ng-model="rezervacija.od" class="form-control" style="margin-bottom:20px;"/>
                         <label>do:</label>
-                        <input requestType="date" ng-model="rezervacija.paOndaDo" class="form-control" style="margin-bottom:20px;"/>
+                        <input type="date" ng-model="rezervacija.paOndaDo" class="form-control" style="margin-bottom:20px;"/>
                         <button ng-click="postaviFejk()" class="btn btn-primary btn-block"  style="margin-top:20px;padding:0px;" >Postavi</button>
                     </div>
                     <div class="modal-footer">
-                        <button requestType="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
                     </div>
                 </div>
 
