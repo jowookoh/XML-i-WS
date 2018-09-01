@@ -22,19 +22,6 @@ public class HelloWorldEndpoint {
 	@Autowired
 	KorisnikService korisnikService;
 	
-	@PayloadRoot(namespace = SMESTAJ_URI, localPart = "smestajRequest")
-	@ResponsePayload
-	public SmestajResponse smesssssstaj(@RequestPayload SmestajRequest request) {
-		SmestajJedan sj = new SmestajJedan();
-		sj.setOpis("dobarr");
-		SmestajJedan sd = new SmestajJedan();
-		sd.setOpis("dobarr dva");
-		SmestajResponse sr = new SmestajResponse();
-		sr.getSmestaji().add(sj);
-		sr.getSmestaji().add(sd);
-		return sr;
-	}
-	
 	@PayloadRoot(namespace = LOGIN_URI, localPart = "loginRequest")
 	@ResponsePayload
 	public LoginResponse login(@RequestPayload LoginRequest request) {

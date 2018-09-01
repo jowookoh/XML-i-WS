@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://xml/ws/rezervacija"
+           xmlns:rezervacija="http://xml/ws/rezervacija">
+
+    <xs:element name="rezervacijaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="rezervacijaResponse" type="rezervacija:rezervacijaResponse"/>
+
+    <xs:complexType name="rezervacijaResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="kategorijaoviSmestaja" type="rezervacija:rezervacijaJedan"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="rezervacijaJedan">
+        <xs:sequence>
+            <xs:element name="bekendId" type="xs:long"/>
+            <xs:element name="smestajBekendId" type="xs:long"/>
+            <xs:element name="korisnikBekendId" type="xs:long"/>
+            <xs:element name="kime" type="xs:string"/>
+            <xs:element name="lozinka" type="xs:string"/>
+            <xs:element name="od" type="xs:date"/>
+            <xs:element name="paOndaDo" type="xs:date"/>
+            <xs:element name="ocena" type="xs:int"/>
+            <xs:element name="komentar" type="xs:string"/>
+            <xs:element name="odobrenKomentar" type="xs:boolean"/>
+            <xs:element name="realizovana" type="xs:boolean"/>
+            <xs:element name="fejk" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

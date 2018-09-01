@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://xml/ws/tipSmestaja"
+           xmlns:tipSmestaja="http://xml/ws/tipSmestaja">
+
+    <xs:element name="tipSmestajaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="tipSmestajaResponse" type="tipSmestaja:tipSmestajaResponse"/>
+
+    <xs:complexType name="tipSmestajaResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="tipoviSmestaja" type="tipSmestaja:tipSmestajaJedan"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipSmestajaJedan">
+        <xs:sequence>
+            <xs:element name="bekendId" type="xs:long"/>
+            <xs:element name="opis" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

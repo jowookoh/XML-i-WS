@@ -1,7 +1,10 @@
 
 package com.example.agent.ws;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**
@@ -21,6 +24,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _RezervacijaResponse_QNAME = new QName("http://xml/ws/rezervacija", "rezervacijaResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.example.agent.ws
@@ -30,19 +34,36 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LoginResponse }
+     * Create an instance of {@link RezervacijaResponse }
      * 
      */
-    public LoginResponse createLoginResponse() {
-        return new LoginResponse();
+    public RezervacijaResponse createRezervacijaResponse() {
+        return new RezervacijaResponse();
     }
 
     /**
-     * Create an instance of {@link LoginRequest }
+     * Create an instance of {@link RezervacijaRequest }
      * 
      */
-    public LoginRequest createLoginRequest() {
-        return new LoginRequest();
+    public RezervacijaRequest createRezervacijaRequest() {
+        return new RezervacijaRequest();
+    }
+
+    /**
+     * Create an instance of {@link RezervacijaJedan }
+     * 
+     */
+    public RezervacijaJedan createRezervacijaJedan() {
+        return new RezervacijaJedan();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RezervacijaResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://xml/ws/rezervacija", name = "rezervacijaResponse")
+    public JAXBElement<RezervacijaResponse> createRezervacijaResponse(RezervacijaResponse value) {
+        return new JAXBElement<RezervacijaResponse>(_RezervacijaResponse_QNAME, RezervacijaResponse.class, null, value);
     }
 
 }

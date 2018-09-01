@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://xml/ws/kategorijaSmestaja"
+           xmlns:kategorijaSmestaja="http://xml/ws/kategorijaSmestaja">
+
+    <xs:element name="kategorijaSmestajaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="kategorijaSmestajaResponse" type="kategorijaSmestaja:kategorijaSmestajaResponse"/>
+
+    <xs:complexType name="kategorijaSmestajaResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="kategorijaoviSmestaja" type="kategorijaSmestaja:kategorijaSmestajaJedan"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="kategorijaSmestajaJedan">
+        <xs:sequence>
+            <xs:element name="bekendId" type="xs:long"/>
+            <xs:element name="opis" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -19,6 +19,18 @@ public class Korisnik {
 	@Column
 	private String tipKorisnika;
 	
+	@Column
+	private String ime;
+	
+	@Column
+	private String prezime;
+	
+	@Column
+	private String adresa;
+	
+	@Column
+	private int poslovniMaticniBroj;
+	
 	public String getTipKorisnika() {
 		return tipKorisnika;
 	}
@@ -49,5 +61,37 @@ public class Korisnik {
 	
 	public void setLozinka(String lozinka) {
 		this.lozinka = lozinka;
+	}
+	
+	public String getIme() {
+		return ime;
+	}
+	
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+	
+	public String getPrezime() {
+		return prezime;
+	}
+	
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
+	}
+	
+	public String getAdresa() {
+		return adresa;
+	}
+	
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+	
+	public int getPoslovniMaticniBroj() {
+		return poslovniMaticniBroj;
+	}
+	
+	public void setPoslovniMaticniBroj(int poslovniMaticniBroj) {
+		this.poslovniMaticniBroj = poslovniMaticniBroj;
 	}
 }

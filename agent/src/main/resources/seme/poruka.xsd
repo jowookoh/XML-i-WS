@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://xml/ws/poruka"
+           xmlns:poruka="http://xml/ws/poruka">
+
+    <xs:element name="porukaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="porukaResponse" type="poruka:porukaResponse"/>
+
+    <xs:complexType name="porukaResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="kategorijaoviSmestaja" type="poruka:porukaJedan"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="porukaJedan">
+        <xs:sequence>
+            <xs:element name="bekendId" type="xs:long"/>
+            <xs:element name="posiljalacBekendId" type="xs:long"/>
+            <xs:element name="rezervacijaBekendId" type="xs:long"/>
+            <xs:element name="tekst" type="xs:string"/>
+            <xs:element name="poRedu" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

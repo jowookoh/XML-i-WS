@@ -1,5 +1,5 @@
 
-package sesta.projekat.ws;
+package com.example.agent.ws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -31,10 +31,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "name"
 })
-@XmlRootElement(name = "smestajRequest", namespace = "http://xml/ws/smestaj")
-public class SmestajRequest {
+@XmlRootElement(name = "porukaRequest", namespace = "http://xml/ws/poruka")
+public class PorukaRequest {
 
-    @XmlElement(namespace = "http://xml/ws/smestaj", required = true)
+    @XmlElement(namespace = "http://xml/ws/poruka", required = true)
     protected String name;
 
     /**

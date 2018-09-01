@@ -1,5 +1,5 @@
 
-package com.example.agent.ws;
+package sesta.projekat.ws;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for smestajResponse complex type.
+ * <p>Java class for porukaResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="smestajResponse">
+ * &lt;complexType name="porukaResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="smestaji" type="{http://xml/ws/smestaj}smestajJedan" maxOccurs="unbounded"/>
+ *         &lt;element name="kategorijaoviSmestaja" type="{http://xml/ws/poruka}porukaJedan" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,41 +29,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "smestajResponse", namespace = "http://xml/ws/smestaj", propOrder = {
-    "smestaji"
+@XmlType(name = "porukaResponse", namespace = "http://xml/ws/poruka", propOrder = {
+    "kategorijaoviSmestaja"
 })
-public class SmestajResponse {
+public class PorukaResponse {
 
-    @XmlElement(namespace = "http://xml/ws/smestaj", required = true)
-    protected List<SmestajJedan> smestaji;
+    @XmlElement(namespace = "http://xml/ws/poruka", required = true)
+    protected List<PorukaJedan> kategorijaoviSmestaja;
 
     /**
-     * Gets the value of the smestaji property.
+     * Gets the value of the kategorijaoviSmestaja property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the smestaji property.
+     * This is why there is not a <CODE>set</CODE> method for the kategorijaoviSmestaja property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSmestaji().add(newItem);
+     *    getKategorijaoviSmestaja().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link SmestajJedan }
+     * {@link PorukaJedan }
      * 
      * 
      */
-    public List<SmestajJedan> getSmestaji() {
-        if (smestaji == null) {
-            smestaji = new ArrayList<SmestajJedan>();
+    public List<PorukaJedan> getKategorijaoviSmestaja() {
+        if (kategorijaoviSmestaja == null) {
+            kategorijaoviSmestaja = new ArrayList<PorukaJedan>();
         }
-        return this.smestaji;
+        return this.kategorijaoviSmestaja;
     }
 
 }

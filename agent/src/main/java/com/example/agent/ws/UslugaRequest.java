@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="postoji" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,28 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "postoji"
+    "name"
 })
-@XmlRootElement(name = "loginRequest", namespace = "http://xml/ws/login")
-public class LoginResponse {
+@XmlRootElement(name = "uslugaRequest", namespace = "http://xml/ws/usluga")
+public class UslugaRequest {
 
-    @XmlElement(namespace = "http://xml/ws/login")
-    protected boolean postoji;
+    @XmlElement(namespace = "http://xml/ws/usluga", required = true)
+    protected String name;
 
     /**
-     * Gets the value of the postoji property.
+     * Gets the value of the name property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public boolean isPostoji() {
-        return postoji;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Sets the value of the postoji property.
+     * Sets the value of the name property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setPostoji(boolean value) {
-        this.postoji = value;
+    public void setName(String value) {
+        this.name = value;
     }
 
 }
