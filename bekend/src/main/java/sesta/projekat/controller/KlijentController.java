@@ -39,6 +39,7 @@ public class KlijentController {
             }
         }
 
+        korisnik.setTipKorisnika("bklijent");
         Korisnik korisnikSacuvaj = korisnikService.save(korisnik);
         return ResponseEntity.ok(true);
     }
