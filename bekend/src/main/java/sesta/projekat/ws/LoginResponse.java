@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "postoji"
 })
-@XmlRootElement(name = "loginResponse", namespace = "http://xml/ws/login")
+@XmlRootElement
 public class LoginResponse {
 
     @XmlElement(namespace = "http://xml/ws/login")

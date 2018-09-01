@@ -20,7 +20,7 @@ import java.util.List;
 
 @Endpoint
 @Scope
-public class HelloWorldEndpoint {
+public class LoginAndSyncEndpoint {
 	private static final String SMESTAJ_URI = "http://xml/ws/smestaj";
 	private static final String LOGIN_URI = "http://xml/ws/login";
 	private static final String TIP_SMESTAJA_URI = "http://xml/ws/tipSmestaja";
@@ -58,7 +58,7 @@ public class HelloWorldEndpoint {
 		return response;
 	}
 
-	@PayloadRoot(namespace = KATEGORIJA_SMESTAJA_URI, localPart = "sve")
+	@PayloadRoot(namespace = KATEGORIJA_SMESTAJA_URI, localPart = "kategorijaSmestajaRequest")
 	@ResponsePayload
 	public KategorijaSmestajaResponse sveKategorije(@RequestPayload KategorijaSmestajaRequest request) {
 		List<KategorijaSmestaja> kategorijeSmestaja = kategorijaSmestajaService.getAll();
@@ -72,7 +72,7 @@ public class HelloWorldEndpoint {
 		return response;
 	}
 
-	@PayloadRoot(namespace = TIP_SMESTAJA_URI, localPart = "sve")
+	@PayloadRoot(namespace = TIP_SMESTAJA_URI, localPart = "tipSmestajaRequest")
 	@ResponsePayload
 	public TipSmestajaResponse sviTipovi(@RequestPayload TipSmestajaRequest request) {
 		List<TipSmestaja> tipoviSmestaja = tipSmestajaService.getAll();
@@ -86,7 +86,7 @@ public class HelloWorldEndpoint {
 		return response;
 	}
 
-	@PayloadRoot(namespace = USLUGA_URI, localPart = "sve")
+	@PayloadRoot(namespace = USLUGA_URI, localPart = "uslugaRequest")
 	@ResponsePayload
 	public UslugaResponse sveUsluge(@RequestPayload UslugaRequest request) {
 		List<Usluga> usluge = uslugaService.getAll();
@@ -100,7 +100,7 @@ public class HelloWorldEndpoint {
 		return response;
 	}
 
-	@PayloadRoot(namespace = REZERVACIJA_URI, localPart = "sve")
+	@PayloadRoot(namespace = REZERVACIJA_URI, localPart = "rezervacijaRequest")
 	@ResponsePayload
 	public RezervacijaResponse sveRezervacije(@RequestPayload RezervacijaRequest request) {
 		List<Rezervacija> rezervacije = rezervacijaService.getAll();
@@ -142,7 +142,7 @@ public class HelloWorldEndpoint {
 
 
 
-	@PayloadRoot(namespace = PORUKA_URI, localPart = "sve")
+	@PayloadRoot(namespace = PORUKA_URI, localPart = "porukaRequest")
 	@ResponsePayload
 	public PorukaResponse svePoruke(@RequestPayload PorukaRequest request) {
 		List<Poruka> poruke = porukaService.getAll();

@@ -3,10 +3,7 @@ package sesta.projekat.ws;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
@@ -32,6 +29,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "kategorijaSmestajaResponse", namespace = "http://xml/ws/kategorijaSmestaja", propOrder = {
     "kategorijaoviSmestaja"
 })
+@XmlRootElement
 public class KategorijaSmestajaResponse {
 
     @XmlElement(namespace = "http://xml/ws/kategorijaSmestaja", required = true)
