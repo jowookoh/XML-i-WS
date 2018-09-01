@@ -14,8 +14,8 @@ public class KorisnikController {
     @Autowired
     KorisnikRepository korisnikRepository;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ResponseEntity dajKorisnika(@PathVariable Long id){
-        return ResponseEntity.ok(korisnikRepository.findById(id));
+    @RequestMapping(method = RequestMethod.GET, value = "/{kime}")
+    public ResponseEntity dajKorisnika(@PathVariable String kime){
+        return ResponseEntity.ok(korisnikRepository.findByKime(kime));
     }
 }
