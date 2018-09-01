@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "kategorijaSmestajaResponse", namespace = "http://xml/ws/kategorijaSmestaja", propOrder = {
     "kategorijaoviSmestaja"
 })
-@XmlRootElement(name = "kategorijaSmestajaRequest", namespace = "http://xml/ws/kategorijaSmestaja")
+@XmlRootElement
 public class KategorijaSmestajaResponse {
 
     @XmlElement(namespace = "http://xml/ws/kategorijaSmestaja", required = true)

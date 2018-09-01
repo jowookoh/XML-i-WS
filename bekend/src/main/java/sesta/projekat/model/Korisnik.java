@@ -29,7 +29,7 @@ public class Korisnik {
 	private String adresa;
 	
 	@Column
-	private int poslovniMaticniBroj;
+	private Integer poslovniMaticniBroj;
 	
 	public String getTipKorisnika() {
 		return tipKorisnika;
@@ -87,11 +87,11 @@ public class Korisnik {
 		this.adresa = adresa;
 	}
 	
-	public int getPoslovniMaticniBroj() {
+	public Integer getPoslovniMaticniBroj() {
 		return poslovniMaticniBroj;
 	}
 	
-	public void setPoslovniMaticniBroj(int poslovniMaticniBroj) {
+	public void setPoslovniMaticniBroj(Integer poslovniMaticniBroj) {
 		this.poslovniMaticniBroj = poslovniMaticniBroj;
 	}
 }

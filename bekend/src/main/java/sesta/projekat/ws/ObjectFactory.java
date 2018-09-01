@@ -1,10 +1,9 @@
 
 package sesta.projekat.ws;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlElementDecl;
+import sesta.projekat.model.Usluga;
+
 import javax.xml.bind.annotation.XmlRegistry;
-import javax.xml.namespace.QName;
 
 
 /**
@@ -24,7 +23,6 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _RezervacijaResponse_QNAME = new QName("http://xml/ws/rezervacija", "rezervacijaResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: sesta.projekat.ws
@@ -34,36 +32,59 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RezervacijaResponse }
+     * Create an instance of {@link LoginResponse }
      * 
      */
+    public LoginResponse createLoginResponse() {
+        return new LoginResponse();
+    }
+
+    public KategorijaSmestajaResponse createKategorijaSmestajaResponse() {
+        return new KategorijaSmestajaResponse();
+    }
+
+    public PorukaResponse createPorukaResponse() {
+        return new PorukaResponse();
+    }
+
     public RezervacijaResponse createRezervacijaResponse() {
         return new RezervacijaResponse();
     }
 
+    public TipSmestajaResponse createTipSmestajaResponse() {
+        return new TipSmestajaResponse();
+    }
+
+    public UslugaResponse createUslugaResponse() {
+        return new UslugaResponse();
+    }
+
     /**
-     * Create an instance of {@link RezervacijaRequest }
+     * Create an instance of {@link LoginRequest }
      * 
      */
+    public LoginRequest createLoginRequest() {
+        return new LoginRequest();
+    }
+    
+    public KategorijaSmestajaRequest createKategorijaSmestajaRequest() {
+        return new KategorijaSmestajaRequest();
+    }
+    
+    public PorukaRequest createPorukaRequest() {
+        return new PorukaRequest();
+    }
+    
     public RezervacijaRequest createRezervacijaRequest() {
         return new RezervacijaRequest();
     }
-
-    /**
-     * Create an instance of {@link RezervacijaJedan }
-     * 
-     */
-    public RezervacijaJedan createRezervacijaJedan() {
-        return new RezervacijaJedan();
+    
+    public TipSmestajaRequest createTipSmestajaRequest() {
+        return new TipSmestajaRequest();
     }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RezervacijaResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://xml/ws/rezervacija", name = "rezervacijaResponse")
-    public JAXBElement<RezervacijaResponse> createRezervacijaResponse(RezervacijaResponse value) {
-        return new JAXBElement<RezervacijaResponse>(_RezervacijaResponse_QNAME, RezervacijaResponse.class, null, value);
+    
+    public UslugaRequest createUslugaRequest() {
+        return new UslugaRequest();
     }
 
 }

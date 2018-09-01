@@ -3,10 +3,7 @@ package com.example.agent.ws;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
@@ -32,6 +29,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "porukaResponse", namespace = "http://xml/ws/poruka", propOrder = {
     "kategorijaoviSmestaja"
 })
+@XmlRootElement
 public class PorukaResponse {
 
     @XmlElement(namespace = "http://xml/ws/poruka", required = true)

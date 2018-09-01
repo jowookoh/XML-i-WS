@@ -15,6 +15,8 @@ public class GenerickiClient extends WebServiceGatewaySupport {
 	public <TRequest, TResponse> TResponse send(TRequest request, String uri) {
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 		marshaller.setContextPath("com.example.agent.ws");
+		String[] packagesToScan= {"com.example.agent.ws"};
+		marshaller.setPackagesToScan(packagesToScan);
 		marshaller.setClassesToBeBound(requestType, responseType);
 		
 		getWebServiceTemplate().setMarshaller(marshaller);
