@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="agentId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,36 +29,28 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "name"
+    "agentId"
 })
 @XmlRootElement(name = "rezervacijaRequest", namespace = "http://xml/ws/rezervacija")
 public class RezervacijaRequest {
 
-    @XmlElement(namespace = "http://xml/ws/rezervacija", required = true)
-    protected String name;
+    @XmlElement(namespace = "http://xml/ws/rezervacija")
+    protected long agentId;
 
     /**
-     * Gets the value of the name property.
+     * Gets the value of the agentId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getName() {
-        return name;
+    public long getAgentId() {
+        return agentId;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the agentId property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setAgentId(long value) {
+        this.agentId = value;
     }
 
 }

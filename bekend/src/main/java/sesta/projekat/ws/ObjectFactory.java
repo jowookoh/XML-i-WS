@@ -24,7 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _UslugaResponse_QNAME = new QName("http://xml/ws/usluga", "uslugaResponse");
+    private final static QName _RezervacijaResponse_QNAME = new QName("http://xml/ws/rezervacija", "rezervacijaResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: sesta.projekat.ws
@@ -34,36 +34,36 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UslugaRequest }
+     * Create an instance of {@link RezervacijaResponse }
      * 
      */
-    public UslugaRequest createUslugaRequest() {
-        return new UslugaRequest();
+    public RezervacijaResponse createRezervacijaResponse() {
+        return new RezervacijaResponse();
     }
 
     /**
-     * Create an instance of {@link UslugaResponse }
+     * Create an instance of {@link RezervacijaRequest }
      * 
      */
-    public UslugaResponse createUslugaResponse() {
-        return new UslugaResponse();
+    public RezervacijaRequest createRezervacijaRequest() {
+        return new RezervacijaRequest();
     }
 
     /**
-     * Create an instance of {@link UslugaJedan }
+     * Create an instance of {@link RezervacijaJedan }
      * 
      */
-    public UslugaJedan createUslugaJedan() {
-        return new UslugaJedan();
+    public RezervacijaJedan createRezervacijaJedan() {
+        return new RezervacijaJedan();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UslugaResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RezervacijaResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://xml/ws/usluga", name = "uslugaResponse")
-    public JAXBElement<UslugaResponse> createUslugaResponse(UslugaResponse value) {
-        return new JAXBElement<UslugaResponse>(_UslugaResponse_QNAME, UslugaResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://xml/ws/rezervacija", name = "rezervacijaResponse")
+    public JAXBElement<RezervacijaResponse> createRezervacijaResponse(RezervacijaResponse value) {
+        return new JAXBElement<RezervacijaResponse>(_RezervacijaResponse_QNAME, RezervacijaResponse.class, null, value);
     }
 
 }

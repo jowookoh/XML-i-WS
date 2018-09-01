@@ -2,11 +2,32 @@ package com.example.agent.service;
 
 import com.example.agent.client.GenerickiClient;
 import com.example.agent.model.Korisnik;
+import com.example.agent.model.TipSmestaja;
+import com.example.agent.repository.*;
 import com.example.agent.ws.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class LoginAndSyncService {
+	@Autowired
+	TipSmestajaRepository tipSmestajaRepository;
+	
+	@Autowired
+	KategorijaSmestajaRepository kategorijaSmestajaRepository;
+	
+	@Autowired
+	UslugaRepository uslugaRepository;
+	
+	@Autowired
+	KorisnikRepository korisnikRepository;
+	
+	@Autowired
+	RezervacijaRepository rezervacijaRepository;
+	
+	@Autowired
+	PorukaRepository porukaRepository;
 	
 	public boolean Login(Korisnik korisnik){
 		GenerickiClient client = new GenerickiClient(LoginRequest.class, LoginResponse.class);
@@ -19,7 +40,8 @@ public class LoginAndSyncService {
 		return response.isPostoji();
 	}
 	
-	private void Sync(Korisnik korisnik) {
+	@Transactional
+	protected void Sync(Korisnik korisnik) {
 		//region tip smestaja
 		GenerickiClient client = new GenerickiClient(TipSmestajaRequest.class, TipSmestajaResponse.class);
 		TipSmestajaResponse tipSmestajaResponse = client.send(new TipSmestajaRequest(), "tipSmestaja");
