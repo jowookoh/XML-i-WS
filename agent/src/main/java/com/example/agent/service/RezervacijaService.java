@@ -31,15 +31,20 @@ public class RezervacijaService {
         rezervacijaRepository.save(rezervacija);
     }
 
-    public List<Rezervacija> rezervacijeMojihSmestaja(Long agent){
+    public List<Rezervacija> rezervacijeMojihSmestaja(Long agent, boolean sve){
         List<Smestaj> mojiSmestaji = smestajRepository.findByAgent_Id(agent);
         List<Rezervacija> rezeMojih = new ArrayList<>();
         for (Smestaj smestaj: mojiSmestaji) {
             List<Rezervacija> rezeSmestaja = rezervacijaRepository.findBySmestaj(smestaj);
-            for (Rezervacija rezervacija:rezeSmestaja) {
-                if(!rezervacija.isRealizovana()){
-                    rezeMojih.add(rezervacija);
+            if(!sve) {
+                for (Rezervacija rezervacija : rezeSmestaja) {
+                    if (!rezervacija.isRealizovana()) {
+                        rezeMojih.add(rezervacija);
+                    }
                 }
+            }
+            else {
+                rezeMojih.addAll(rezeSmestaja);
             }
         }
         return rezeMojih;

@@ -34,7 +34,13 @@ public class RezervacijaController {
     }
     @RequestMapping(method = RequestMethod.GET, value = "/moje/{agentId}")
     public ResponseEntity rezeMojihSmestaja(@PathVariable Long agentId){
-        List<Rezervacija> rezervacije = rezervacijaService.rezervacijeMojihSmestaja(agentId);
+        List<Rezervacija> rezervacije = rezervacijaService.rezervacijeMojihSmestaja(agentId,false);
+        return ResponseEntity.ok(rezervacije);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/mojeSve/{agentId}")
+    public ResponseEntity rezeMojihSmestajaSve(@PathVariable Long agentId){
+        List<Rezervacija> rezervacije = rezervacijaService.rezervacijeMojihSmestaja(agentId,true);
         return ResponseEntity.ok(rezervacije);
     }
 }
