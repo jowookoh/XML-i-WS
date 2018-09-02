@@ -12,7 +12,8 @@ public class SmestajDtoResponse {
     private String kategorija;
     private String tipSmestaja;
     private List<String> usluge;
-
+    private double ocena;
+    private List<String> komentari;
     public SmestajDtoResponse() {
     }
 
@@ -81,4 +82,21 @@ public class SmestajDtoResponse {
     public void setUsluge(List<String> usluge) {
         this.usluge = usluge;
     }
+
+    public double getOcena() {
+        return ocena;
+    }
+
+    public void setOcena(double ocena) {
+        this.ocena = ocena;
+    }
+
+    public List<String> getKomentari() {
+        return komentari;
+    }
+
+    public void setKomentari(List<String> komentari) {
+        this.komentari = komentari;
+    }
+
 }

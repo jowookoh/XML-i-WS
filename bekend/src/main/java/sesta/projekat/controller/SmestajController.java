@@ -139,7 +139,23 @@ public class SmestajController {
                 }
             }
             s.setCena(vrednost);
-
+            double ocena = 0;
+            int cnt = 0;
+            s.setKomentari(new ArrayList<>());
+            //prodji kroz snew neve rezervacije koje su vezane za taj smestaj i dodaj njihove komentare u smestaj
+            //i pronadji srednju ocenu od svih tih rezervacija
+            for(Rezervacija rezervacija : rezervacijaService.getAll()){
+                if(rezervacija.getSmestaj().getId() == smestaj.getId()){
+                    if(rezervacija.getKomentar() != null && !rezervacija.getKomentar().equals("")) {
+                        s.getKomentari().add(rezervacija.getKomentar());
+                    }
+                    if(rezervacija.getOcena() >= 1 && rezervacija.getOcena() <= 5){
+                        ocena = ocena + rezervacija.getOcena();
+                        cnt = cnt + 1;
+                    }
+                }
+            }
+            s.setOcena(ocena / cnt);
             s.setKategorija(smestaj.getKategorijaSmestaja().getNaziv());
             s.setTipSmestaja(smestaj.getTipSmestaja().getNaziv());
 
@@ -152,6 +168,7 @@ public class SmestajController {
             }
             s.setUsluge(usluge);
             s.setId(smestaj.getId());
+
             response.add(s);
         }
         return ResponseEntity.ok(response);

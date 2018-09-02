@@ -1,6 +1,7 @@
 package sesta.projekat.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class CenaDto {
     private Date mesec;
@@ -29,4 +30,5 @@ public class CenaDto {
     public void setVrednost(int vrednost) {
         this.vrednost = vrednost;
     }
+
 }
