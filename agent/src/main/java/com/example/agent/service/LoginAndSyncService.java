@@ -55,36 +55,52 @@ public class LoginAndSyncService {
 		//region tip smestaja
 		GenerickiClient client = new GenerickiClient(TipSmestajaRequest.class, TipSmestajaResponse.class);
 		TipSmestajaResponse tipSmestajaResponse = client.send(new TipSmestajaRequest(), "tipSmestaja");
-		tipSmestajaRepository.deleteAll();
 		for (TipSmestajaJedan tipSmestajaJedan : tipSmestajaResponse.getTipoviSmestaja()) {
-			TipSmestaja tipSmestaja = new TipSmestaja();
-			tipSmestaja.setBekendId(tipSmestajaJedan.getBekendId());
-			tipSmestaja.setNaziv(tipSmestajaJedan.getOpis());
-			tipSmestajaRepository.save(tipSmestaja);
+			TipSmestaja tipSmestaja = tipSmestajaRepository.findTipSmestajaByBekendId(tipSmestajaJedan.getBekendId());
+			if(tipSmestaja == null){
+				tipSmestaja = new TipSmestaja();
+				tipSmestaja.setBekendId(tipSmestajaJedan.getBekendId());
+				tipSmestaja.setNaziv(tipSmestajaJedan.getOpis());
+				tipSmestajaRepository.save(tipSmestaja);
+			}
+			else{
+				tipSmestaja.setNaziv(tipSmestajaJedan.getOpis());
+				tipSmestajaRepository.save(tipSmestaja);
+			}
 		}
 		//endregion
 		
 		//region kategorija smestaja
 		client = new GenerickiClient(KategorijaSmestajaRequest.class, KategorijaSmestajaResponse.class);
 		KategorijaSmestajaResponse kategorijaSmestajaResponse = client.send(new KategorijaSmestajaRequest(), "kategorijaSmestaja");
-		kategorijaSmestajaRepository.deleteAll();
 		for (KategorijaSmestajaJedan kategorijaSmestajaJedan : kategorijaSmestajaResponse.getKategorijaoviSmestaja()){
-			KategorijaSmestaja kategorijaSmestaja = new KategorijaSmestaja();
-			kategorijaSmestaja.setBekendId(kategorijaSmestajaJedan.getBekendId());
-			kategorijaSmestaja.setNaziv(kategorijaSmestajaJedan.getOpis());
-			kategorijaSmestajaRepository.save(kategorijaSmestaja);
+			KategorijaSmestaja kategorijaSmestaja = kategorijaSmestajaRepository.findKategorijaSmestajaByBekendId(kategorijaSmestajaJedan.getBekendId());
+			if(kategorijaSmestaja == null){
+				kategorijaSmestaja = new KategorijaSmestaja();
+				kategorijaSmestaja.setBekendId(kategorijaSmestajaJedan.getBekendId());
+				kategorijaSmestaja.setNaziv(kategorijaSmestajaJedan.getOpis());
+				kategorijaSmestajaRepository.save(kategorijaSmestaja);
+			}else{
+				kategorijaSmestaja.setNaziv(kategorijaSmestajaJedan.getOpis());
+				kategorijaSmestajaRepository.save(kategorijaSmestaja);
+			}
 		}
 		//endregion
 		
 		//region usluga
 		client = new GenerickiClient(UslugaRequest.class, UslugaResponse.class);
 		UslugaResponse uslugaResponse = client.send(new UslugaRequest(), "usluga");
-		uslugaRepository.deleteAll();
 		for (UslugaJedan uslugaJedan : uslugaResponse.getKategorijaoviSmestaja()){
-			Usluga usluga = new Usluga();
-			usluga.setBekendId(uslugaJedan.getBekendId());
-			usluga.setNaziv(uslugaJedan.getOpis());
-			uslugaRepository.save(usluga);
+			Usluga usluga = uslugaRepository.findUslugaByBekendId(uslugaJedan.getBekendId());
+			if(usluga == null){
+				usluga = new Usluga();
+				usluga.setBekendId(uslugaJedan.getBekendId());
+				usluga.setNaziv(uslugaJedan.getOpis());
+				uslugaRepository.save(usluga);
+			}else{
+				usluga.setNaziv(uslugaJedan.getOpis());
+				uslugaRepository.save(usluga);
+			}
 		}
 		//endregion
 		
@@ -95,25 +111,40 @@ public class LoginAndSyncService {
 		korisnikRepository.deleteAll();
 		korisnikRepository.save(ja);
 		rezervacijaRepository.deleteAll();
-		Set<Long> klijentBekendIdovi = new HashSet<>();
 		for (RezervacijaJedan rezervacijaJedan : rezervacijaResponse.getKategorijaoviSmestaja()){
-			Korisnik klijent = new Korisnik();
-			klijent.setBekendId(rezervacijaJedan.getBekendId());
-			klijent.setKime(rezervacijaJedan.getKime());
-			klijent.setLozinka(rezervacijaJedan.getLozinka());
-			if (klijentBekendIdovi.add(klijent.getBekendId())) korisnikRepository.save(klijent);
-			Rezervacija rezervacija = new Rezervacija();
-			rezervacija.setBekendId(rezervacijaJedan.getBekendId());
-			rezervacija.setSmestaj(smestajRepository.findSmestajByBekendId(rezervacijaJedan.getSmestajBekendId()));
-			rezervacija.setKlijent(klijent);
-			rezervacija.setOd(rezervacijaJedan.getOd().toGregorianCalendar().getTime());
-			rezervacija.setPaOndaDo(rezervacijaJedan.getPaOndaDo().toGregorianCalendar().getTime());
-			rezervacija.setOcena(rezervacijaJedan.getOcena());
-			rezervacija.setKomentar(rezervacijaJedan.getKomentar());
-			rezervacija.setOdobrenKomentar(rezervacijaJedan.isOdobrenKomentar());
-			rezervacija.setRealizovana(rezervacijaJedan.isRealizovana());
-			rezervacija.setFejk(rezervacijaJedan.isFejk());
-			rezervacijaRepository.save(rezervacija);
+
+			Rezervacija rezervacija = rezervacijaRepository.findRezervacijaByBekendId(rezervacijaJedan.getBekendId());
+			Korisnik klijent = korisnikRepository.findKorisnikByBekendId(rezervacijaJedan.getKorisnikBekendId());
+			if(klijent == null){
+				klijent = new Korisnik();
+				klijent.setBekendId(rezervacijaJedan.getKorisnikBekendId());
+				klijent.setKime(rezervacijaJedan.getKime());
+				klijent.setLozinka(rezervacijaJedan.getLozinka());
+				korisnikRepository.save(klijent);
+			}else{
+				klijent.setKime(rezervacijaJedan.getKime());
+				klijent.setLozinka(rezervacijaJedan.getLozinka());
+				korisnikRepository.save(klijent);
+			}
+			if(rezervacija == null){
+				rezervacija = new Rezervacija();
+				rezervacija.setBekendId(rezervacijaJedan.getBekendId());
+				rezervacija.setSmestaj(smestajRepository.findSmestajByBekendId(rezervacijaJedan.getSmestajBekendId()));
+				rezervacija.setKlijent(klijent);
+				rezervacija.setOd(rezervacijaJedan.getOd().toGregorianCalendar().getTime());
+				rezervacija.setPaOndaDo(rezervacijaJedan.getPaOndaDo().toGregorianCalendar().getTime());
+				rezervacija.setOcena(rezervacijaJedan.getOcena());
+				rezervacija.setKomentar(rezervacijaJedan.getKomentar());
+				rezervacija.setOdobrenKomentar(rezervacijaJedan.isOdobrenKomentar());
+				rezervacija.setRealizovana(rezervacijaJedan.isRealizovana());
+				rezervacija.setFejk(rezervacijaJedan.isFejk());
+				rezervacijaRepository.save(rezervacija);
+			}else{
+				rezervacija.setOcena(rezervacijaJedan.getOcena());
+				rezervacija.setKomentar(rezervacijaJedan.getKomentar());
+				rezervacija.setOdobrenKomentar(rezervacijaJedan.isOdobrenKomentar());
+				rezervacijaRepository.save(rezervacija);
+			}
 		}
 		//endregion
 		
@@ -122,13 +153,16 @@ public class LoginAndSyncService {
 		PorukaResponse porukaResponse = client.send(new PorukaRequest(), "poruka");
 		porukaRepository.deleteAll();
 		for (PorukaJedan porukaJedan : porukaResponse.getKategorijaoviSmestaja()){
-			Poruka poruka = new Poruka();
-			poruka.setBekendId(porukaJedan.getBekendId());
-			poruka.setPosiljalac(korisnikRepository.findKorisnikByBekendId(porukaJedan.getBekendId()));
-			poruka.setRezervacija(rezervacijaRepository.findRezervacijaByBekendId(porukaJedan.getRezervacijaBekendId()));
-			poruka.setTekst(porukaJedan.getTekst());
-			poruka.setPoRedu(porukaJedan.getPoRedu());
-			porukaRepository.save(poruka);
+			Poruka poruka = porukaRepository.findPorukaByBekendId(porukaJedan.getBekendId());
+			if(poruka == null){
+				poruka = new Poruka();
+				poruka.setBekendId(porukaJedan.getBekendId());
+				poruka.setPosiljalac(korisnikRepository.findKorisnikByBekendId(porukaJedan.getBekendId()));
+				poruka.setRezervacija(rezervacijaRepository.findRezervacijaByBekendId(porukaJedan.getRezervacijaBekendId()));
+				poruka.setTekst(porukaJedan.getTekst());
+				poruka.setPoRedu(porukaJedan.getPoRedu());
+				porukaRepository.save(poruka);
+			}
 		}
 		//endregion
 	}

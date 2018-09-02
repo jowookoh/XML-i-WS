@@ -9,4 +9,5 @@ import java.util.List;
 public interface PorukaRepository extends JpaRepository<Poruka,Long> {
 
     List<Poruka> findByRezervacija(Rezervacija rezervacija);
+    Poruka findPorukaByBekendId (Long id);
 }

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface SmestajRepository extends JpaRepository<Smestaj,Long> {
     List<Smestaj> findByAgent_Id(Long id);
-    public Smestaj findSmestajByBekendId(Long id);
+    Smestaj findSmestajByBekendId(Long id);
 }
