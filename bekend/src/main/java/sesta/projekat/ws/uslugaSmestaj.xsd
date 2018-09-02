@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://xml/ws/uslugaSmestaj"
+           xmlns:uslugaSmestaj="http://xml/ws/uslugaSmestaj">
+
+    <xs:element name="uslugaSmestajRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="uslugaBekendId" type="xs:long"/>
+                <xs:element name="smestajBekendId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="uslugaSmestajResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bekendId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

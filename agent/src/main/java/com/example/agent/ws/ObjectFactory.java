@@ -1,7 +1,10 @@
 
 package com.example.agent.ws;
 
+import com.example.agent.model.Poruka;
+
 import javax.xml.bind.annotation.XmlRegistry;
+import java.lang.ref.ReferenceQueue;
 
 
 /**
@@ -30,59 +33,103 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LoginResponse }
+     * Create an instance of {@link UslugaSmestajResponse }
      * 
      */
-	public LoginResponse createLoginResponse() {
-		return new LoginResponse();
-	}
-	
-	public KategorijaSmestajaResponse createKategorijaSmestajaResponse() {
-		return new KategorijaSmestajaResponse();
-	}
-	
-	public PorukaResponse createPorukaResponse() {
-		return new PorukaResponse();
-	}
-	
-	public RezervacijaResponse createRezervacijaResponse() {
-		return new RezervacijaResponse();
-	}
-	
-	public TipSmestajaResponse createTipSmestajaResponse() {
-		return new TipSmestajaResponse();
-	}
-	
-	public UslugaResponse createUslugaResponse() {
-		return new UslugaResponse();
-	}
-	
-	/**
-	 * Create an instance of {@link LoginRequest }
-	 *
-	 */
-	public LoginRequest createLoginRequest() {
-		return new LoginRequest();
-	}
-	
-	public KategorijaSmestajaRequest createKategorijaSmestajaRequest() {
-		return new KategorijaSmestajaRequest();
-	}
-	
-	public PorukaRequest createPorukaRequest() {
-		return new PorukaRequest();
-	}
-	
-	public RezervacijaRequest createRezervacijaRequest() {
-		return new RezervacijaRequest();
-	}
-	
-	public TipSmestajaRequest createTipSmestajaRequest() {
-		return new TipSmestajaRequest();
-	}
-	
-	public UslugaRequest createUslugaRequest() {
-		return new UslugaRequest();
-	}
-	
+    public UslugaSmestajResponse createUslugaSmestajResponse() {
+        return new UslugaSmestajResponse();
+    }
+    public UslugaResponse createUslugaResponse() {
+        return new UslugaResponse();
+    }
+    public TipSmestajaResponse createTipSmestajaResponse() {
+        return new TipSmestajaResponse();
+    }
+    public SmestajResponse createSmestajResponse() {
+        return new SmestajResponse();
+    }
+    public RezervacijaRealizovanaResponse createRezervacijaRealizovanaResponse() {
+        return new RezervacijaRealizovanaResponse();
+    }
+    public RezervacijaFejkResponse createRezervacijaFejkResponse() {
+        return new RezervacijaFejkResponse();
+    }
+    public RezervacijaResponse createRezervacijaResponse() {
+        return new RezervacijaResponse();
+    }
+    public PorukaSendResponse createPorukaSendResponse() {
+        return new PorukaSendResponse();
+    }
+    public PorukaResponse createPorukaResponse() {
+        return new PorukaResponse();
+    }
+    public LokacijaResponse createLokacijaResponse() {
+        return new LokacijaResponse();
+    }
+    public LoginResponse createLoginResponse() {
+        return new LoginResponse();
+    }
+    public KategorijaSmestajaResponse createKategorijaSmestajaResponse() {
+        return new KategorijaSmestajaResponse();
+    }
+    public CenaResponse createCenaResponse() {
+        return new CenaResponse();
+    }
+
+    /**
+     * Create an instance of {@link UslugaSmestajRequest }
+     * 
+     */
+    public UslugaSmestajRequest createUslugaSmestajRequest() {
+        return new UslugaSmestajRequest();
+    }
+
+    public UslugaRequest createUslugaRequest() {
+        return new UslugaRequest();
+    }
+
+    public TipSmestajaRequest createTipSmestajaRequest() {
+        return new TipSmestajaRequest();
+    }
+
+    public SmestajRequest createSmestajRequest() {
+        return new SmestajRequest();
+    }
+
+    public RezervacijaRealizovanaRequest createRezervacijaRealizovanaRequest() {
+        return new RezervacijaRealizovanaRequest();
+    }
+
+    public RezervacijaFejkRequest createRezervacijaFejkRequest() {
+        return new RezervacijaFejkRequest();
+    }
+
+    public RezervacijaRequest createRezervacijaRequest() {
+        return new RezervacijaRequest();
+    }
+
+    public PorukaSendRequest createPorukaSendRequest() {
+        return new PorukaSendRequest();
+    }
+
+    public PorukaRequest createPorukaRequest() {
+        return new PorukaRequest();
+    }
+
+    public LokacijaRequest createLokacijaRequest() {
+        return new LokacijaRequest();
+    }
+
+    public LoginRequest createLoginRequest() {
+        return new LoginRequest();
+    }
+
+    public KategorijaSmestajaRequest createKategorijaSmestajaRequest() {
+        return new KategorijaSmestajaRequest();
+    }
+
+    public CenaRequest createCenaRequest() {
+        return new CenaRequest();
+    }
+
 }

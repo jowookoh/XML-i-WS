@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://xml/ws/cena"
+           xmlns:cena="http://xml/ws/cena">
+
+    <xs:element name="cenaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="smestajId" type="xs:long"/>
+                <xs:element name="mesec" type="xs:date"/>
+                <xs:element name="vrednost" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="cenaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bekendId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
