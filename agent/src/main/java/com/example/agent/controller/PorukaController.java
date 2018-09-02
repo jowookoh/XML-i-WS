@@ -1,7 +1,10 @@
 package com.example.agent.controller;
 
+import com.example.agent.client.GenerickiClient;
 import com.example.agent.model.Poruka;
 import com.example.agent.service.PorukaService;
+import com.example.agent.ws.PorukaSendRequest;
+import com.example.agent.ws.PorukaSendResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,15 @@ public class PorukaController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/nova")
     public ResponseEntity napisiPoruku(@RequestBody Poruka poruka) {
+        GenerickiClient client = new GenerickiClient(PorukaSendRequest.class, PorukaSendResponse.class);
+        PorukaSendRequest porukaSendRequest = new PorukaSendRequest();
+        porukaSendRequest.setKime(poruka.getPosiljalac().getKime());
+        porukaSendRequest.setPoRedu(poruka.getPoRedu());
+        porukaSendRequest.setRezervacijaId(poruka.getRezervacija().getBekendId());
+        porukaSendRequest.setTekst(poruka.getTekst());
+        PorukaSendResponse porukaSendResponse = client.send(porukaSendRequest, "porukaSend");
+
+        poruka.setBekendId(porukaSendResponse.getBekendId());
         Poruka pora = porukaService.novaPoruka(poruka);
         if (pora != null) {
             return ResponseEntity.ok(pora);
