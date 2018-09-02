@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping(TipSmestajaController.TIP_SMESTAJA_URI)
 public class TipSmestajaController {
 
-    public static final String TIP_SMESTAJA_URI = "tipoviSmestaja";
+    public static final String TIP_SMESTAJA_URI = "tipSmestaja";
 
     @Autowired
     private TipSmestajaService tipSmestajaService;

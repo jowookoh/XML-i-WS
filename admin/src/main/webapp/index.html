@@ -32,24 +32,12 @@
         <!-- Left Panel -->
 
     <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default">
-
-            <div class="navbar-header">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
-            </div>
-
-            <div id="main-menu" class="main-menu collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Tipovi Smeštaja </a>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </nav>
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-tipoviSmestaja-tab" data-toggle="pill" href="#v-pills-tipoviSmestaja" role="tab" aria-controls="v-pills-tipoviSmestaja" aria-selected="true">Tipovi Smestaja</a>
+            <a class="nav-link" id="v-pills-kategorije-tab" data-toggle="pill" href="#v-pills-kategorije" role="tab" aria-controls="v-pills-kategorije" aria-selected="false">Kategorije</a>
+            <a class="nav-link" id="v-pills-dodatneUsluge-tab" data-toggle="pill" href="#v-pills-dodatneUsluge" role="tab" aria-controls="v-pills-dodatneUsluge" aria-selected="false">Dodatne Usluge</a>
+            <a class="nav-link" id="v-pills-korisnici-tab" data-toggle="pill" href="#v-pills-korisnici" role="tab" aria-controls="v-pills-korisnici" aria-selected="false">Korisnici</a>
+        </div>
     </aside><!-- /#left-panel -->
 
     <!-- Left Panel -->
@@ -105,60 +93,137 @@
         </header><!-- /header -->
         <!-- Header-->
 
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>Dashboard</h1>
-                    </div>
-                </div>
+        <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-tipoviSmestaja" role="tabpanel" aria-labelledby="v-pills-tipoviSmestaja-tab">
+                <div class="content mt-3">
+                    <div class="animated fadeIn">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong class="card-title">Tipovi smeštaja</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="tipSmestajaWrapper" class="resourceTableWrapper" data-resource="tipSmestaja">
+                                            <button type="button" class="btn btn-primary createBtn">Create</button>
+                                            <table class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Naziv</th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- .animated -->
+                </div><!-- .content -->
             </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Table</a></li>
-                            <li class="active">Data table</li>
-                        </ol>
-                    </div>
-                </div>
+            <div class="tab-pane fade" id="v-pills-kategorije" role="tabpanel" aria-labelledby="v-pills-kategorije-tab">
+                <div class="content mt-3">
+                    <div class="animated fadeIn">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong class="card-title">Kategorije</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="kategorijaWrapper" class="resourceTableWrapper" data-resource="kategorija">
+                                            <button type="button" class="btn btn-primary createBtn">Create</button>
+                                            <table class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Rejting</th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- .animated -->
+                </div><!-- .content -->
+            </div>
+            <div class="tab-pane fade" id="v-pills-dodatneUsluge" role="tabpanel" aria-labelledby="v-pills-dodatneUsluge-tab">
+                <div class="content mt-3">
+                    <div class="animated fadeIn">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong class="card-title">Dodatne Usluge</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="dodatnaUslugaWrapper" class="resourceTableWrapper" data-resource="usluga">
+                                            <button type="button" class="btn btn-primary createBtn">Create</button>
+                                            <table class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Naziv</th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- .animated -->
+                </div><!-- .content -->
+            </div>
+            <div class="tab-pane fade" id="v-pills-korisnici" role="tabpanel" aria-labelledby="v-pills-korisnici-tab">
+                <div class="content mt-3">
+                    <div class="animated fadeIn">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong class="card-title">Korisnici</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="resourceTableWrapper" data-resource="korisnik">
+                                            <button type="button" class="btn btn-primary createBtn">Create</button>
+                                            <table id="table-korisnici" class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Naziv</th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- .animated -->
+                </div><!-- .content -->
             </div>
         </div>
 
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
-
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title">Tipovi smeštaja</strong>
-                        </div>
-                        <div class="card-body">
-                          <div class="resourceTableWrapper" data-resource="tipoviSmestaja">
-                              <button type="button" class="btn btn-primary createBtn">Create</button>
-                              <table id="table-tip-smestaja" class="table table-striped table-bordered">
-                                <thead>
-                                  <tr>
-                                      <th>ID</th>
-                                      <th>Naziv</th>
-                                      <th></th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                              </table>
-                          </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
 
 
     </div><!-- /#right-panel -->
@@ -180,96 +245,25 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            var tableSelector = '#table-tip-smestaja';
-            var resource = getResource($(tableSelector));
-            var table = $(tableSelector).DataTable({
-              ajax : {
-                  url : getServiceURI(resource),
-                  dataSrc : ""
-              },
-              lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
-              columns : [
-                  { data : 'id' },
-                  { data : 'naziv' },
-                  {
-                      "render": function (data, type, row) {
-                            return '<a class="btn btn-danger deleteBtn" data-id="' + row.id + '">' +
-                                '<i class="fa fa-trash-o"></i>' +
-                                '</a>'
-                                +
-                                '<a class="btn btn-primary editBtn" data-id="' + row.id + '">' +
-                                '<i class="fa fa-pencil"></i>' +
-                                '</a>'
-                        }
-                  }
-              ]
-          });
+            var tipSmestajaTable = initTipSmestaja();
+            var kategorijaTable = initKategorija();
+            var dodatnaUslugaTable = initDodatnaUsluga();
 
-            $(tableSelector).on("click", ".deleteBtn", function (e) {
-               e.preventDefault();
-               var id = $(e.currentTarget).data("id");
-               var resource = getResource($(this));
-                $.ajax({
-                    url: getServiceURI(resource) + id,
-                    type: 'DELETE',
-                    success: function (d) {
-                        table.ajax.reload();
-                    },
-                    error: function (d) {
-                        alert("Delete failed");
-                    }
-                });
-            });
+            $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+                e.target // newly activated tab
+                var id = e.target.id;
+                switch (id) {
+                    case "v-pills-tipoviSmestaja-tab" :
+                        tipSmestajaTable.ajax.reload();
+                    case "v-pills-kategorije-tab" :
+                        kategorijaTable.ajax.reload();
+                        break
+                    case "v-pills-dodatneUsluge-tab" :
+                        dodatnaUslugaTable.ajax.reload();
+                        break
 
-            var modalSelector = "#tipSmestajaModal";
-            $(tableSelector).on("click", ".editBtn", function (e) {
-                e.preventDefault();
-                var id = $(e.currentTarget).data("id");
-                var resource = getResource($(this));
-                $.ajax({
-                    url: getServiceURI(resource) + id,
-                    type: 'GET',
-                    success: function (d) {
-                        $("#naziv").val(d.naziv);
-                        var form = $(modalSelector).find("form");
-                        form.attr("method", "PUT");
-                        form.attr("action", getServiceURI(resource) + id);
-                        $(modalSelector).modal("show");
-                    }
-                });
-            });
-
-            $(modalSelector).on("click", ".saveBtn", function () {
-               $(modalSelector).find("form").submit();
-            });
-
-            $(modalSelector).on("submit", "form", function (e) {
-                e.preventDefault();
-                var form = $(this);
-                console.log(objectifyForm(form.serializeArray()));
-                $.ajax({
-                   url : form.attr("action"),
-                   type : form.attr("method"),
-                   data : JSON.stringify(objectifyForm(form.serializeArray())),
-                   dataType : "json",
-                   contentType: "application/json",
-                   success : function (d) {
-                       $(modalSelector).modal("hide");
-                       table.ajax.reload();
-                   }
-                });
-            });
-
-            $(".createBtn").click(function (e) {
-                var resource = getResource($(this));
-                var formSelector = "#" + resource + "Form";
-                var form = $(formSelector);
-                form.attr("method", "POST");
-                form.attr("action", getServiceURI(resource));
-                form[0].reset();
-                $(modalSelector).modal("show");
-            });
-
+                }
+            })
         } );
 
         function getServiceURI(resource){
@@ -288,9 +282,182 @@
         function getResource(element){
             return element.closest(".resourceTableWrapper").data("resource");
         }
+
+        function initTipSmestaja() {
+            var containerSelector = '#tipSmestajaWrapper';
+            var tableEl = $(containerSelector).find("table");
+            var modalSelector = "#tipSmestajaModal";
+            var resource = getResource(tableEl);
+            var dtTable = tableEl.DataTable({
+                ajax: {
+                    url: getServiceURI(resource),
+                    dataSrc: ""
+                },
+                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+                columns: [
+                    {data: 'id'},
+                    {data: 'naziv'},
+                    {
+                        "render": function (data, type, row) {
+                            return '<a class="btn btn-danger deleteBtn" data-id="' + row.id + '">' +
+                                '<i class="fa fa-trash-o"></i>' +
+                                '</a>'
+                                +
+                                '<a class="btn btn-primary editBtn" data-id="' + row.id + '">' +
+                                '<i class="fa fa-pencil"></i>' +
+                                '</a>'
+                        }
+                    }
+                ]
+            });
+
+            initModal(containerSelector, dtTable, modalSelector, function (data) {
+                $("#nazivTipSmestaja").val(data.naziv);
+            });
+
+            return dtTable;
+        }
+
+        function initKategorija() {
+            var containerSelector = '#kategorijaWrapper';
+            var tableEl = $(containerSelector).find("table");
+            var modalSelector = "#kategorijaModal";
+            var resource = getResource(tableEl);
+            var dtTable = tableEl.DataTable({
+                ajax: {
+                    url: getServiceURI(resource),
+                    dataSrc: ""
+                },
+                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+                columns: [
+                    {data: 'id'},
+                    {data: 'naziv'},
+                    {
+                        "render": function (data, type, row) {
+                            return '<a class="btn btn-danger deleteBtn" data-id="' + row.id + '">' +
+                                '<i class="fa fa-trash-o"></i>' +
+                                '</a>'
+                                +
+                                '<a class="btn btn-primary editBtn" data-id="' + row.id + '">' +
+                                '<i class="fa fa-pencil"></i>' +
+                                '</a>'
+                        }
+                    }
+                ]
+            });
+
+            initModal(containerSelector, dtTable, modalSelector, function (data) {
+                $("#nazivKategorije").val(data.naziv);
+            });
+
+            return dtTable;
+        }
+
+        function initDodatnaUsluga() {
+            var containerSelector = '#dodatnaUslugaWrapper';
+            var tableEl = $(containerSelector).find("table");
+            var modalSelector = "#dodatnaUslugaModal";
+            var resource = getResource(tableEl);
+            var dtTable = tableEl.DataTable({
+                ajax: {
+                    url: getServiceURI(resource),
+                    dataSrc: ""
+                },
+                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+                columns: [
+                    {data: 'id'},
+                    {data: 'naziv'},
+                    {
+                        "render": function (data, type, row) {
+                            return '<a class="btn btn-danger deleteBtn" data-id="' + row.id + '">' +
+                                '<i class="fa fa-trash-o"></i>' +
+                                '</a>'
+                                +
+                                '<a class="btn btn-primary editBtn" data-id="' + row.id + '">' +
+                                '<i class="fa fa-pencil"></i>' +
+                                '</a>'
+                        }
+                    }
+                ]
+            });
+
+            initModal(containerSelector, dtTable, modalSelector, function (data) {
+                $("#nazivDodatneUsluge").val(data.naziv);
+            });
+
+            return dtTable;
+        }
+
+
+        function initModal(containerSelector, dtTable, modalSelector, fillForm) {
+            var tableEl = $(containerSelector).find("table");
+            tableEl.on("click", ".deleteBtn", function (e) {
+                e.preventDefault();
+                var id = $(e.currentTarget).data("id");
+                var resource = getResource($(this));
+                $.ajax({
+                    url: getServiceURI(resource) + id,
+                    type: 'DELETE',
+                    success: function (d) {
+                        dtTable.ajax.reload();
+                    },
+                    error: function (d) {
+                        alert("Delete failed");
+                    }
+                });
+            });
+
+
+            tableEl.on("click", ".editBtn", function (e) {
+                e.preventDefault();
+                var id = $(e.currentTarget).data("id");
+                var resource = getResource($(this));
+                $.ajax({
+                    url: getServiceURI(resource) + id,
+                    type: 'GET',
+                    success: function (d) {
+                        var form = $(modalSelector).find("form");
+                        fillForm(d);
+                        form.attr("method", "PUT");
+                        form.attr("action", getServiceURI(resource) + id);
+                        $(modalSelector).modal("show");
+                    }
+                });
+            });
+
+            $(modalSelector).on("click", ".saveBtn", function () {
+                $(modalSelector).find("form").submit();
+            });
+
+            $(modalSelector).on("submit", "form", function (e) {
+                e.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    url : form.attr("action"),
+                    type : form.attr("method"),
+                    data : JSON.stringify(objectifyForm(form.serializeArray())),
+                    dataType : "json",
+                    contentType: "application/json",
+                    success : function (d) {
+                        $(modalSelector).modal("hide");
+                        dtTable.ajax.reload();
+                    }
+                });
+            });
+
+            $(containerSelector).on("click", ".createBtn", function (e) {
+                var resource = getResource($(this));
+                var form = $(modalSelector).find("form");
+                form.attr("method", "POST");
+                form.attr("action", getServiceURI(resource));
+                form[0].reset();
+                $(modalSelector).modal("show");
+            });
+
+        }
     </script>
 
-        <!-- Modal -->
+        <!-- Modal Tip Smestaja -->
         <div class="modal" tabindex="-1" role="dialog" id="tipSmestajaModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -303,9 +470,60 @@
                     <div class="modal-body">
                         <form id="tipoviSmestajaForm">
                             <div class="form-group">
-                                <label for="naziv">Naziv</label>
-                                <input type="text" class="form-control" id="naziv" name="naziv">
-                                <in
+                                <label for="nazivTipSmestaja">Naziv</label>
+                                <input type="text" class="form-control" id="nazivTipSmestaja" name="naziv">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary saveBtn">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Kategorija -->
+        <div class="modal" tabindex="-1" role="dialog" id="kategorijaModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tip Smestaja</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="kategorijeForm">
+                            <div class="form-group">
+                                <label for="nazivKategorije">Naziv</label>
+                                <input type="text" class="form-control" id="nazivKategorije" name="naziv">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary saveBtn">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Usluga -->
+        <div class="modal" tabindex="-1" role="dialog" id="dodatnaUslugaModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Dodatne Usluge</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="dodatneUslugeForm">
+                            <div class="form-group">
+                                <label for="nazivDodatneUsluge">Naziv</label>
+                                <input type="text" class="form-control" id="nazivDodatneUsluge" name="naziv">
                             </div>
                         </form>
                     </div>
