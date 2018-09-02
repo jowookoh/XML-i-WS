@@ -1,6 +1,7 @@
 package sesta.projekat.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 import sesta.projekat.model.Korisnik;
 import sesta.projekat.repository.KorisnikRepository;
@@ -24,4 +25,12 @@ public class KorisnikService {
     public List<Korisnik> getAll() {
         return korisnikRepository.findAll();
     }
+
+    public List<Korisnik> getAllAgents(){
+        return korisnikRepository.findByTipKorisnika("agent");
+    }
+
+    public void deleteOne(Korisnik k) { korisnikRepository.delete(k);}
+
+    public void deleteOne(Long id){ korisnikRepository.delete(id);}
 }

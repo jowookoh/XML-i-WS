@@ -36,7 +36,7 @@
             <a class="nav-link active" id="v-pills-tipoviSmestaja-tab" data-toggle="pill" href="#v-pills-tipoviSmestaja" role="tab" aria-controls="v-pills-tipoviSmestaja" aria-selected="true">Tipovi Smestaja</a>
             <a class="nav-link" id="v-pills-kategorije-tab" data-toggle="pill" href="#v-pills-kategorije" role="tab" aria-controls="v-pills-kategorije" aria-selected="false">Kategorije</a>
             <a class="nav-link" id="v-pills-dodatneUsluge-tab" data-toggle="pill" href="#v-pills-dodatneUsluge" role="tab" aria-controls="v-pills-dodatneUsluge" aria-selected="false">Dodatne Usluge</a>
-            <a class="nav-link" id="v-pills-korisnici-tab" data-toggle="pill" href="#v-pills-korisnici" role="tab" aria-controls="v-pills-korisnici" aria-selected="false">Korisnici</a>
+            <a class="nav-link" id="v-pills-agenti-tab" data-toggle="pill" href="#v-pills-agenti" role="tab" aria-controls="v-pills-agenti" aria-selected="false">Agenti</a>
         </div>
     </aside><!-- /#left-panel -->
 
@@ -190,23 +190,27 @@
                     </div><!-- .animated -->
                 </div><!-- .content -->
             </div>
-            <div class="tab-pane fade" id="v-pills-korisnici" role="tabpanel" aria-labelledby="v-pills-korisnici-tab">
+            <div class="tab-pane fade" id="v-pills-agenti" role="tabpanel" aria-labelledby="v-pills-agenti-tab">
                 <div class="content mt-3">
                     <div class="animated fadeIn">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <strong class="card-title">Korisnici</strong>
+                                        <strong class="card-title">Agenti</strong>
                                     </div>
                                     <div class="card-body">
-                                        <div class="resourceTableWrapper" data-resource="korisnik">
+                                        <div id="agentWrapper" class="resourceTableWrapper" data-resource="agent">
                                             <button type="button" class="btn btn-primary createBtn">Create</button>
-                                            <table id="table-korisnici" class="table table-striped table-bordered">
+                                            <table class="table table-striped table-bordered">
                                                 <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Naziv</th>
+                                                    <th>Korisnicko ime</th>
+                                                    <th>Ime</th>
+                                                    <th>Prezime</th>
+                                                    <th>Adresa</th>
+                                                    <th>Poslovni maticni broj</th>
                                                     <th></th>
                                                 </tr>
                                                 </thead>
@@ -248,6 +252,7 @@
             var tipSmestajaTable = initTipSmestaja();
             var kategorijaTable = initKategorija();
             var dodatnaUslugaTable = initDodatnaUsluga();
+            var agentTable = initAgent();
 
             $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
                 e.target // newly activated tab
@@ -260,6 +265,9 @@
                         break
                     case "v-pills-dodatneUsluge-tab" :
                         dodatnaUslugaTable.ajax.reload();
+                        break
+                    case "v-pills-agenti-tab" :
+                        agentTable.ajax.reload();
                         break
 
                 }
@@ -383,6 +391,49 @@
 
             initModal(containerSelector, dtTable, modalSelector, function (data) {
                 $("#nazivDodatneUsluge").val(data.naziv);
+            });
+
+            return dtTable;
+        }
+
+        function initAgent() {
+            var containerSelector = '#agentWrapper';
+            var tableEl = $(containerSelector).find("table");
+            var modalSelector = "#agentModal";
+            var resource = getResource(tableEl);
+            var dtTable = tableEl.DataTable({
+                ajax: {
+                    url: getServiceURI(resource),
+                    dataSrc: ""
+                },
+                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+                columns: [
+                    {data: 'id'},
+                    {data: 'kime'},
+                    {data: 'ime'},
+                    {data: 'prezime'},
+                    {data: 'adresa'},
+                    {data: 'poslovniMaticniBroj'},
+                    {
+                        "render": function (data, type, row) {
+                            return '<a class="btn btn-danger deleteBtn" data-id="' + row.id + '">' +
+                                '<i class="fa fa-trash-o"></i>' +
+                                '</a>'
+                                +
+                                '<a class="btn btn-primary editBtn" data-id="' + row.id + '">' +
+                                '<i class="fa fa-pencil"></i>' +
+                                '</a>'
+                        }
+                    }
+                ]
+            });
+
+            initModal(containerSelector, dtTable, modalSelector, function (data) {
+                $("#kimeAgenta").val(data.kime);
+                $("#imeAgenta").val(data.ime);
+                $("#prezimeAgenta").val(data.prezime);
+                $("#adresaAgenta").val(data.adresa);
+                $("#pmbAgenta").val(data.poslovniMaticniBroj);
             });
 
             return dtTable;
@@ -525,6 +576,49 @@
                                 <label for="nazivDodatneUsluge">Naziv</label>
                                 <input type="text" class="form-control" id="nazivDodatneUsluge" name="naziv">
                             </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary saveBtn">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Agent -->
+        <div class="modal" tabindex="-1" role="dialog" id="agentModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Agent</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="agentForm">
+                            <div class="form-group">
+                                <label for="kimeAgenta">Korisnicko ime</label>
+                                <input type="text" class="form-control" id="kimeAgenta" name="kime">
+                            </div>
+                            <div class="form-group">
+                                <label for="imeAgenta">Ime</label>
+                                <input type="text" class="form-control" id="imeAgenta" name="ime">
+                            </div>
+                            <div class="form-group">
+                                <label for="prezimeAgenta">Prezime</label>
+                                <input type="text" class="form-control" id="prezimeAgenta" name="prezime">
+                            </div>
+                            <div class="form-group">
+                                <label for="adresaAgenta">Adresa</label>
+                                <input type="text" class="form-control" id="adresaAgenta" name="adresa">
+                            </div>
+                            <div class="form-group">
+                                <label for="pmbAgenta">Poslovni maticni broj</label>
+                                <input type="text" class="form-control" id="pmbAgenta" name="poslovniMaticniBroj">
+                            </div>
+
                         </form>
                     </div>
                     <div class="modal-footer">
