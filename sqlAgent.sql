@@ -7,10 +7,14 @@ delete from kategorija_smestaja;
 delete from usluga;
 delete from korisnik;
 
-INSERT INTO `korisnik`(`id`,`bekend_id`,`kime`,`lozinka`,`tip_korisnika`)VALUES(1,1,'mare','marisa','klijent');
-INSERT INTO `korisnik`(`id`,`bekend_id`,`kime`,`lozinka`,`tip_korisnika`)VALUES(2,1,'zare','zarisa','klijent');
-INSERT INTO `korisnik`(`id`,`bekend_id`,`kime`,`lozinka`,`tip_korisnika`)VALUES(3,1,'pero','peron','agent');
-INSERT INTO `korisnik`(`id`,`bekend_id`,`kime`,`lozinka`,`tip_korisnika`)VALUES(4,1,'sero','seron','agent');
+INSERT INTO `korisnik`(`id`,`bekend_id`,`adresa`,`ime`,`kime`,`lozinka`,`poslovni_maticni_broj`,`prezime`,`tip_korisnika`)
+VALUES(1,1,'mitra mirica 3','mare','mare93','marisa','1234','maric','klijent');
+INSERT INTO `korisnik`(`id`,`bekend_id`,`adresa`,`ime`,`kime`,`lozinka`,`poslovni_maticni_broj`,`prezime`,`tip_korisnika`)
+VALUES(2,1,'zitra zirica 3','zare','zare93','zarisa','2234','zaric','klijent');
+INSERT INTO `korisnik`(`id`,`bekend_id`,`adresa`,`ime`,`kime`,`lozinka`,`poslovni_maticni_broj`,`prezime`,`tip_korisnika`)
+VALUES(3,1,'peta srpska kolona 3','petarko','pero','peron','3234','peric','agent');
+INSERT INTO `korisnik`(`id`,`bekend_id`,`adresa`,`ime`,`kime`,`lozinka`,`poslovni_maticni_broj`,`prezime`,`tip_korisnika`)
+VALUES(4,1,'vetra mirica 3','sero','sero','seron','4234','saric','agent');
 
 INSERT INTO `usluga`(`id`,`bekend_id`,`naziv`)VALUES(1,1,"tv");
 INSERT INTO `usluga`(`id`,`bekend_id`,`naziv`)VALUES(2,1,"parking");
@@ -51,6 +55,8 @@ INSERT INTO `rezervacija`(`id`,`bekend_id`,`fejk`,`komentar`,`ocena`,`od`,`odobr
 VALUES(1,1,false,'nama je bilo super',3,'20160215',true,'1818-10-25',false,1,1);
 INSERT INTO `rezervacija`(`id`,`bekend_id`,`fejk`,`komentar`,`ocena`,`od`,`odobren_komentar`,`pa_onda_do`,`realizovana`,`klijent_id`,`smestaj_id`)
 VALUES(2,1,false,'nama je bilo srednje',2,'2016-02-15',true,'1718-02-25',false,2,1);
+INSERT INTO `rezervacija`(`id`,`bekend_id`,`fejk`,`komentar`,`ocena`,`od`,`odobren_komentar`,`pa_onda_do`,`realizovana`,`klijent_id`,`smestaj_id`)
+VALUES(3,1,false,'nama nista nije bilo',3,'2016-02-15',true,'1718-02-25',false,2,4);
 
 INSERT INTO `poruka`(`id`,`bekend_id`,`po_redu`,`tekst`,`posiljalac_id`,`rezervacija_id`)
 VALUES(1,1,1,'cao kako ste',1,1);

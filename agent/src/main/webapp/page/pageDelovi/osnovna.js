@@ -13,17 +13,27 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
 
 
     $scope.m1={};
-    $scope.m1.
+    $scope.m2={};
+    $scope.m3={};
+    $scope.m4={};
+    $scope.m5={};
+    $scope.m6={};
+    $scope.m7={};
+    $scope.m8={};
+    $scope.m9={};
+    $scope.m10={};
+    $scope.m11={};
+    $scope.m12={};
 
     //#endregion
 
     $('#modalLogin').modal('show');
 
     $scope.zaloguj = function() {
+
         $http.post("http://localhost:8082/login/login",$scope.korisnik)
             .then(function(response) {
-                if(response.data===true){
-
+                if(response.data){
                     $http.get('/api/korisnik/'+$scope.korisnik.kime)
                         .then(function(response) {
                             $scope.ja=response.data;
@@ -43,8 +53,6 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
                             $scope.content = response;
                         });
                     $('#modalLogin').modal('hide');
-
-
 
                 }else{
                     alert("Neispravno korisničko ime ili lozinka");
