@@ -30,6 +30,17 @@ public class KorisnikService {
         return korisnikRepository.findByTipKorisnika("agent");
     }
 
+    public List<Korisnik> getAllKorisnici(){
+        List<Korisnik> sviKorisnici;
+        List<Korisnik> bKlijenti = korisnikRepository.findByTipKorisnika("bklijent");
+        List<Korisnik> oKlijenti = korisnikRepository.findByTipKorisnika("oklijent");
+        sviKorisnici = korisnikRepository.findByTipKorisnika("klijent");
+        sviKorisnici.addAll(bKlijenti);
+        sviKorisnici.addAll(oKlijenti);
+
+        return sviKorisnici;
+    }
+
     public void deleteOne(Korisnik k) { korisnikRepository.delete(k);}
 
     public void deleteOne(Long id){ korisnikRepository.delete(id);}

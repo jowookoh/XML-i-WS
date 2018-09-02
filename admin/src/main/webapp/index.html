@@ -37,6 +37,7 @@
             <a class="nav-link" id="v-pills-kategorije-tab" data-toggle="pill" href="#v-pills-kategorije" role="tab" aria-controls="v-pills-kategorije" aria-selected="false">Kategorije</a>
             <a class="nav-link" id="v-pills-dodatneUsluge-tab" data-toggle="pill" href="#v-pills-dodatneUsluge" role="tab" aria-controls="v-pills-dodatneUsluge" aria-selected="false">Dodatne Usluge</a>
             <a class="nav-link" id="v-pills-agenti-tab" data-toggle="pill" href="#v-pills-agenti" role="tab" aria-controls="v-pills-agenti" aria-selected="false">Agenti</a>
+            <a class="nav-link" id="v-pills-klijenti-tab" data-toggle="pill" href="#v-pills-klijenti" role="tab" aria-controls="v-pills-klijenti" aria-selected="false">Klijenti</a>
         </div>
     </aside><!-- /#left-panel -->
 
@@ -226,6 +227,41 @@
                     </div><!-- .animated -->
                 </div><!-- .content -->
             </div>
+            <div class="tab-pane fade" id="v-pills-klijenti" role="tabpanel" aria-labelledby="v-pills-klijenti-tab">
+                <div class="content mt-3">
+                    <div class="animated fadeIn">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong class="card-title">Klijenti</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="klijentWrapper" class="resourceTableWrapper" data-resource="korisnik">
+                                            <table class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Korisnicko ime</th>
+                                                    <th>Ime</th>
+                                                    <th>Prezime</th>
+                                                    <th>Adresa</th>
+                                                    <th>Tip klijenta</th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- .animated -->
+                </div><!-- .content -->
+            </div>
         </div>
 
 
@@ -253,6 +289,7 @@
             var kategorijaTable = initKategorija();
             var dodatnaUslugaTable = initDodatnaUsluga();
             var agentTable = initAgent();
+            var klijentTable = initKlijent();
 
             $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
                 e.target // newly activated tab
@@ -269,7 +306,9 @@
                     case "v-pills-agenti-tab" :
                         agentTable.ajax.reload();
                         break
-
+                    case "v-pills-klijenti-tab" :
+                        agentTable.ajax.reload();
+                        break
                 }
             })
         } );
@@ -434,6 +473,49 @@
                 $("#prezimeAgenta").val(data.prezime);
                 $("#adresaAgenta").val(data.adresa);
                 $("#pmbAgenta").val(data.poslovniMaticniBroj);
+            });
+
+            return dtTable;
+        }
+
+        function initKlijent() {
+            var containerSelector = '#klijentWrapper';
+            var tableEl = $(containerSelector).find("table");
+            var modalSelector = "#klijentModal";
+            var resource = getResource(tableEl);
+            var dtTable = tableEl.DataTable({
+                ajax: {
+                    url: getServiceURI(resource),
+                    dataSrc: ""
+                },
+                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+                columns: [
+                    {data: 'id'},
+                    {data: 'kime'},
+                    {data: 'ime'},
+                    {data: 'prezime'},
+                    {data: 'adresa'},
+                    {data: 'tipKorisnika'},
+                    {
+                        "render": function (data, type, row) {
+                            return '<a class="btn btn-danger deleteBtn" data-id="' + row.id + '">' +
+                                '<i class="fa fa-trash-o"></i>' +
+                                '</a>'
+                                +
+                                '<a class="btn btn-primary editBtn" data-id="' + row.id + '">' +
+                                '<i class="fa fa-pencil"></i>' +
+                                '</a>'
+                        }
+                    }
+                ]
+            });
+
+            initModal(containerSelector, dtTable, modalSelector, function (data) {
+                $("#kimeKlijenta").val(data.kime);
+                $("#imeKlijenta").val(data.ime);
+                $("#prezimeKlijenta").val(data.prezime);
+                $("#adresaKlijenta").val(data.adresa);
+                $("#tipKlijenta").val(data.tipKorisnika);
             });
 
             return dtTable;
@@ -617,6 +699,49 @@
                             <div class="form-group">
                                 <label for="pmbAgenta">Poslovni maticni broj</label>
                                 <input type="text" class="form-control" id="pmbAgenta" name="poslovniMaticniBroj">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary saveBtn">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Klijent -->
+        <div class="modal" tabindex="-1" role="dialog" id="klijentModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Klijent</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="klijentForm">
+                            <div class="form-group">
+                                <label for="kimeKlijenta">Korisnicko ime</label>
+                                <input type="text" class="form-control" id="kimeKlijenta" name="kime">
+                            </div>
+                            <div class="form-group">
+                                <label for="imeKlijenta">Ime</label>
+                                <input type="text" class="form-control" id="imeKlijenta" name="ime">
+                            </div>
+                            <div class="form-group">
+                                <label for="prezimeKlijenta">Prezime</label>
+                                <input type="text" class="form-control" id="prezimeKlijenta" name="prezime">
+                            </div>
+                            <div class="form-group">
+                                <label for="adresaKlijenta">Adresa</label>
+                                <input type="text" class="form-control" id="adresaKlijenta" name="adresa">
+                            </div>
+                            <div class="form-group">
+                                <label for="tipKlijenta">Tip Klijenta</label>
+                                <input type="text" class="form-control" id="tipKlijenta" name="tipKorisnika">
                             </div>
 
                         </form>
