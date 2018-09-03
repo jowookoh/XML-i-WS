@@ -8,6 +8,7 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
     $scope.izabraneUsluge = [];
     $scope.prikazSettings = {displayProp: 'naziv'};
     $scope.showDiv=true;
+    $scope.slike=[];
 
     //#region meseci
 
@@ -72,7 +73,7 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
                 }
 
             }, function(response) {
-
+                alert("eror");
             });
 
     }
@@ -175,31 +176,42 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
                                 //DODAVANJE USLUGA
                                 $http.put('api/smestaj/uslugeSmestaja',$scope.spremneUsluge)
                                     .then(function (response) {
-                                        $('#modalDodavanje').modal('hide');
+                                        // DODAVANJE CENA
+                                        $scope.m1.smestaj=$scope.dobivenSmestaj;
+                                        $scope.m2.smestaj=$scope.dobivenSmestaj;
+                                        $scope.m3.smestaj=$scope.dobivenSmestaj;
+                                        $scope.m4.smestaj=$scope.dobivenSmestaj;
+                                        $scope.m5.smestaj=$scope.dobivenSmestaj;
+                                        $scope.m6.smestaj=$scope.dobivenSmestaj;
+                                        $scope.m7.smestaj=$scope.dobivenSmestaj;
+                                        $scope.m8.smestaj=$scope.dobivenSmestaj;
+                                        $scope.m9.smestaj=$scope.dobivenSmestaj;
+                                        $scope.m10.smestaj=$scope.dobivenSmestaj;
+                                        $scope.m11.smestaj=$scope.dobivenSmestaj;
+                                        $scope.m12.smestaj=$scope.dobivenSmestaj;
+                                        $scope.meseci.push($scope.m1);
+                                        $scope.meseci.push($scope.m2);
+                                        $scope.meseci.push($scope.m3);
+                                        $scope.meseci.push($scope.m4);
+                                        $scope.meseci.push($scope.m5);
+                                        $scope.meseci.push($scope.m6);
+                                        $scope.meseci.push($scope.m7);
+                                        $scope.meseci.push($scope.m8);
+                                        $scope.meseci.push($scope.m9);
+                                        $scope.meseci.push($scope.m10);
+                                        $scope.meseci.push($scope.m11);
+                                        $scope.meseci.push($scope.m12);
+                                        $http.put('/api/cena/nove', $scope.meseci)
+                                            .then(function(response) {
+                                                $('#modalDodavanje').modal('hide');
+                                            });
+                                        //$('#modalDodavanje').modal('hide');
                                     });
                             }, function(err) {
                                 //error
                             });
 
-                        /*DODAVANJECENA
-                        $scope.m1.smestaj=$scope.dobivenSmestaj;
-                        $scope.m2.smestaj=$scope.dobivenSmestaj;
-                        $scope.m3.smestaj=$scope.dobivenSmestaj;
-                        $scope.m4.smestaj=$scope.dobivenSmestaj;
-                        $scope.m5.smestaj=$scope.dobivenSmestaj;
-                        $scope.m6.smestaj=$scope.dobivenSmestaj;
-                        $scope.m7.smestaj=$scope.dobivenSmestaj;
-                        $scope.m8.smestaj=$scope.dobivenSmestaj;
-                        $scope.m9.smestaj=$scope.dobivenSmestaj;
-                        $scope.m10.smestaj=$scope.dobivenSmestaj;
-                        $scope.m11.smestaj=$scope.dobivenSmestaj;
-                        $scope.m12.smestaj=$scope.dobivenSmestaj;
-                        $scope.meseci.push($scope.m1);
-                        $scope.meseci.push($scope.m2);
-                        $http.put('/api/cena/nove', $scope.meseci)
-                            .then(function(response) {
-                                $('#modalDodavanje').modal('hide');
-                            });*/
+
                     });
             }, function(response) {
                 alert("loka lose");
@@ -210,6 +222,11 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
 
     }
 
+    $scope.dodajSliku=function (sl) {
+        $scope.slike.push(sl);
+        $scope.tempSlika='';
+
+    }
 
     $scope.potvrdiRezu=function (reza) {
         $http.put('/api/rezervacija/secured/izmeni', reza)

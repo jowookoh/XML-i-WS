@@ -78,3 +78,4 @@ INSERT INTO `usluga_smestaj`(`id`,`bekend_id`,`smestaj_id`,`usluga_id`)VALUES(2,
 INSERT INTO `usluga_smestaj`(`id`,`bekend_id`,`smestaj_id`,`usluga_id`)VALUES(3,1,1,3);
 INSERT INTO `usluga_smestaj`(`id`,`bekend_id`,`smestaj_id`,`usluga_id`)VALUES(4,1,1,4);
 INSERT INTO `usluga_smestaj`(`id`,`bekend_id`,`smestaj_id`,`usluga_id`)VALUES(5,1,3,1);
+

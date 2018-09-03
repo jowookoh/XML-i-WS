@@ -62,6 +62,13 @@
                                 <select class="form-control" ng-model="smestaj.tipSmestaja" ng-options="tip.naziv for tip in tipovi" style="margin-bottom:20px;padding:0px;"></select>
                                 <label>Kategorija smeštaja:</label>
                                 <select class="form-control" ng-model="smestaj.kategorijaSmestaja" ng-options="kategorija.naziv for kategorija in kategorije" style="margin-bottom:20px;padding:0px;"></select>
+                                <div class="container" style="margin-bottom:20px;padding:0px;">
+                                    <label>Slika:</label>
+                                    <div class="form-inline">
+                                        <input class="form-control mr-1" type="url" placeholder="url slike" ng-model="tempSlika">
+                                        <button class="btn btn-light" ng-click="dodajSliku(tempSlika)" style="background-color:rgb(221,221,221);">Dodaj sliku</button>
+                                    </div>
+                                </div>
                                 <label>Dodatne usluge:</label>
                                 <div ng-dropdown-multiselect="" options="usluge" selected-model="izabraneUsluge" extra-settings="prikazSettings" style="margin-bottom:20px;padding:0px;"></div>
                                 <button class="btn btn-light" ng-click="ngMesecno(mesecno)" type="button" style="background-color:rgb(221,221,221);margin-bottom:20px;">Mesečni plan cena&nbsp;<i class="fa fa-chevron-down"></i></button>
@@ -206,7 +213,7 @@
                         <label>od:</label>
                         <input type="date" ng-model="rezervacija.od" class="form-control" style="margin-bottom:20px;"/>
                         <label>do:</label>
-                        <input type="date" ng-model="rezervacija.paOndaDo" class="form-control" style="margin-bottom:20px;"/>
+                        <input type="date" ng-model="rezervacija.paOndaDo" min="{{rezervacija.od | date:'yyyy-MM-dd'}}" class="form-control" style="margin-bottom:20px;"/>
                         <button ng-click="postaviFejk()" class="btn btn-primary btn-block"  style="margin-top:20px;padding:0px;" >Postavi</button>
                     </div>
                     <div class="modal-footer">

@@ -1,3 +1,4 @@
+delete from slika;
 delete from usluga_smestaj;
 delete from cena;
 delete from poruka;
@@ -80,4 +81,8 @@ INSERT INTO `usluga_smestaj`(`id`,`smestaj_id`,`usluga_id`)VALUES(3,1,3);
 INSERT INTO `usluga_smestaj`(`id`,`smestaj_id`,`usluga_id`)VALUES(4,1,4);
 INSERT INTO `usluga_smestaj`(`id`,`smestaj_id`,`usluga_id`)VALUES(5,3,1);
 INSERT INTO `usluga_smestaj`(`id`,`smestaj_id`,`usluga_id`)VALUES(6,3,2);
+
+INSERT INTO `slika`(`id`,`slika`,`smestaj_id`)VALUES(1,'https://barcentral.com.au/wp-content/uploads/fb3-2-256x256.jpg',1);
+INSERT INTO `slika`(`id`,`slika`,`smestaj_id`)VALUES(2,'http://www.euroturs.rs/wp-content/gallery/tr-kusadasi-hotelpak/Hotel-Pak-Kusadasi-Turska-07.jpg',1);
+INSERT INTO `slika`(`id`,`slika`,`smestaj_id`)VALUES(3,'http://www.airehotelalmeria.com/wp-content/uploads/2017/03/AIRE_Almeria_Hotel_722-1-256x256.jpg',1);
 

@@ -4,6 +4,7 @@ livadeApp.controller('pocetnaGostCtrl', ['$scope','$state','$http', function ($s
     $scope.rezervacija={};
     $scope.pretraga={};
     $scope.korisnik={};
+    $scope.rega={};
     $scope.novaPoruka={};
     $scope.napredna = false;
     $scope.ngNapredna = function(flag) {
@@ -157,9 +158,36 @@ livadeApp.controller('pocetnaGostCtrl', ['$scope','$state','$http', function ($s
         $http.post("http://localhost:8080/smestaj/trazi/",$scope.pretraga)
             .then(function(response) {
                 $scope.stigle=response.data;
+                /*$scope.slike=$scope.stigle.slike;
+                $scope.tekUrl=$scope.slike[0];*/
             }, function(response) {
 
             });
     };
+
+    $scope.showSlike=function (stig) {
+        $scope.sliks=stig.slike;
+    }
+    $scope.odjaviSe=function () {
+        $scope.gost=true;
+    }
+
+    $scope.zaregistruj=function () {
+        $scope.rega.tipKorisnika="klijent";
+        $http.post("http://localhost:8080/korisnik/register", $scope.rega)
+            .then(function(response) {
+                if(response.data){
+                    $('#modalRegister').modal('hide');
+                }else{
+                    alert("Neuspešna registracija");
+                }
+                //alert("Uspešna registracija!")
+
+            }, function(response) {
+                alert("rega lose");
+                $scope.result = "Error";
+                $scope.content = response;
+            });
+    }
 
 }]);
