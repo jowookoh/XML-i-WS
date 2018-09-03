@@ -175,8 +175,9 @@ public class SmestajController {
             }
             s.setUsluge(usluge);
             s.setId(smestaj.getId());
-
-            response.add(s);
+            if(pretragaDto.getBrojOsoba() <= smestaj.getBrojOsoba()) {
+                response.add(s);
+            }
         }
         return ResponseEntity.ok(response);
     }
