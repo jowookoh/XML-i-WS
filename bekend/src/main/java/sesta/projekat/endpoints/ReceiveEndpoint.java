@@ -38,6 +38,15 @@ public class ReceiveEndpoint {
 	
 	@Autowired
 	UslugaSmestajRepository uslugaSmestajRepository;
+
+	@Autowired
+	KategorijaSmestajaRepository kategorijaSmestajaRepository;
+
+	@Autowired
+	TipSmestajaRepository tipSmestajaRepository;
+
+	@Autowired
+	SlikaRepository slikaRepository;
 	
 	@PayloadRoot(namespace = "http://xml/ws/lokacija", localPart = "lokacijaRequest")
 	@ResponsePayload
@@ -69,7 +78,7 @@ public class ReceiveEndpoint {
 	public PorukaSendResponse rporukaSend(@RequestPayload PorukaSendRequest request) {
 		Poruka poruka = new Poruka();
 		poruka.setPosiljalac(korisnikRepository.findKorisnikByKime(request.getKime()));
-		poruka.setRezervacija(rezervacijaRepository.getOne(request.getRezervacijaId()));
+		poruka.setRezervacija(rezervacijaRepository.findOne(request.getRezervacijaId()));
 		poruka.setTekst(request.getTekst());
 		poruka.setPoRedu(request.getPoRedu());
 		porukaRepository.save(poruka);
@@ -78,14 +87,67 @@ public class ReceiveEndpoint {
 		return response;
 	}
 	
-	/*@PayloadRoot(namespace = "http://xml/ws/rezervacijaFejk", localPart = "rezervacijaFejkRequest")
+	@PayloadRoot(namespace = "http://xml/ws/rezervacijaFejk", localPart = "rezervacijaFejkRequest")
 	@ResponsePayload
 	public RezervacijaFejkResponse rrezervacijaFejk(@RequestPayload RezervacijaFejkRequest request) {
 		Rezervacija rezervacija = new Rezervacija();
-		//rezervacija.set
+		rezervacija.setOd(request.getOd().toGregorianCalendar().getTime());
+		rezervacija.setPaOndaDo(request.getPaOndaDo().toGregorianCalendar().getTime());
+		rezervacija.setSmestaj(smestajRepository.findOne(request.getSmestajId()));
 		rezervacijaRepository.save(rezervacija);
 		RezervacijaFejkResponse response = new RezervacijaFejkResponse();
 		response.setBekendId(rezervacija.getId());
 		return response;
-	}*/
+	}
+
+	@PayloadRoot(namespace = "http://xml/ws/rezervacijaRealizovana", localPart = "rezervacijaRealizovanaRequest")
+	@ResponsePayload
+	public RezervacijaRealizovanaResponse rrezervacijaRealizovana(@RequestPayload RezervacijaRealizovanaRequest request){
+		Rezervacija rezervacija=rezervacijaRepository.findOne(request.getBekendId());
+		rezervacija.setRealizovana(true);
+		rezervacijaRepository.save(rezervacija);
+		RezervacijaRealizovanaResponse response = new RezervacijaRealizovanaResponse();
+		response.setBekendId(rezervacija.getId());
+		return response;
+	}
+
+	@PayloadRoot(namespace = "http://xml/ws/smestaj", localPart = "smestajRequest")
+	@ResponsePayload
+	public SmestajResponse rsmestaj(@RequestPayload SmestajRequest request){
+		Smestaj smestaj = new Smestaj();
+		smestaj.setAgent(korisnikRepository.findKorisnikByKime(request.getAgentKime()));
+		smestaj.setBrojOsoba(request.getBrojOsoba());
+		smestaj.setOpis(request.getOpis());
+		smestaj.setKategorijaSmestaja(kategorijaSmestajaRepository.findOne(request.getKategorijaBekendId()));
+		smestaj.setTipSmestaja(tipSmestajaRepository.findOne(request.getTipBekendId()));
+		smestaj.setLokacija(lokacijaRepository.findOne(request.getLokacijaBekendId()));
+		smestajRepository.save(smestaj);
+		SmestajResponse response = new SmestajResponse();
+		response.setBekendId(smestaj.getId());
+		return response;
+	}
+
+	@PayloadRoot(namespace = "http://xml/ws/uslugaSmestaj", localPart = "uslugaSmestajRequest")
+	@ResponsePayload
+	public UslugaSmestajResponse ruslugaSmestaj(@RequestPayload UslugaSmestajRequest request){
+		UslugaSmestaj uslugaSmestaj = new UslugaSmestaj();
+		uslugaSmestaj.setSmestaj(smestajRepository.findOne(request.getSmestajBekendId()));
+		uslugaSmestaj.setUsluga(uslugaRepository.findOne(request.getUslugaBekendId()));
+		uslugaSmestajRepository.save(uslugaSmestaj);
+		UslugaSmestajResponse response = new UslugaSmestajResponse();
+		response.setBekendId(uslugaSmestaj.getId());
+		return response;
+	}
+
+	@PayloadRoot(namespace = "http://xml/ws/slika", localPart = "slikaRequest")
+	@ResponsePayload
+	public SlikaResponse rslika(@RequestPayload SlikaRequest request){
+		Slika slika = new Slika();
+		slika.setSlika(request.getAdresa());
+		slika.setSmestaj(smestajRepository.getOne(request.getSmestajBekendId()));
+		slikaRepository.save(slika);
+		SlikaResponse response = new SlikaResponse();
+		response.setBekendId(slika.getId());
+		return response;
+	}
 }

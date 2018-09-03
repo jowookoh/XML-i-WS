@@ -188,19 +188,19 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new SimpleXsdSchema(new ClassPathResource("seme/smestaj.xsd"));
     }
 
-    @Bean(name = "smestajUsluga")
-    public DefaultWsdl11Definition smestajUsluga(XsdSchema smestajUslugaResponseSchema) {
+    @Bean(name = "uslugaSmestaj")
+    public DefaultWsdl11Definition uslugaSmestaj(XsdSchema uslugaSmestajResponseSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("SmestajUslugaPort");
+        wsdl11Definition.setPortTypeName("UslugaSmestajPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://xml/ws/smestajUsluga");
-        wsdl11Definition.setSchema(smestajUslugaResponseSchema);
+        wsdl11Definition.setTargetNamespace("http://xml/ws/uslugaSmestaj");
+        wsdl11Definition.setSchema(uslugaSmestajResponseSchema);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema smestajUslugaResponseSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("seme/smestajUsluga.xsd"));
+    public XsdSchema uslugaSmestajResponseSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("seme/uslugaSmestaj.xsd"));
     }
 
     @Bean(name = "slika")

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.xml.bind.DataBindingException;
+
 @RestController
 @RequestMapping("/api/lokacija")
 public class LokacijaController {
@@ -22,12 +24,16 @@ public class LokacijaController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/nova")
     public ResponseEntity dodajemLokaciju(@RequestBody Lokacija lokacija){
-        GenerickiClient client = new GenerickiClient(LokacijaRequest.class, LokacijaResponse.class);
-        LokacijaRequest lokacijaRequest = new LokacijaRequest();
-        lokacijaRequest.setDrzava(lokacija.getDrzava());
-        lokacijaRequest.setMesto(lokacija.getMesto());
-        LokacijaResponse lokacijaResponse = client.send(lokacijaRequest, "lokacija");
-        lokacija.setBekendId(lokacijaResponse.getBekendId());
+        try {
+            GenerickiClient client = new GenerickiClient(LokacijaRequest.class, LokacijaResponse.class);
+
+            LokacijaRequest lokacijaRequest = new LokacijaRequest();
+            lokacijaRequest.setDrzava(lokacija.getDrzava());
+            lokacijaRequest.setMesto(lokacija.getMesto());
+            LokacijaResponse lokacijaResponse = client.send(lokacijaRequest, "lokacija");
+            lokacija.setBekendId(lokacijaResponse.getBekendId());
+        }catch (Exception e){}
+
         Lokacija loka = lokacijaService.novaLokacija(lokacija);
         if (loka != null) {
             return ResponseEntity.ok(loka);

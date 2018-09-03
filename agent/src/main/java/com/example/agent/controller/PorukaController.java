@@ -26,15 +26,18 @@ public class PorukaController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/nova")
     public ResponseEntity napisiPoruku(@RequestBody Poruka poruka) {
-        GenerickiClient client = new GenerickiClient(PorukaSendRequest.class, PorukaSendResponse.class);
-        PorukaSendRequest porukaSendRequest = new PorukaSendRequest();
-        porukaSendRequest.setKime(poruka.getPosiljalac().getKime());
-        porukaSendRequest.setPoRedu(poruka.getPoRedu());
-        porukaSendRequest.setRezervacijaId(poruka.getRezervacija().getBekendId());
-        porukaSendRequest.setTekst(poruka.getTekst());
-        PorukaSendResponse porukaSendResponse = client.send(porukaSendRequest, "porukaSend");
+        try {
+            GenerickiClient client = new GenerickiClient(PorukaSendRequest.class, PorukaSendResponse.class);
+            PorukaSendRequest porukaSendRequest = new PorukaSendRequest();
+            porukaSendRequest.setKime(poruka.getPosiljalac().getKime());
+            porukaSendRequest.setPoRedu(poruka.getPoRedu());
+            porukaSendRequest.setRezervacijaId(poruka.getRezervacija().getBekendId());
+            porukaSendRequest.setTekst(poruka.getTekst());
+            PorukaSendResponse porukaSendResponse = client.send(porukaSendRequest, "porukaSend");
 
-        poruka.setBekendId(porukaSendResponse.getBekendId());
+            poruka.setBekendId(porukaSendResponse.getBekendId());
+        }
+        catch (Exception e){}
         Poruka pora = porukaService.novaPoruka(poruka);
         if (pora != null) {
             return ResponseEntity.ok(pora);

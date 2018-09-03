@@ -27,23 +27,26 @@ public class CenaController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/nove")
     public ResponseEntity cenovnikSmestaja(@RequestBody List<Cena> cene){
-        GenerickiClient client = new GenerickiClient(CenaRequest.class, CenaResponse.class);
-        for(Cena cena : cene) {
-            CenaRequest cenaRequest = new CenaRequest();
-            cenaRequest.setSmestajId(cena.getSmestaj().getBekendId());
-            GregorianCalendar c = new GregorianCalendar();
-            c.setTime(cena.getMesec());
-            XMLGregorianCalendar date = null;
-            try {
-                date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-            } catch (DatatypeConfigurationException e) {
-                e.printStackTrace();
+        try {
+            GenerickiClient client = new GenerickiClient(CenaRequest.class, CenaResponse.class);
+            for (Cena cena : cene) {
+                CenaRequest cenaRequest = new CenaRequest();
+                cenaRequest.setSmestajId(cena.getSmestaj().getBekendId());
+                GregorianCalendar c = new GregorianCalendar();
+                c.setTime(cena.getMesec());
+                XMLGregorianCalendar date = null;
+                try {
+                    date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+                } catch (DatatypeConfigurationException e) {
+                    e.printStackTrace();
+                }
+                cenaRequest.setMesec(date);
+                cenaRequest.setVrednost(cena.getVrednost());
+                CenaResponse cenaResponse = client.send(cenaRequest, "cena");
+                cena.setBekendId(cenaResponse.getBekendId());
             }
-            cenaRequest.setMesec(date);
-            cenaRequest.setVrednost(cena.getVrednost());
-            CenaResponse cenaResponse = client.send(cenaRequest, "cena");
-            cena.setBekendId(cenaResponse.getBekendId());
-        }
+        }catch (Exception e){}
+
         List<Cena> cent = cenaRepository.save(cene);
         if (cent != null) {
             return ResponseEntity.ok(cent);

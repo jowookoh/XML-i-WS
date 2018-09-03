@@ -32,16 +32,18 @@ public class SmestajController {
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/nov")
 	public ResponseEntity kreiranjeSmestaja(@RequestBody Smestaj smestaj) {
-		GenerickiClient client = new GenerickiClient(SmestajRequest.class, SmestajResponse.class);
-		SmestajRequest smestajRequest = new SmestajRequest();
-		smestajRequest.setAgentKime(smestaj.getAgent().getKime());
-		smestajRequest.setBrojOsoba(smestaj.getBrojOsoba());
-		smestajRequest.setOpis(smestaj.getOpis());
-		smestajRequest.setLokacijaBekendId(smestaj.getLokacija().getBekendId());
-		smestajRequest.setKategorijaBekendId(smestaj.getKategorijaSmestaja().getBekendId());
-		smestajRequest.setTipBekendId(smestaj.getTipSmestaja().getBekendId());
-		SmestajResponse smestajResponse = client.send(smestajRequest, "smestaj");
-		smestaj.setBekendId(smestajResponse.getBekendId());
+		try {
+			GenerickiClient client = new GenerickiClient(SmestajRequest.class, SmestajResponse.class);
+			SmestajRequest smestajRequest = new SmestajRequest();
+			smestajRequest.setAgentKime(smestaj.getAgent().getKime());
+			smestajRequest.setBrojOsoba(smestaj.getBrojOsoba());
+			smestajRequest.setOpis(smestaj.getOpis());
+			smestajRequest.setLokacijaBekendId(smestaj.getLokacija().getBekendId());
+			smestajRequest.setKategorijaBekendId(smestaj.getKategorijaSmestaja().getBekendId());
+			smestajRequest.setTipBekendId(smestaj.getTipSmestaja().getBekendId());
+			SmestajResponse smestajResponse = client.send(smestajRequest, "smestaj");
+			smestaj.setBekendId(smestajResponse.getBekendId());
+		}catch (Exception e){}
 		Smestaj smeh = smestajRepository.save(smestaj);
 		if (smeh != null) {
 			return ResponseEntity.ok(smeh);
@@ -52,14 +54,16 @@ public class SmestajController {
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/uslugeSmestaja")
 	public ResponseEntity kreiranjeSmestaja(@RequestBody List<UslugaSmestaj> uslugaSmestaj) {
-		GenerickiClient client = new GenerickiClient(UslugaSmestajRequest.class, UslugaSmestajResponse.class);
-		for(UslugaSmestaj us : uslugaSmestaj){
-			UslugaSmestajRequest uslugaSmestajRequest = new UslugaSmestajRequest();
-			uslugaSmestajRequest.setSmestajBekendId(us.getSmestaj().getBekendId());
-			uslugaSmestajRequest.setUslugaBekendId(us.getUsluga().getBekendId());
-			UslugaSmestajResponse uslugaSmestajResponse = client.send(uslugaSmestajRequest, "uslugaSmestaj");
-			us.setBekendId(uslugaSmestajResponse.getBekendId());
-		}
+		try {
+			GenerickiClient client = new GenerickiClient(UslugaSmestajRequest.class, UslugaSmestajResponse.class);
+			for (UslugaSmestaj us : uslugaSmestaj) {
+				UslugaSmestajRequest uslugaSmestajRequest = new UslugaSmestajRequest();
+				uslugaSmestajRequest.setSmestajBekendId(us.getSmestaj().getBekendId());
+				uslugaSmestajRequest.setUslugaBekendId(us.getUsluga().getBekendId());
+				UslugaSmestajResponse uslugaSmestajResponse = client.send(uslugaSmestajRequest, "uslugaSmestaj");
+				us.setBekendId(uslugaSmestajResponse.getBekendId());
+			}
+		}catch (Exception e){}
 		List<UslugaSmestaj> usme = uslugaSmestajService.noveVeze(uslugaSmestaj);
 		if (usme != null) {
 			return ResponseEntity.ok(usme);
