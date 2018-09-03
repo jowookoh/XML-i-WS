@@ -25,7 +25,9 @@ public class RezervacijaController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/fejk")
     public ResponseEntity samostalnoRezervisi(@RequestBody Rezervacija rezervacija) {
-        GenerickiClient client = new GenerickiClient(RezervacijaFejkRequest.class, RezervacijaFejkResponse.class);
+        try{
+            GenerickiClient client = new GenerickiClient(RezervacijaFejkRequest.class, RezervacijaFejkResponse.class);
+
         RezervacijaFejkRequest rezervacijaFejkRequest = new RezervacijaFejkRequest();
         GregorianCalendar c = new GregorianCalendar();
         c.setTime(rezervacija.getOd());
@@ -47,6 +49,7 @@ public class RezervacijaController {
         rezervacijaFejkRequest.setSmestajId(rezervacija.getSmestaj().getBekendId());
         RezervacijaFejkResponse rezervacijaFejkResponse = client.send(rezervacijaFejkRequest, "rezervacijaFejk");
         rezervacija.setBekendId(rezervacijaFejkResponse.getBekendId());
+        }catch (Exception e){}
         Rezervacija reza=rezervacijaService.novaFejk(rezervacija);
         if (reza != null) {
             return ResponseEntity.ok(reza);
@@ -57,10 +60,11 @@ public class RezervacijaController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/secured/izmeni")
     public ResponseEntity realizujRezu(@RequestBody Rezervacija rezervacija) {
-        GenerickiClient client = new GenerickiClient(RezervacijaRealizovanaRequest.class, RezervacijaRealizovanaResponse.class);
+        try{GenerickiClient client = new GenerickiClient(RezervacijaRealizovanaRequest.class, RezervacijaRealizovanaResponse.class);
         RezervacijaRealizovanaRequest rezervacijaRealizovanaRequest = new RezervacijaRealizovanaRequest();
         rezervacijaRealizovanaRequest.setBekendId(rezervacija.getBekendId());
         RezervacijaRealizovanaResponse rezervacijaRealizovanaResponse = client.send(rezervacijaRealizovanaRequest, "rezervacijaRealizovana");
+        }catch (Exception e){}
         rezervacijaService.realizujRezervaciju(rezervacija);
         return ResponseEntity.ok(rezervacija);
     }
