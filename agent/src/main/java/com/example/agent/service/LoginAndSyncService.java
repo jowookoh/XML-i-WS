@@ -157,10 +157,12 @@ public class LoginAndSyncService {
 		//region rezervacija => korisnik
 			//rezervacija
 		client = new GenerickiClient(RezervacijaRequest.class, RezervacijaResponse.class);
-		RezervacijaResponse rezervacijaResponse = client.send(new RezervacijaRequest(), "rezervacija");
-		korisnikRepository.deleteAll();
+		RezervacijaRequest request  = new RezervacijaRequest();
+		request.setAgentId(ja.getBekendId());
+		RezervacijaResponse rezervacijaResponse = client.send(request, "rezervacija");
+		//korisnikRepository.deleteAll();
 		korisnikRepository.save(ja);
-		rezervacijaRepository.deleteAll();
+		//rezervacijaRepository.deleteAll();
 		for (RezervacijaJedan rezervacijaJedan : rezervacijaResponse.getKategorijaoviSmestaja()){
 
 			Rezervacija rezervacija = rezervacijaRepository.findRezervacijaByBekendId(rezervacijaJedan.getBekendId());
@@ -200,8 +202,10 @@ public class LoginAndSyncService {
 		
 		//region poruka
 		client = new GenerickiClient(PorukaRequest.class, PorukaResponse.class);
-		PorukaResponse porukaResponse = client.send(new PorukaRequest(), "poruka");
-		porukaRepository.deleteAll();
+		PorukaRequest porukaRequest = new PorukaRequest();
+		porukaRequest.setAgentId(ja.getBekendId());
+		PorukaResponse porukaResponse = client.send(porukaRequest, "poruka");
+		//porukaRepository.deleteAll();
 		for (PorukaJedan porukaJedan : porukaResponse.getKategorijaoviSmestaja()){
 			Poruka poruka = porukaRepository.findPorukaByBekendId(porukaJedan.getBekendId());
 			if(poruka == null){
