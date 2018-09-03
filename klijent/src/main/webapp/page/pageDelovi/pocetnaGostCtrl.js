@@ -7,6 +7,7 @@ livadeApp.controller('pocetnaGostCtrl', ['$scope','$state','$http', function ($s
     $scope.rega={};
     $scope.novaPoruka={};
     $scope.napredna = false;
+    $scope.tags="";
     $scope.ngNapredna = function(flag) {
         $scope.nabaviStvari();
         if (flag) {
@@ -117,14 +118,21 @@ livadeApp.controller('pocetnaGostCtrl', ['$scope','$state','$http', function ($s
     $scope.ponistiKate = function () {
         $scope.prekat ='';
     }
-
-
-
     $scope.switchMod = function(us) {
-
+        /*var indexofus = $scope.tags.indexOf(us)
+        if(indexofus === -1){
+            $scope.tags.push(us)
+        }else{
+            $scope.tags.splice(indexofus, 1)
+        }*/
+        if($scope.tags.match(us.naziv)){
+            var oldString = $scope.tags;
+            var str=oldString.replace(us.naziv,"");
+            $scope.tags= str;
+        }else{
+            $scope.tags+=us.naziv;
+        }
     }
-
-
 
     $scope.pretrazi = function () {
         $http.post("http://localhost:8080/smestaj/trazi/",$scope.pretraga)
