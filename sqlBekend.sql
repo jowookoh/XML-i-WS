@@ -19,6 +19,8 @@ INSERT INTO `korisnik`(`id`,`adresa`,`ime`,`kime`,`lozinka`,`poslovni_maticni_br
 VALUES(3,'peta srpska kolona 3','petarko','pero','peron','3234','peric','agent');
 INSERT INTO `korisnik`(`id`,`adresa`,`ime`,`kime`,`lozinka`,`poslovni_maticni_broj`,`prezime`,`tip_korisnika`)
 VALUES(4,'vetra mirica 3','sero','sero','seron','4234','saric','agent');
+INSERT INTO `korisnik`(`id`,`adresa`,`ime`,`kime`,`lozinka`,`poslovni_maticni_broj`,`prezime`,`tip_korisnika`)
+VALUES(5,'mitra mirica 3','adil','adil','adil','1234','adnic','admin');
 
 
 INSERT INTO `usluga`(`id`,`naziv`)VALUES(1,'tv');

@@ -203,7 +203,11 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
                                         $scope.meseci.push($scope.m12);
                                         $http.put('/api/cena/nove', $scope.meseci)
                                             .then(function(response) {
-                                                $('#modalDodavanje').modal('hide');
+                                                //DODAVANJE SLIKA
+                                                $http.put('/api/slika/nove', $scope.slike)
+                                                    .then(function(response) {
+                                                        $('#modalDodavanje').modal('hide');
+                                                    });
                                             });
                                         //$('#modalDodavanje').modal('hide');
                                     });
@@ -226,6 +230,11 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
         $scope.slike.push(sl);
         $scope.tempSlika='';
 
+    }
+    $scope.odjaviSe=function () {
+        $('#modalLogin').modal('show');
+        $scope.korisnik.kime='';
+        $scope.korisnik.lozinka='';
     }
 
     $scope.potvrdiRezu=function (reza) {

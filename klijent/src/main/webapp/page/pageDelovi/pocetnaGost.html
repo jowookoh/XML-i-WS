@@ -156,35 +156,18 @@
 <div class="row" style="margin-top:0px;">
     <div  class="col-3">
         <div ng-show="napredna" style="margin:15px;margin-right:15px;margin-left:50px;width:260px;">
-            <label>Tip smeštaja:</label><br>
-            <select ng-change="switchPretip(pretip)" ng-model="pretip">
-                <optgroup label="Tip smeštaja">
-                    <option value="" selected="">Svi tipovi</option>
-                    <option value="hotel" selected="">Hotel</option>
-                    <option value="bad&breakfast">Bad&amp;Breakfast</option>
-                    <option value="apartman">Apartman</option>
-                </optgroup>
-            </select>
+            <label>Tip smeštaja:</label>
+            <select class="form-control" ng-change="switchPretip(pretip)" ng-model="pretip" ng-options="tip.naziv for tip in tips" style="margin-bottom:0px;padding:0px; width: 150px;"></select>
+            <button class="btn btn-info " ng-click="ponistiTipove()" type="button" style="margin-top:0px;background-color:rgb(150,196,49);">svi tipovi</button><br>
+
             <label style="margin-top:20px;">Kategorija smeštaja:</label>
-            <select style="margin-bottom:20px;" ng-change="switchPrekat(prekat)" ng-model="prekat">
-                <optgroup label="Kategorija smeštaja">
-                    <option value="" selected="">Sve kategorije</option>
-                    <option value="nekategorisan" selected="">Nekategorisan</option>
-                    <option value="1 zvezdica">1 zvezdica</option>
-                    <option value="2 zvezdice">2 zvezdice</option>
-                    <option value="3 zvezdice">3 zvezdice</option>
-                    <option value="4 zvezdica">4 zvezdica</option>
-                    <option value="5 zvezdica">5 zvezdica</option>
-                </optgroup>
-            </select>
-            <div class="form-check"><input ng-click="switchMod1()" class="form-check-input" type="checkbox" id="formCheck-park"><label class="form-check-label" for="formCheck-park">Parking&nbsp;</label></div>
-            <div class="form-check"><input ng-click="switchMod2()" class="form-check-input" type="checkbox" id="formCheck-wifi"><label class="form-check-label" for="formCheck-wifi">WiFi<br></label></div>
-            <div class="form-check"><input ng-click="switchMod3()" class="form-check-input" type="checkbox" id="formCheck-doruc"><label class="form-check-label" for="formCheck-doruc">Doručak<br></label></div>
-            <div class="form-check"><input ng-click="switchMod4()" class="form-check-input" type="checkbox" id="formCheck-polup"><label class="form-check-label" for="formCheck-polup">Polupansion<br></label></div>
-            <div class="form-check"><input ng-click="switchMod5()" class="form-check-input" type="checkbox" id="formCheck-punp"><label class="form-check-label" for="formCheck-punp">Pansion<br></label></div>
-            <div class="form-check"><input ng-click="switchMod6()" class="form-check-input" type="checkbox" id="formCheck-tv"><label class="form-check-label" for="formCheck-tv">TV<br></label></div>
-            <div class="form-check"><input ng-click="switchMod7()" class="form-check-input" type="checkbox" id="formCheck-kuhi"><label class="form-check-label" for="formCheck-kuhi">Mini kuhinja/kuhinja<br></label></div>
-            <div class="form-check"><input ng-click="switchMod8()" class="form-check-input" type="checkbox" id="formCheck-kupa"><label class="form-check-label" for="formCheck-kupa">Privatno kupatilo<br></label></div>
+            <select class="form-control" ng-change="switchPrekat(prekat)" ng-model="prekat" ng-options="kat.naziv for kat in kats" style="margin-bottom:0px;padding:0px; width: 150px;"></select>
+            <button class="btn btn-info " ng-click="ponistiKate()" type="button" style="margin-top:0px;background-color:rgb(150,196,49);">sve kategorije</button><br>
+
+            <label style="margin-top:20px;">Dodatne usluge:</label>
+            <div style="margin-top:0px;" ng-repeat="us in usls">
+                <div class="form-check"><input ng-click="switchMod(us)" class="form-check-input" type="checkbox" id="formCheck-park"><label class="form-check-label" for="formCheck-park">{{us.naziv}}</label></div>
+            </div>
 
         </div>
     </div>
@@ -213,7 +196,7 @@
                     <th> ukupna cena </th>
                     <th></th>
                 </tr>
-                <tr ng-repeat="stigla in stigle | filter:pretip | filter:prekat| filter:mod1| filter:mod2| filter:mod3| filter:mod4| filter:mod5| filter:mod6| filter:mod7| filter:mod8| orderBy:kriter:true ">
+                <tr ng-repeat="stigla in stigle | filter:pretip | filter:prekat| filter:mod| orderBy:kriter:true ">
                     <td >{{stigla.opis}}</td>
                     <td>{{stigla.kategorija}}</td>
                     <td>{{stigla.tipSmestaja}}</td>
