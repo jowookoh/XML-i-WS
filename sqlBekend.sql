@@ -1,5 +1,6 @@
 delete from usluga_smestaj;
 delete from cena;
+delete from poruka;
 delete from rezervacija;
 delete from smestaj;
 delete from lokacija;
@@ -7,6 +8,7 @@ delete from tip_smestaja;
 delete from kategorija_smestaja;
 delete from usluga;
 delete from korisnik;
+
 
 INSERT INTO `korisnik`(`id`,`adresa`,`ime`,`kime`,`lozinka`,`poslovni_maticni_broj`,`prezime`,`tip_korisnika`)
 VALUES(1,'mitra mirica 3','mare','mare93','marisa','1234','maric','klijent');
@@ -16,7 +18,6 @@ INSERT INTO `korisnik`(`id`,`adresa`,`ime`,`kime`,`lozinka`,`poslovni_maticni_br
 VALUES(3,'peta srpska kolona 3','petarko','pero','peron','3234','peric','agent');
 INSERT INTO `korisnik`(`id`,`adresa`,`ime`,`kime`,`lozinka`,`poslovni_maticni_broj`,`prezime`,`tip_korisnika`)
 VALUES(4,'vetra mirica 3','sero','sero','seron','4234','saric','agent');
-
 
 
 INSERT INTO `usluga`(`id`,`naziv`)VALUES(1,'tv');
@@ -59,10 +60,19 @@ VALUES(1,false,'nama je bilo super',3,'20181015',true,'20181025',false,1,1);
 INSERT INTO `rezervacija`(`id`,`fejk`,`komentar`,`ocena`,`od`,`odobren_komentar`,`pa_onda_do`,`realizovana`,`klijent_id`,`smestaj_id`)
 VALUES(2,false,'nama je bilo srednje',2,'20180215',true,'20180225',true,2,1);
 
+INSERT INTO `poruka`(`id`,`po_redu`,`tekst`,`posiljalac_id`,`rezervacija_id`)
+VALUES(1,1,'cao kako ste',1,1);
+INSERT INTO `poruka`(`id`,`po_redu`,`tekst`,`posiljalac_id`,`rezervacija_id`)
+VALUES(2,2,'cao sta ima novo',1,1);
+INSERT INTO `poruka`(`id`,`po_redu`,`tekst`,`posiljalac_id`,`rezervacija_id`)
+VALUES(3,3,'evo nema nista',3,1);
+INSERT INTO `poruka`(`id`,`po_redu`,`tekst`,`posiljalac_id`,`rezervacija_id`)
+VALUES(4,4,'postovani',2,2);
+
 INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(1,'20181025',10,1);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(2,'20181125',20,2);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(3,'20181225',10,3);
-INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(4,'20181225',10,1);
+INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(2,'20181125',20,1);
+INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(3,'20181225',10,1);
+INSERT INTO `cena`(`id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(4,'20181225',10,2);
 
 INSERT INTO `usluga_smestaj`(`id`,`smestaj_id`,`usluga_id`)VALUES(1,1,1);
 INSERT INTO `usluga_smestaj`(`id`,`smestaj_id`,`usluga_id`)VALUES(2,1,2);

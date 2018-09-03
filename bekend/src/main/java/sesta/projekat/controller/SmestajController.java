@@ -41,6 +41,13 @@ public class SmestajController {
         return ResponseEntity.ok(smestaji);
     }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/dajSmestaj")
+    public ResponseEntity dajSmestaj(@RequestBody SmestajDtoResponse smdto) {
+        Smestaj sm = smestajService.findOne(smdto.getId());
+        return ResponseEntity.ok(sm);
+    }
+
+
     @RequestMapping(method = RequestMethod.POST, value = "/trazi")
     public ResponseEntity pretrazi(@RequestBody PretragaDto pretragaDto) {
         List<Smestaj> smestajs = new ArrayList<>();

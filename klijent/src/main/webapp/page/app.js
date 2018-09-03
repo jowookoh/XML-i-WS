@@ -13,11 +13,6 @@ livadeApp.config(['$urlRouterProvider','$stateProvider',function($urlRouterProvi
             controller: 'registerCtrl',
             templateUrl: 'pageDelovi/register.html'
         })
-        .state('login',{
-            url:'/login',
-            controller: 'loginCtrl',
-            templateUrl: 'pageDelovi/login.html'
-        })
         .state('mojeRezervacije',{
             url:'/mojeRezervacije',
             controller: 'mojeRezervacijeCtrl',

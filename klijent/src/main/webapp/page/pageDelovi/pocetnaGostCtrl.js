@@ -1,6 +1,10 @@
 livadeApp.controller('pocetnaGostCtrl', ['$scope','$state','$http', function ($scope,$state,$http) {
 
-    $scope.pretraga={}
+    $scope.gost=true;
+    $scope.rezervacija={};
+    $scope.pretraga={};
+    $scope.korisnik={};
+    $scope.novaPoruka={};
     $scope.napredna = false;
     $scope.ngNapredna = function(flag) {
         if (flag) {
@@ -10,14 +14,88 @@ livadeApp.controller('pocetnaGostCtrl', ['$scope','$state','$http', function ($s
         }
     };
 
-    $scope.toRegister = function() {
-        $state.go("register");
+    //$('#modalLogin').modal('show');
+
+    $scope.zaloguj=function () {
+        $scope.korisnik.tipKorisnika="klijent";
+        $http.post("http://localhost:8080/korisnik/login/",$scope.korisnik)
+            .then(function(response) {
+                if (response.data){
+                    $http.get("http://localhost:8080/korisnik/dajKorisnika/"+$scope.korisnik.kime)
+                        .then(function(response) {
+                            $scope.ja=response.data;
+                            $scope.gost=false;
+                            $('#modalLogin').modal('hide');
+                        }, function(response) {
+                        });
+                }
+                else{
+                    alert("Neispravno korisničko ime ili lozinka");
+                }
+            }, function(response) {
+                alert("error");
+            });
     }
-    $scope.toLogin = function() {
-        $state.go("login");
+
+    $scope.pribaviReze=function () {
+        $scope.showDiv=true;
+        $scope.novaPoruka.tekst='';
+        $http.get("http://localhost:8080/rezervacija/sveRezervacijeKorisnika/"+$scope.ja.kime)
+            .then(function(response) {
+                $scope.rezervacije=response.data;
+                $scope.result = "Success";
+                $scope.content = response;
+            }, function(response) {
+                $scope.result = "Error";
+                $scope.content = response;
+            });
     }
-    $scope.toMojeRezervacije = function() {
-        $state.go("mojeRezervacije");
+
+    $scope.otvoriPoruke=function(reza){
+        $scope.trenutnaReza=reza;
+        $scope.showDiv=false;
+        $http.get("http://localhost:8080/poruka/porukeRezervacije/"+ reza.id)
+            .then(function(response) {
+                $scope.poruke=response.data;
+                $scope.result = "Success";
+                $scope.content = response;
+            }, function(response) {
+                alert("poruke lose");
+                $scope.result = "Error";
+                $scope.content = response;
+            });
+    }
+
+    $scope.posaljiPoruku = function() {
+        $scope.novaPoruka.idRezervacije=$scope.trenutnaReza.id;
+        $scope.novaPoruka.posiljalac=$scope.ja.kime;
+        $http.post("http://localhost:8080/poruka/nova", $scope.novaPoruka)
+            .then(function(response) {
+                $('#modalReze').modal('hide');
+            }, function(response) {
+                alert("nova lose");
+                $scope.result = "Error";
+                $scope.content = response;
+            });
+
+    }
+    $scope.rezervisi=function (stigla) {
+        $http.post("http://localhost:8080/smestaj/dajSmestaj",stigla)
+            .then(function(response) {
+                $scope.rezervacija.smestaj=response.data;
+                $scope.rezervacija.klijent=$scope.ja;
+                $scope.rezervacija.od=$scope.pretraga.prvi;
+                $scope.rezervacija.paOndaDo=$scope.pretraga.drugi;
+                $http.post("http://localhost:8080/rezervacija/rezervisiSmestaj",$scope.rezervacija)
+                    .then(function(response) {
+                        alert("uspešna rezervacija!");
+                    }, function(response) {
+                        alert("reza lose");
+                    });
+            }, function(response) {
+                alert("sm lose");
+            });
+
     }
 
     $scope.switchKrit = function(krit) {
@@ -84,24 +162,4 @@ livadeApp.controller('pocetnaGostCtrl', ['$scope','$state','$http', function ($s
             });
     };
 
-    /*$http.get("http://localhost:8080/tip/poz/")
-        .then(function(response) {
-            $scope.sara=response.data;
-            $scope.result = "Success";
-            $scope.content = response;
-        }, function(response) {
-            $scope.result = "Error";
-            $scope.content = response;
-        });
-    $http({
-        method: 'GET',
-        url: "http://localhost:8080/tip/poz/"
-    }).then(function successCallback(response) {
-        // this callback will be called asynchronously
-        // when the response is available
-        $scope.sara=response.data;
-    }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-    });*/
 }]);

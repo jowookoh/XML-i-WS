@@ -23,6 +23,7 @@ public class RezervacijaController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/rezervisiSmestaj")
     public ResponseEntity novaRezervacija(@RequestBody Rezervacija rezervacija){
+        System.out.println(rezervacija.getSmestaj().getAgent());
         Rezervacija rezervacijaSacuvana = rezervacijaService.save(rezervacija);
         return ResponseEntity.ok(rezervacijaSacuvana);
     }

@@ -2,15 +2,119 @@
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="padding:0px;">
         <div class="container"><a href="#" class="navbar-brand">Livade</a>
                 <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item"><a ng-click="toMojeRezervacije()"class="btn">Moje rezervacije</a></li>
+                    <li class="nav-item"><a ng-click="pribaviReze()"class="btn"  data-toggle="modal" data-target="#modalReze" ng-hide="gost">Moje rezervacije</a></li>
                 </ul>
                 <span class="navbar-text actions">
-                    <a ng-click="toLogin()" class="btn">Prijavi se</a>
-                    <a ng-click="toRegister()" class="btn btn-light action-button">Registracija</a>
+                    <a  class="btn" data-toggle="modal" data-target="#modalLogin" ng-show="gost">Prijavi se</a>
+                    <a  class="btn btn-light action-button" data-toggle="modal" ng-show="gost" data-target="#modalRegister">Registracija</a>
+                    <a  class="btn" ng-click="odjaviSe()" ng-hide="gost">Odjavi se</a>
                 </span>
         </div>
     </nav>
 </div>
+<!-- MODAL LOGIN-->
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modalLogin" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 align="center" style="margin: 20px">Prijavite se</h3>
+                <div class="login-dark" >
+                    <form method="post">
+                        <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+                        <div class="form-group"><input type="text" class="form-control" ng-model="korisnik.kime"  name="username" placeholder="Korisničko ime"></div>
+                        <div class="form-group"><input type="password" class="form-control" ng-model="korisnik.lozinka"  name="password" placeholder="Lozinka"></div>
+                        <div class="form-group"><button ng-click="zaloguj()" class="btn btn-primary btn-block" type="submit">Log In</button></div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- MODAL REGISTER-->
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modalRegister" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3  align="center" style="margin: 20px">Registrujte se</h3>
+                <div class="login-dark" >
+                    <form method="post">
+                        <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+                        <div class="form-group"><input type="text" class="form-control" ng-model="rega.kime"  name="username" placeholder="Korisničko ime"></div>
+                        <div class="form-group"><input type="password" class="form-control" ng-model="rega.lozinka"  name="password" placeholder="Lozinka"></div>
+                        <div class="form-group"><button ng-click="zaregistruj()" class="btn btn-primary btn-block" type="submit">Register</button></div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- MODAL REZE-->
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modalReze" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3  align="center" style="margin: 20px">Moje rezervacije</h3>
+                <div  class="span3">
+                    <span class="counter pull-right"></span>
+
+                    <table data-toggle="table" class="table table-hover table-striped table-bordered results">
+                        <tr>
+                            <th> rezervacija </th>
+                            <th> opis smeštaja </th>
+                            <th> od </th>
+                            <th> do </th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="reza in rezervacije | orderBy:od ">
+                            <td>{{reza.id}}</td>
+                            <td>{{reza.smestaj.opis}}</td>
+                            <td>{{reza.od | date}}</td>
+                            <td>{{reza.paOndaDo | date}}</td>
+                            <td >
+                                <button class="btn btn-primary" type="button" ng-click="otvoriPoruke(reza)" >Poruke</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <div ng-hide="showDiv">
+                        <table data-toggle="table" class="table table-hover table-striped table-bordered results">
+                            <tr>
+                                <th> pošiljalac </th>
+                                <th> tekst poruke </th>
+                            </tr>
+                            <tr ng-repeat="poruka in poruke | orderBy:poRedu ">
+                                <td >{{poruka.posiljalac.kime}}</td>
+                                <td >{{poruka.tekst}}</td>
+                            </tr>
+                        </table>
+
+                        <textarea id="tekstporuka" class="form-control form-control-lg" placeholder="Poruka"  ng-model="novaPoruka.tekst" style="margin-bottom:20px;padding:0px;"></textarea>
+                        <button class="btn btn-primary" type="button" ng-click="posaljiPoruku()"  >Pošalji</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 <div style="margin-top:0px;background-color:rgba(255,25,255,0);background-image:url('img/livada.jpg');background-position:center;background-size:cover;">
     <form id="lakisrc" style="width:550px;background-color:#ffffff;">
@@ -59,6 +163,7 @@
 
         </div>
     </div>
+    <!--REZULTATI PRETRAGE-->
     <div class="col-9">
         <div>
             <div class="row">
@@ -79,12 +184,9 @@
                     <th> kategorija </th>
                     <th> slike </th>
                     <th> dodatne usluge </th>
-                    <th> cena </th>
+                    <th> ukupna cena </th>
                     <th></th>
                 </tr>
-                {{pretip}}
-                {{prekat}}
-                {{vajfaj}}
                 <tr ng-repeat="stigla in stigle | filter:pretip | filter:prekat| filter:mod1| filter:mod2| filter:mod3| filter:mod4| filter:mod5| filter:mod6| filter:mod7| filter:mod8| orderBy:kriter:true ">
                     <td >{{stigla.opis}}</td>
                     <td>{{stigla.kategorija}}</td>
@@ -92,8 +194,8 @@
                     <td>{{stigla.slike}}</td>
                     <td>{{stigla.usluge.join(", ")}}</td>
                     <td>{{stigla.cena}}</td>
-                    <td >
-                        <button class="btn btn-primary" requestType="button" ng-click="rezervisi()" >Rezerviši</button>
+                    <td ng-hide="gost">
+                        <button class="btn btn-primary" requestType="button" ng-click="rezervisi(stigla)" >Rezerviši</button>
                     </td>
                 </tr>
             </table>

@@ -1,3 +1,5 @@
+delete from usluga_smestaj;
+delete from cena;
 delete from poruka;
 delete from rezervacija;
 delete from smestaj;
@@ -24,6 +26,7 @@ INSERT INTO `usluga`(`id`,`bekend_id`,`naziv`)VALUES(5,1,"polupanison");
 INSERT INTO `usluga`(`id`,`bekend_id`,`naziv`)VALUES(6,1,"pansion");
 INSERT INTO `usluga`(`id`,`bekend_id`,`naziv`)VALUES(7,1,"kuhinja");
 INSERT INTO `usluga`(`id`,`bekend_id`,`naziv`)VALUES(8,1,"privatno kupatilo");
+
 
 INSERT INTO `kategorija_smestaja` (`id`,`bekend_id`, `naziv`) VALUES (1,1, 'nekategorisan');
 INSERT INTO `kategorija_smestaja` (`id`,`bekend_id`, `naziv`) VALUES (2,1, 'jedna zvezdica');
@@ -64,3 +67,14 @@ INSERT INTO `poruka`(`id`,`bekend_id`,`po_redu`,`tekst`,`posiljalac_id`,`rezerva
 VALUES(2,1,2,'cao sta ima novo',1,1);
 INSERT INTO `poruka`(`id`,`bekend_id`,`po_redu`,`tekst`,`posiljalac_id`,`rezervacija_id`)
 VALUES(3,1,3,'postovani',2,2);
+
+INSERT INTO `cena`(`id`,`bekend_id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(1,1,'20181025',10,1);
+INSERT INTO `cena`(`id`,`bekend_id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(2,1,'20181125',20,2);
+INSERT INTO `cena`(`id`,`bekend_id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(3,1,'20181225',10,3);
+INSERT INTO `cena`(`id`,`bekend_id`,`mesec`,`vrednost`,`smestaj_id`)VALUES(4,1,'20181225',10,1);
+
+INSERT INTO `usluga_smestaj`(`id`,`bekend_id`,`smestaj_id`,`usluga_id`)VALUES(1,1,1,1);
+INSERT INTO `usluga_smestaj`(`id`,`bekend_id`,`smestaj_id`,`usluga_id`)VALUES(2,1,1,2);
+INSERT INTO `usluga_smestaj`(`id`,`bekend_id`,`smestaj_id`,`usluga_id`)VALUES(3,1,1,3);
+INSERT INTO `usluga_smestaj`(`id`,`bekend_id`,`smestaj_id`,`usluga_id`)VALUES(4,1,1,4);
+INSERT INTO `usluga_smestaj`(`id`,`bekend_id`,`smestaj_id`,`usluga_id`)VALUES(5,1,3,1);
