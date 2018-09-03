@@ -22,8 +22,6 @@ public class LoginAndSyncController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
 	public ResponseEntity login(@RequestBody Korisnik korisnik) {
-		//SmestajClient smestajClient = new SmestajClient();
-		//System.out.println(smestajClient.getSmestaji().getSmestaji().get(0).getOpis());
 		return ResponseEntity.ok(loginAndSyncService.Login(korisnik));
 	}
 }

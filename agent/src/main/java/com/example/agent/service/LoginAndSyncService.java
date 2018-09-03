@@ -15,6 +15,7 @@ import java.util.Set;
 
 @Service
 public class LoginAndSyncService {
+	//region Autovajrovi
 	@Autowired
 	TipSmestajaRepository tipSmestajaRepository;
 	
@@ -36,6 +37,19 @@ public class LoginAndSyncService {
 	@Autowired
 	SmestajRepository smestajRepository;
 	
+	@Autowired
+	LokacijaRepository lokacijaRepository;
+	
+	@Autowired
+	CenaRepository cenaRepository;
+	
+	@Autowired
+	UslugaSmestajRepository uslugaSmestajRepository;
+	
+	@Autowired
+	SlikaRepository slikaRepository;
+	//endregion
+	
 	private Korisnik ja;
 	
 	public boolean Login(Korisnik korisnik){
@@ -46,8 +60,44 @@ public class LoginAndSyncService {
 		LoginResponse response = client.send(request, "login");//client.login(korisnik.getKime(), korisnik.getLozinka());
 		ja = korisnik;
 		System.out.println(response.isPostoji());
-		if (response.isPostoji()) Sync(korisnik);
+		if (response.isPostoji()) try{Presync();Sync(korisnik);}catch(Exception ignored){}
 		return response.isPostoji();
+	}
+	
+	@Transactional
+	protected void Presync(){
+		//region lokacija
+		List<Lokacija> lokacijas = lokacijaRepository.findAll();
+		//endregion
+		
+		//region cena
+		
+		//endregion
+		
+		//region porukaSend
+		
+		//endregion
+		
+		//region rezervacijaFejk
+		
+		//endregion
+		
+		//region rezervacijaRealizovana
+		
+		//endregion
+		
+		//region smestaj
+		
+		//endregion
+		
+		//region uslugaSmestaj
+		
+		//endregion
+		
+		//region slika
+		
+		//endregion
+		
 	}
 	
 	@Transactional
