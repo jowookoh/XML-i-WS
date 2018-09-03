@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://xml/ws/slika"
+           xmlns:slika="http://xml/ws/slika">
+
+    <xs:element name="slikaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="smestajBekendId" type="xs:long"/>
+                <xs:element name="adresa" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="slikaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bekendId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

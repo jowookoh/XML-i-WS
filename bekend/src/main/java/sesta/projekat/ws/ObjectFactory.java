@@ -30,7 +30,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UslugaSmestajResponse }
+     * Create an instance of {@link SlikaRequest }
      * 
      */
 	public UslugaSmestajResponse createUslugaSmestajResponse() {
@@ -72,11 +72,11 @@ public class ObjectFactory {
 	public CenaResponse createCenaResponse() {
 		return new CenaResponse();
 	}
+	public SlikaResponse createSlikaResponse() {
+		return new SlikaResponse();
+	}
 	
-	/**
-	 * Create an instance of {@link UslugaSmestajRequest }
-	 *
-	 */
+	
 	public UslugaSmestajRequest createUslugaSmestajRequest() {
 		return new UslugaSmestajRequest();
 	}
@@ -129,4 +129,7 @@ public class ObjectFactory {
 		return new CenaRequest();
 	}
 	
+	public SlikaRequest createSlikaRequest() {
+		return new SlikaRequest();
+	}
 }
