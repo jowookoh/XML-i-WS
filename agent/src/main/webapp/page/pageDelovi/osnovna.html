@@ -13,7 +13,7 @@
             </div>
             <div class="col item">
                 <div class="box"><i class="fa fa-list-alt icon"></i>
-                    <a class="btn btn-light action-button" data-toggle="modal" data-target="#modalZauzetost">postavljanje zauzetosti</a>
+                    <a class="btn btn-light action-button" ng-click="ucitajSmestaje()" data-toggle="modal" data-target="#modalZauzetost">postavljanje zauzetosti</a>
                 </div>
             </div>
             <div class="col item">
@@ -54,31 +54,31 @@
                     <div class="modal-body">
                         <div class="d-flex flex-column justify-content-center align-items-center" style="padding:100px;">
                             <form style="padding:0px;margin:0px;"><label class="d-flex flex-row justify-content-center"style="padding:0px;font-size:20px;">Dodaj smeštajnu jedinicu</label>
-                                <input class="form-control" type="text" placeholder="Država" ng-model="smestaj.drzava" style="margin-bottom:20px;padding:0px;">
-                                <input class="form-control" type="text" placeholder="Mesto" ng-model="smestaj.mesto" style="margin-bottom:20px;padding:0px;">
-                                <input class="form-control" type="number" placeholder="Kapacitet" max="20" ng-model="smestaj.brOsoba" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" type="text" placeholder="Država" ng-model="tempLokacija.drzava" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" type="text" placeholder="Mesto" ng-model="tempLokacija.mesto" style="margin-bottom:20px;padding:0px;">
+                                <input class="form-control" type="number" placeholder="Kapacitet" max="20" ng-model="smestaj.brojOsoba" style="margin-bottom:20px;padding:0px;">
                                 <textarea class="form-control form-control-lg" placeholder="Opis" ng-model="smestaj.opis" style="margin-bottom:20px;padding:0px;"></textarea>
                                 <label>Tip smeštaja:</label>
-                                <select class="form-control" ng-model="izabraniTip" ng-options="tip.naziv for tip in tipovi" style="margin-bottom:20px;padding:0px;"></select>
+                                <select class="form-control" ng-model="smestaj.tipSmestaja" ng-options="tip.naziv for tip in tipovi" style="margin-bottom:20px;padding:0px;"></select>
                                 <label>Kategorija smeštaja:</label>
-                                <select class="form-control" ng-model="izabranaKategorija" ng-options="kategorija.naziv for kategorija in kategorije" style="margin-bottom:20px;padding:0px;"></select>
+                                <select class="form-control" ng-model="smestaj.kategorijaSmestaja" ng-options="kategorija.naziv for kategorija in kategorije" style="margin-bottom:20px;padding:0px;"></select>
                                 <label>Dodatne usluge:</label>
                                 <div ng-dropdown-multiselect="" options="usluge" selected-model="izabraneUsluge" extra-settings="prikazSettings" style="margin-bottom:20px;padding:0px;"></div>
                                 <button class="btn btn-light" ng-click="ngMesecno(mesecno)" type="button" style="background-color:rgb(221,221,221);margin-bottom:20px;">Mesečni plan cena&nbsp;<i class="fa fa-chevron-down"></i></button>
                                 <div class="col-xs-2" ng-show="mesecno" >
                                     <ul>
-                                        <li><label>Januar</label>&nbsp<input type="number" style="width: 60px" ng-model="m1"></li>
-                                        <li><label>Februar</label>&nbsp<input type="number" style="width: 60px" ng-model="m2"></li>
-                                        <li><label>Mart</label>&nbsp<input type="number" style="width: 60px" ng-model="m3"></li>
-                                        <li><label>April</label>&nbsp<input type="number" style="width: 60px" ng-model="m4"></li>
-                                        <li><label>Maj</label>&nbsp<input type="number" style="width: 60px" ng-model="m5"></li>
-                                        <li><label>Jun</label>&nbsp<input type="number" style="width: 60px" ng-model="m6"></li>
-                                        <li><label>Jul</label>&nbsp<input type="number" style="width: 60px" ng-model="m7"></li>
-                                        <li><label>Avgust</label>&nbsp<input type="number" style="width: 60px" ng-model="m8"></li>
-                                        <li><label>Septembar</label>&nbsp<input type="number" style="width: 60px" ng-model="m9"></li>
-                                        <li><label>Oktobar</label>&nbsp<input type="number" style="width: 60px" ng-model="m10"></li>
-                                        <li><label>Novembar</label>&nbsp<input type="number" style="width: 60px" ng-model="m11"></li>
-                                        <li><label>Decembar</label>&nbsp<input type="number" style="width: 60px" ng-model="m12"></li>
+                                        <li><label>Januar</label>&nbsp<input type="number" style="width: 60px" ng-model="m1.vrednost"></li>
+                                        <li><label>Februar</label>&nbsp<input type="number" style="width: 60px" ng-model="m2.vrednost"></li>
+                                        <li><label>Mart</label>&nbsp<input type="number" style="width: 60px" ng-model="m3.vrednost"></li>
+                                        <li><label>April</label>&nbsp<input type="number" style="width: 60px" ng-model="m4.vrednost"></li>
+                                        <li><label>Maj</label>&nbsp<input type="number" style="width: 60px" ng-model="m5.vrednost"></li>
+                                        <li><label>Jun</label>&nbsp<input type="number" style="width: 60px" ng-model="m6.vrednost"></li>
+                                        <li><label>Jul</label>&nbsp<input type="number" style="width: 60px" ng-model="m7.vrednost"></li>
+                                        <li><label>Avgust</label>&nbsp<input type="number" style="width: 60px" ng-model="m8.vrednost"></li>
+                                        <li><label>Septembar</label>&nbsp<input type="number" style="width: 60px" ng-model="m9.vrednost"></li>
+                                        <li><label>Oktobar</label>&nbsp<input type="number" style="width: 60px" ng-model="m10.vrednost"></li>
+                                        <li><label>Novembar</label>&nbsp<input type="number" style="width: 60px" ng-model="m11.vrednost"></li>
+                                        <li><label>Decembar</label>&nbsp<input type="number" style="width: 60px" ng-model="m12.vrednost"></li>
                                     </ul>
                                 </div>
                                 <button ng-click="dodajSmestaj()" class="btn btn-primary btn-block" requestType="submit" style="margin-top:30px;padding:0px;" >Dodaj</button>
@@ -170,7 +170,7 @@
                             <div ng-hide="showDiv">
                                 <table data-toggle="table" class="table table-hover table-striped table-bordered results">
                                     <tr>
-                                        <th> posiljalac </th>
+                                        <th> pošiljalac </th>
                                         <th> tekst poruke </th>
                                     </tr>
                                     <tr ng-repeat="poruka in poruke | orderBy:poRedu ">
@@ -219,4 +219,3 @@
 
     </div>
 </div>
-{{rezervacije}}
