@@ -106,7 +106,7 @@ public class LoginAndSyncEndpoint {
 		List<Rezervacija> rezervacije = rezervacijaService.getAll();
 		RezervacijaResponse response = new RezervacijaResponse();
 		for (Rezervacija rezervacija : rezervacije) {
-			if(rezervacija.getSmestaj().getAgent().getId() == request.getAgentId()){
+			if(rezervacija.getSmestaj().getAgent().getKime() == request.getAgentKime()){
 				RezervacijaJedan rezervacijaJedan = new RezervacijaJedan();
 				rezervacijaJedan.setBekendId(rezervacija.getId());
 				rezervacijaJedan.setFejk(rezervacija.isFejk());

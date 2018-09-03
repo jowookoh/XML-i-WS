@@ -1,7 +1,10 @@
 
 package sesta.projekat.ws;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**
@@ -21,6 +24,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _RezervacijaResponse_QNAME = new QName("http://xml/ws/rezervacija", "rezervacijaResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: sesta.projekat.ws
@@ -28,11 +32,7 @@ public class ObjectFactory {
      */
     public ObjectFactory() {
     }
-
-    /**
-     * Create an instance of {@link SlikaRequest }
-     * 
-     */
+	
 	public UslugaSmestajResponse createUslugaSmestajResponse() {
 		return new UslugaSmestajResponse();
 	}

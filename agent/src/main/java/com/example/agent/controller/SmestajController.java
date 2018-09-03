@@ -54,6 +54,7 @@ public class SmestajController {
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/uslugeSmestaja")
 	public ResponseEntity kreiranjeSmestaja(@RequestBody List<UslugaSmestaj> uslugaSmestaj) {
+		System.out.println("vuko");
 		try {
 			GenerickiClient client = new GenerickiClient(UslugaSmestajRequest.class, UslugaSmestajResponse.class);
 			for (UslugaSmestaj us : uslugaSmestaj) {

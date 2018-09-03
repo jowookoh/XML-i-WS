@@ -59,8 +59,8 @@ public class LoginAndSyncService {
 		request.setLozinka(korisnik.getLozinka());
 		LoginResponse response = client.send(request, "login");//client.login(korisnik.getKime(), korisnik.getLozinka());
 		ja = korisnik;
-		System.out.println(response.isPostoji());
 		if (response.isPostoji()) try{Presync();Sync(korisnik);}catch(Exception ignored){}
+		System.out.println(ja.getKime());
 		return response.isPostoji();
 	}
 	
@@ -157,8 +157,8 @@ public class LoginAndSyncService {
 		//region rezervacija => korisnik
 			//rezervacija
 		client = new GenerickiClient(RezervacijaRequest.class, RezervacijaResponse.class);
-		RezervacijaRequest request  = new RezervacijaRequest();
-		request.setAgentId(ja.getBekendId());
+		RezervacijaRequest request = new RezervacijaRequest();
+		request.setAgentKime(ja.getKime());
 		RezervacijaResponse rezervacijaResponse = client.send(request, "rezervacija");
 		//korisnikRepository.deleteAll();
 		korisnikRepository.save(ja);
@@ -219,5 +219,10 @@ public class LoginAndSyncService {
 			}
 		}
 		//endregion
+	}
+	
+	public Korisnik getJa(String kime){
+		korisnikRepository.save(ja);
+		return ja;
 	}
 }

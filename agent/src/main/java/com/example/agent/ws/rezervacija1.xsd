@@ -6,7 +6,7 @@
     <xs:element name="rezervacijaRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="agentId" type="xs:long"/>
+                <xs:element name="agentKime" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

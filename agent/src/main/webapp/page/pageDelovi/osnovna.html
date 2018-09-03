@@ -12,7 +12,7 @@
         <div class="row justify-content-center features" style="padding:0px;background-size:cover;width:1193px;height:1000px;padding-top:200px;">
             <div class="col item">
                 <div class="box"><i class="fa fa-list-alt icon"></i>
-                    <a class="btn btn-light action-button" data-toggle="modal" data-target="#modalDodavanje">dodavanje smeštaja</a>
+                    <a class="btn btn-light action-button" ng-click="nabaviSve()" data-toggle="modal" data-target="#modalDodavanje">dodavanje smeštaja</a>
                 </div>
             </div>
             <div class="col item">
@@ -68,8 +68,10 @@
                                 <input class="form-control" type="number" placeholder="Kapacitet" max="20" ng-model="smestaj.brojOsoba" style="margin-bottom:20px;padding:0px;">
                                 <textarea class="form-control form-control-lg" placeholder="Opis" ng-model="smestaj.opis" style="margin-bottom:20px;padding:0px;"></textarea>
                                 <label>Tip smeštaja:</label>
+								{{slikeSlanje}}
                                 <select class="form-control" ng-model="smestaj.tipSmestaja" ng-options="tip.naziv for tip in tipovi" style="margin-bottom:20px;padding:0px;"></select>
                                 <label>Kategorija smeštaja:</label>
+								{{slike}}
                                 <select class="form-control" ng-model="smestaj.kategorijaSmestaja" ng-options="kategorija.naziv for kategorija in kategorije" style="margin-bottom:20px;padding:0px;"></select>
                                 <div class="container" style="margin-bottom:20px;padding:0px;">
                                     <label>Slika:</label>

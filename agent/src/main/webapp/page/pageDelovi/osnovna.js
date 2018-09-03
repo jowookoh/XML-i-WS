@@ -9,6 +9,9 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
     $scope.prikazSettings = {displayProp: 'naziv'};
     $scope.showDiv=true;
     $scope.slike=[];
+    $scope.smestajUsluge=[];
+    $scope.tempSU={};
+    $scope.slikeSlanje=[];
 
     //#region meseci
 
@@ -17,27 +20,27 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
     $scope.m1={};
     $scope.m1.mesec="2016-01-10";
     $scope.m2={};
-    $scope.m1.mesec="2016-02-10";
+    $scope.m2.mesec="2016-02-10";
     $scope.m3={};
-    $scope.m1.mesec="2016-03-10";
+    $scope.m3.mesec="2016-03-10";
     $scope.m4={};
-    $scope.m1.mesec="2016-04-10";
+    $scope.m4.mesec="2016-04-10";
     $scope.m5={};
-    $scope.m1.mesec="2016-05-10";
+    $scope.m5.mesec="2016-05-10";
     $scope.m6={};
-    $scope.m1.mesec="2016-06-10";
+    $scope.m6.mesec="2016-06-10";
     $scope.m7={};
-    $scope.m1.mesec="2016-07-10";
+    $scope.m7.mesec="2016-07-10";
     $scope.m8={};
-    $scope.m1.mesec="2016-08-10";
+    $scope.m8.mesec="2016-08-10";
     $scope.m9={};
-    $scope.m1.mesec="2016-09-10";
+    $scope.m9.mesec="2016-09-10";
     $scope.m10={};
-    $scope.m1.mesec="2016-10-10";
+    $scope.m10.mesec="2016-10-10";
     $scope.m11={};
-    $scope.m1.mesec="2016-11-10";
+    $scope.m11.mesec="2016-11-10";
     $scope.m12={};
-    $scope.m1.mesec="2016-12-10";
+    $scope.m12.mesec="2016-12-10";
 
     //#endregion
 
@@ -53,20 +56,12 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
                             $scope.ja=response.data;
                             $scope.result = "Success";
                             $scope.content = response;
-                            /*$http.get('/api/smestaj/moj/'+$scope.ja.id)
-                                .then(function(response) {
-                                    $scope.smestaji=response.data;
-                                    $scope.result = "Success";
-                                    $scope.content = response;
-                                }, function(response) {
-                                    $scope.result = "Error";
-                                    $scope.content = response;
-                                });*/
+                            $('#modalLogin').modal('hide');
                         }, function(response) {
                             $scope.result = "Error";
                             $scope.content = response;
                         });
-                    $('#modalLogin').modal('hide');
+
 
                 }else{
                     alert("Neispravno korisničko ime ili lozinka");
@@ -78,33 +73,36 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
 
     }
 
-    $http.get('/api/kategorijasmestaja/secured/svi')
-        .then(function(response) {
-            $scope.kategorije=response.data;
-            $scope.result = "Success";
-            $scope.content = response;
-        }, function(response) {
-            $scope.result = "Error";
-            $scope.content = response;
-        });
-    $http.get('/api/tipsmestaja/secured/svi')
-        .then(function(response) {
-            $scope.tipovi=response.data;
-            $scope.result = "Success";
-            $scope.content = response;
-        }, function(response) {
-            $scope.result = "Error";
-            $scope.content = response;
-        });
-    $http.get('/api/usluga/secured/svi')
-        .then(function(response) {
-            $scope.usluge=response.data;
-            $scope.result = "Success";
-            $scope.content = response;
-        }, function(response) {
-            $scope.result = "Error";
-            $scope.content = response;
-        });
+    $scope.nabaviSve=function(){
+        $http.get('/api/kategorijasmestaja/secured/svi')
+            .then(function(response) {
+                $scope.kategorije=response.data;
+                $scope.result = "Success";
+                $scope.content = response;
+            }, function(response) {
+                $scope.result = "Error";
+                $scope.content = response;
+            });
+        $http.get('/api/tipsmestaja/secured/svi')
+            .then(function(response) {
+                $scope.tipovi=response.data;
+                $scope.result = "Success";
+                $scope.content = response;
+            }, function(response) {
+                $scope.result = "Error";
+                $scope.content = response;
+            });
+        $http.get('/api/usluga/secured/svi')
+            .then(function(response) {
+                $scope.usluge=response.data;
+                $scope.result = "Success";
+                $scope.content = response;
+            }, function(response) {
+                $scope.result = "Error";
+                $scope.content = response;
+            });
+    }
+
 
 
     $scope.otvoriPoruke=function(reza){
@@ -147,17 +145,7 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
             });
     }
 
-    $scope.pripremiUsluge=function (dobiven) {
-        $scope.smestajUsluge=[];
-        $scope.tempSU={};
-        $scope.izabraneUsluge.forEach(function (value) {
-            $scope.tempSU.usluga=value;
-            $scope.tempSU.usluga=dobiven;
-            $scope.smestajUsluge.push($scope.tempSU);
 
-        })
-        return $scope.smestajUsluge;
-    }
 
     $scope.dodajSmestaj = function() {
         //DODAVANJE LOKACIJE
@@ -170,52 +158,68 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
                     .then(function(response) {
                         $scope.dobivenSmestaj=response.data;
                         //PRIPREMA USLUGA
-                        $scope.pripremiUsluge( $scope.dobivenSmestaj)
-                            .then(function(data) {
-                                $scope.spremneUsluge = data;
-                                //DODAVANJE USLUGA
-                                $http.put('api/smestaj/uslugeSmestaja',$scope.spremneUsluge)
-                                    .then(function (response) {
-                                        // DODAVANJE CENA
-                                        $scope.m1.smestaj=$scope.dobivenSmestaj;
-                                        $scope.m2.smestaj=$scope.dobivenSmestaj;
-                                        $scope.m3.smestaj=$scope.dobivenSmestaj;
-                                        $scope.m4.smestaj=$scope.dobivenSmestaj;
-                                        $scope.m5.smestaj=$scope.dobivenSmestaj;
-                                        $scope.m6.smestaj=$scope.dobivenSmestaj;
-                                        $scope.m7.smestaj=$scope.dobivenSmestaj;
-                                        $scope.m8.smestaj=$scope.dobivenSmestaj;
-                                        $scope.m9.smestaj=$scope.dobivenSmestaj;
-                                        $scope.m10.smestaj=$scope.dobivenSmestaj;
-                                        $scope.m11.smestaj=$scope.dobivenSmestaj;
-                                        $scope.m12.smestaj=$scope.dobivenSmestaj;
-                                        $scope.meseci.push($scope.m1);
-                                        $scope.meseci.push($scope.m2);
-                                        $scope.meseci.push($scope.m3);
-                                        $scope.meseci.push($scope.m4);
-                                        $scope.meseci.push($scope.m5);
-                                        $scope.meseci.push($scope.m6);
-                                        $scope.meseci.push($scope.m7);
-                                        $scope.meseci.push($scope.m8);
-                                        $scope.meseci.push($scope.m9);
-                                        $scope.meseci.push($scope.m10);
-                                        $scope.meseci.push($scope.m11);
-                                        $scope.meseci.push($scope.m12);
-                                        $http.put('/api/cena/nove', $scope.meseci)
+                        $scope.smestajUsluge=[];
+                        $scope.izabraneUsluge.forEach(function (value) {
+                            $scope.tempSU={};
+                            $scope.tempSU.usluga=value;
+                            $scope.tempSU.smestaj=$scope.dobivenSmestaj;
+                            $scope.smestajUsluge.push($scope.tempSU);
+                            })
+                        //DODAVANJE USLUGA
+                        $http.put('/api/smestaj/uslugeSmestaja',$scope.smestajUsluge)
+                            .then(function (response) {
+                                // DODAVANJE CENA
+                                $scope.m1.smestaj=$scope.dobivenSmestaj;
+                                $scope.m2.smestaj=$scope.dobivenSmestaj;
+                                $scope.m3.smestaj=$scope.dobivenSmestaj;
+                                $scope.m4.smestaj=$scope.dobivenSmestaj;
+                                $scope.m5.smestaj=$scope.dobivenSmestaj;
+                                $scope.m6.smestaj=$scope.dobivenSmestaj;
+                                $scope.m7.smestaj=$scope.dobivenSmestaj;
+                                $scope.m8.smestaj=$scope.dobivenSmestaj;
+                                $scope.m9.smestaj=$scope.dobivenSmestaj;
+                                $scope.m10.smestaj=$scope.dobivenSmestaj;
+                                $scope.m11.smestaj=$scope.dobivenSmestaj;
+                                $scope.m12.smestaj=$scope.dobivenSmestaj;
+                                $scope.meseci.push($scope.m1);
+                                $scope.meseci.push($scope.m2);
+                                $scope.meseci.push($scope.m3);
+                                $scope.meseci.push($scope.m4);
+                                $scope.meseci.push($scope.m5);
+                                $scope.meseci.push($scope.m6);
+                                $scope.meseci.push($scope.m7);
+                                $scope.meseci.push($scope.m8);
+                                $scope.meseci.push($scope.m9);
+                                $scope.meseci.push($scope.m10);
+                                $scope.meseci.push($scope.m11);
+                                $scope.meseci.push($scope.m12);
+                                $http.put('/api/cena/nove', $scope.meseci)
+                                    .then(function(response) {
+                                        //DODAVANJE SLIKA
+                                        $scope.slikeSlanje=[];
+                                        $scope.slike.forEach(function (value) {
+                                            $scope.tempSlika={};
+                                            $scope.tempSlika.slika=value;
+                                            $scope.tempSlika.smestaj=$scope.dobivenSmestaj;
+                                            $scope.slikeSlanje.push($scope.tempSlika);
+                                        })
+                                        $http.put('/api/slika/nove', $scope.slikeSlanje)
                                             .then(function(response) {
-                                                //DODAVANJE SLIKA
-                                                $http.put('/api/slika/nove', $scope.slike)
-                                                    .then(function(response) {
-                                                        $('#modalDodavanje').modal('hide');
-                                                    });
+                                                $('#modalDodavanje').modal('hide');
                                             });
-                                        //$('#modalDodavanje').modal('hide');
                                     });
-                            }, function(err) {
-                                //error
+                                //$('#modalDodavanje').modal('hide');
+                            }, function(response) {
+                                alert("nove usluge lose");
+                                $scope.result = "Error";
+                                $scope.content = response;
                             });
 
 
+                    }, function(response) {
+                        alert("usle lose");
+                        $scope.result = "Error";
+                        $scope.content = response;
                     });
             }, function(response) {
                 alert("loka lose");
