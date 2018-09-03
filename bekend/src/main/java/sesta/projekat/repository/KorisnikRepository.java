@@ -8,4 +8,5 @@ import java.util.List;
 public interface KorisnikRepository extends JpaRepository<Korisnik, Long> {
 
     List<Korisnik> findByTipKorisnika(String tipKorisnika);
+    Korisnik findByKimeAndLozinkaAndTipKorisnika (String kime, String lozinka, String tipKorisnika);
 }

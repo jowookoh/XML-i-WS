@@ -44,4 +44,9 @@ public class KorisnikService {
     public void deleteOne(Korisnik k) { korisnikRepository.delete(k);}
 
     public void deleteOne(Long id){ korisnikRepository.delete(id);}
+
+    public Korisnik getAdmin(String kime, String lozinka){
+
+        return korisnikRepository.findByKimeAndLozinkaAndTipKorisnika(kime, lozinka, "admin");
+    }
 }
