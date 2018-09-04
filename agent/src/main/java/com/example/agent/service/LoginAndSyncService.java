@@ -52,20 +52,24 @@ public class LoginAndSyncService {
 	
 	private Korisnik ja;
 	
-	public boolean Login(Korisnik korisnik){
+	public boolean Login(Korisnik korisnik) {
 		GenerickiClient client = new GenerickiClient(LoginRequest.class, LoginResponse.class);
 		LoginRequest request = new LoginRequest();
 		request.setKime(korisnik.getKime());
 		request.setLozinka(korisnik.getLozinka());
 		LoginResponse response = client.send(request, "login");//client.login(korisnik.getKime(), korisnik.getLozinka());
 		ja = korisnik;
-		if (response.isPostoji()) try{Presync();Sync(korisnik);}catch(Exception ignored){}
+		if (response.isPostoji()) try {
+			Presync();
+			Sync(korisnik);
+		} catch (Exception ignored) {
+		}
 		System.out.println(ja.getKime());
 		return response.isPostoji();
 	}
 	
 	@Transactional
-	protected void Presync(){
+	protected void Presync() {
 		//region lokacija
 		List<Lokacija> lokacijas = lokacijaRepository.findAll();
 		//endregion
@@ -107,13 +111,12 @@ public class LoginAndSyncService {
 		TipSmestajaResponse tipSmestajaResponse = client.send(new TipSmestajaRequest(), "tipSmestaja");
 		for (TipSmestajaJedan tipSmestajaJedan : tipSmestajaResponse.getTipoviSmestaja()) {
 			TipSmestaja tipSmestaja = tipSmestajaRepository.findTipSmestajaByBekendId(tipSmestajaJedan.getBekendId());
-			if(tipSmestaja == null){
+			if (tipSmestaja == null) {
 				tipSmestaja = new TipSmestaja();
 				tipSmestaja.setBekendId(tipSmestajaJedan.getBekendId());
 				tipSmestaja.setNaziv(tipSmestajaJedan.getOpis());
 				tipSmestajaRepository.save(tipSmestaja);
-			}
-			else{
+			} else {
 				tipSmestaja.setNaziv(tipSmestajaJedan.getOpis());
 				tipSmestajaRepository.save(tipSmestaja);
 			}
@@ -123,14 +126,14 @@ public class LoginAndSyncService {
 		//region kategorija smestaja
 		client = new GenerickiClient(KategorijaSmestajaRequest.class, KategorijaSmestajaResponse.class);
 		KategorijaSmestajaResponse kategorijaSmestajaResponse = client.send(new KategorijaSmestajaRequest(), "kategorijaSmestaja");
-		for (KategorijaSmestajaJedan kategorijaSmestajaJedan : kategorijaSmestajaResponse.getKategorijaoviSmestaja()){
+		for (KategorijaSmestajaJedan kategorijaSmestajaJedan : kategorijaSmestajaResponse.getKategorijaoviSmestaja()) {
 			KategorijaSmestaja kategorijaSmestaja = kategorijaSmestajaRepository.findKategorijaSmestajaByBekendId(kategorijaSmestajaJedan.getBekendId());
-			if(kategorijaSmestaja == null){
+			if (kategorijaSmestaja == null) {
 				kategorijaSmestaja = new KategorijaSmestaja();
 				kategorijaSmestaja.setBekendId(kategorijaSmestajaJedan.getBekendId());
 				kategorijaSmestaja.setNaziv(kategorijaSmestajaJedan.getOpis());
 				kategorijaSmestajaRepository.save(kategorijaSmestaja);
-			}else{
+			} else {
 				kategorijaSmestaja.setNaziv(kategorijaSmestajaJedan.getOpis());
 				kategorijaSmestajaRepository.save(kategorijaSmestaja);
 			}
@@ -140,14 +143,14 @@ public class LoginAndSyncService {
 		//region usluga
 		client = new GenerickiClient(UslugaRequest.class, UslugaResponse.class);
 		UslugaResponse uslugaResponse = client.send(new UslugaRequest(), "usluga");
-		for (UslugaJedan uslugaJedan : uslugaResponse.getKategorijaoviSmestaja()){
+		for (UslugaJedan uslugaJedan : uslugaResponse.getKategorijaoviSmestaja()) {
 			Usluga usluga = uslugaRepository.findUslugaByBekendId(uslugaJedan.getBekendId());
-			if(usluga == null){
+			if (usluga == null) {
 				usluga = new Usluga();
 				usluga.setBekendId(uslugaJedan.getBekendId());
 				usluga.setNaziv(uslugaJedan.getOpis());
 				uslugaRepository.save(usluga);
-			}else{
+			} else {
 				usluga.setNaziv(uslugaJedan.getOpis());
 				uslugaRepository.save(usluga);
 			}
@@ -155,7 +158,7 @@ public class LoginAndSyncService {
 		//endregion
 		
 		//region rezervacija => korisnik
-			//rezervacija
+		//rezervacija
 		client = new GenerickiClient(RezervacijaRequest.class, RezervacijaResponse.class);
 		RezervacijaRequest request = new RezervacijaRequest();
 		request.setAgentKime(ja.getKime());
@@ -163,22 +166,22 @@ public class LoginAndSyncService {
 		//korisnikRepository.deleteAll();
 		korisnikRepository.save(ja);
 		//rezervacijaRepository.deleteAll();
-		for (RezervacijaJedan rezervacijaJedan : rezervacijaResponse.getKategorijaoviSmestaja()){
-
+		for (RezervacijaJedan rezervacijaJedan : rezervacijaResponse.getKategorijaoviSmestaja()) {
+			
 			Rezervacija rezervacija = rezervacijaRepository.findRezervacijaByBekendId(rezervacijaJedan.getBekendId());
 			Korisnik klijent = korisnikRepository.findKorisnikByBekendId(rezervacijaJedan.getKorisnikBekendId());
-			if(klijent == null){
+			if (klijent == null) {
 				klijent = new Korisnik();
 				klijent.setBekendId(rezervacijaJedan.getKorisnikBekendId());
 				klijent.setKime(rezervacijaJedan.getKime());
 				klijent.setLozinka(rezervacijaJedan.getLozinka());
 				korisnikRepository.save(klijent);
-			}else{
+			} else {
 				klijent.setKime(rezervacijaJedan.getKime());
 				klijent.setLozinka(rezervacijaJedan.getLozinka());
 				korisnikRepository.save(klijent);
 			}
-			if(rezervacija == null){
+			if (rezervacija == null) {
 				rezervacija = new Rezervacija();
 				rezervacija.setBekendId(rezervacijaJedan.getBekendId());
 				rezervacija.setSmestaj(smestajRepository.findSmestajByBekendId(rezervacijaJedan.getSmestajBekendId()));
@@ -191,7 +194,7 @@ public class LoginAndSyncService {
 				rezervacija.setRealizovana(rezervacijaJedan.isRealizovana());
 				rezervacija.setFejk(rezervacijaJedan.isFejk());
 				rezervacijaRepository.save(rezervacija);
-			}else{
+			} else {
 				rezervacija.setOcena(rezervacijaJedan.getOcena());
 				rezervacija.setKomentar(rezervacijaJedan.getKomentar());
 				rezervacija.setOdobrenKomentar(rezervacijaJedan.isOdobrenKomentar());
@@ -206,9 +209,9 @@ public class LoginAndSyncService {
 		porukaRequest.setAgentId(ja.getBekendId());
 		PorukaResponse porukaResponse = client.send(porukaRequest, "poruka");
 		//porukaRepository.deleteAll();
-		for (PorukaJedan porukaJedan : porukaResponse.getKategorijaoviSmestaja()){
+		for (PorukaJedan porukaJedan : porukaResponse.getKategorijaoviSmestaja()) {
 			Poruka poruka = porukaRepository.findPorukaByBekendId(porukaJedan.getBekendId());
-			if(poruka == null){
+			if (poruka == null) {
 				poruka = new Poruka();
 				poruka.setBekendId(porukaJedan.getBekendId());
 				poruka.setPosiljalac(korisnikRepository.findKorisnikByBekendId(porukaJedan.getBekendId()));
@@ -221,8 +224,10 @@ public class LoginAndSyncService {
 		//endregion
 	}
 	
-	public Korisnik getJa(String kime){
-		korisnikRepository.save(ja);
+	@Transactional
+	public Korisnik getJa(String kime) {
+		Korisnik korisnik = korisnikRepository.findByKime(kime);
+		if (korisnik == null) korisnikRepository.save(ja);
 		return ja;
 	}
 }
