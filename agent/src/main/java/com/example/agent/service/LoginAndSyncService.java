@@ -159,15 +159,20 @@ public class LoginAndSyncService {
 		
 		//region rezervacija => korisnik
 		//rezervacija
+		System.out.println("pre zervacija");
 		client = new GenerickiClient(RezervacijaRequest.class, RezervacijaResponse.class);
 		RezervacijaRequest request = new RezervacijaRequest();
 		request.setAgentKime(ja.getKime());
+		System.out.println("pre sendacija");
 		RezervacijaResponse rezervacijaResponse = client.send(request, "rezervacija");
+		System.out.println("po sendacija");
 		//korisnikRepository.deleteAll();
-		korisnikRepository.save(ja);
+		//korisnikRepository.save(ja);
 		//rezervacijaRepository.deleteAll();
+		System.out.println("Broj rezervacija " + rezervacijaResponse.getKategorijaoviSmestaja().size());
 		for (RezervacijaJedan rezervacijaJedan : rezervacijaResponse.getKategorijaoviSmestaja()) {
 			
+			System.out.println("Kime klijenta " + rezervacijaJedan.getKime());
 			Rezervacija rezervacija = rezervacijaRepository.findRezervacijaByBekendId(rezervacijaJedan.getBekendId());
 			Korisnik klijent = korisnikRepository.findKorisnikByBekendId(rezervacijaJedan.getKorisnikBekendId());
 			if (klijent == null) {

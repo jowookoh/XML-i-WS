@@ -89,6 +89,7 @@ public class LoginAndSyncEndpoint {
 	@PayloadRoot(namespace = USLUGA_URI, localPart = "uslugaRequest")
 	@ResponsePayload
 	public UslugaResponse sveUsluge(@RequestPayload UslugaRequest request) {
+		System.out.println("USO u slugu");
 		List<Usluga> usluge = uslugaService.getAll();
 		UslugaResponse response = new UslugaResponse();
 		for (Usluga usluga : usluge) {
@@ -103,12 +104,16 @@ public class LoginAndSyncEndpoint {
 	@PayloadRoot(namespace = REZERVACIJA_URI, localPart = "rezervacijaRequest")
 	@ResponsePayload
 	public RezervacijaResponse sveRezervacije(@RequestPayload RezervacijaRequest request) {
+		System.out.println("USO u rezu");
 		List<Rezervacija> rezervacije = rezervacijaService.getAll();
 		RezervacijaResponse response = new RezervacijaResponse();
+		System.out.println("USO u rezu nize");
 		for (Rezervacija rezervacija : rezervacije) {
-			if(rezervacija.getSmestaj().getAgent().getKime() == request.getAgentKime()){
+			if(rezervacija.getSmestaj().getAgent().getKime().equals(request.getAgentKime())){
+				System.out.println("Si " + rezervacija.getSmestaj().getLokacija().getDrzava());
 				RezervacijaJedan rezervacijaJedan = new RezervacijaJedan();
 				rezervacijaJedan.setBekendId(rezervacija.getId());
+				rezervacijaJedan.setSmestajBekendId(rezervacija.getSmestaj().getId());
 				rezervacijaJedan.setFejk(rezervacija.isFejk());
 				rezervacijaJedan.setKime(rezervacija.getKlijent().getKime());
 				rezervacijaJedan.setKomentar(rezervacija.getKomentar());
@@ -118,6 +123,7 @@ public class LoginAndSyncEndpoint {
 				GregorianCalendar c = new GregorianCalendar();
 				c.setTime(rezervacija.getOd());
 				XMLGregorianCalendar dateOd = null;
+				System.out.println("pre gre");
 				try {
 					dateOd = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 				} catch (DatatypeConfigurationException e) {
@@ -131,12 +137,18 @@ public class LoginAndSyncEndpoint {
 				} catch (DatatypeConfigurationException e) {
 					e.printStackTrace();
 				}
+				System.out.println("post gre");
 				rezervacijaJedan.setPaOndaDo(datePaOndaDo);
 				rezervacijaJedan.setRealizovana(rezervacija.isRealizovana());
 				rezervacijaJedan.setOdobrenKomentar(rezervacija.isOdobrenKomentar());
 				response.getKategorijaoviSmestaja().add(rezervacijaJedan);
+				System.out.println("sacuvo u rispons");
+			}else{
+				System.out.println("Njente " + rezervacija.getSmestaj().getLokacija().getDrzava());
 			}
 		}
+		
+		System.out.println("izaso");
 		return response;
 	}
 
