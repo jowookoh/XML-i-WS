@@ -227,7 +227,11 @@ public class LoginAndSyncService {
 	@Transactional
 	public Korisnik getJa(String kime) {
 		Korisnik korisnik = korisnikRepository.findByKime(kime);
-		if (korisnik == null) korisnikRepository.save(ja);
-		return ja;
+		if (korisnik == null) {
+			korisnikRepository.save(ja);
+			return ja;
+		} else {
+			return korisnik;
+		}
 	}
 }
