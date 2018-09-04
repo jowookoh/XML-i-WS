@@ -159,20 +159,20 @@ public class LoginAndSyncService {
 		
 		//region rezervacija => korisnik
 		//rezervacija
-		System.out.println("pre zervacija");
+		//System.out.println("pre zervacija");
 		client = new GenerickiClient(RezervacijaRequest.class, RezervacijaResponse.class);
 		RezervacijaRequest request = new RezervacijaRequest();
 		request.setAgentKime(ja.getKime());
-		System.out.println("pre sendacija");
+		//System.out.println("pre sendacija");
 		RezervacijaResponse rezervacijaResponse = client.send(request, "rezervacija");
-		System.out.println("po sendacija");
+		//System.out.println("po sendacija");
 		//korisnikRepository.deleteAll();
 		//korisnikRepository.save(ja);
 		//rezervacijaRepository.deleteAll();
-		System.out.println("Broj rezervacija " + rezervacijaResponse.getKategorijaoviSmestaja().size());
+		//System.out.println("Broj rezervacija " + rezervacijaResponse.getKategorijaoviSmestaja().size());
 		for (RezervacijaJedan rezervacijaJedan : rezervacijaResponse.getKategorijaoviSmestaja()) {
 			
-			System.out.println("Kime klijenta " + rezervacijaJedan.getKime());
+			//System.out.println("Kime klijenta " + rezervacijaJedan.getKime());
 			Rezervacija rezervacija = rezervacijaRepository.findRezervacijaByBekendId(rezervacijaJedan.getBekendId());
 			Korisnik klijent = korisnikRepository.findKorisnikByBekendId(rezervacijaJedan.getKorisnikBekendId());
 			if (klijent == null) {
@@ -209,10 +209,15 @@ public class LoginAndSyncService {
 		//endregion
 		
 		//region poruka
+		System.out.println("poruka pre poruka");
 		client = new GenerickiClient(PorukaRequest.class, PorukaResponse.class);
+		System.out.println("jeste client = new GenerickiClient(PorukaRequest.class, PorukaResponse.class);");
 		PorukaRequest porukaRequest = new PorukaRequest();
-		porukaRequest.setAgentId(ja.getBekendId());
+		System.out.println("jeste PorukaRequest porukaRequest = new PorukaRequest();");
+		porukaRequest.setAgentKime(ja.getKime());
+		System.out.println("poruka pre sendacija");
 		PorukaResponse porukaResponse = client.send(porukaRequest, "poruka");
+		System.out.println("poruka po sendacija");
 		//porukaRepository.deleteAll();
 		for (PorukaJedan porukaJedan : porukaResponse.getKategorijaoviSmestaja()) {
 			Poruka poruka = porukaRepository.findPorukaByBekendId(porukaJedan.getBekendId());

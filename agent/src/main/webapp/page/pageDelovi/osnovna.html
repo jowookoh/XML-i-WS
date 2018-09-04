@@ -17,7 +17,7 @@
             </div>
             <div class="col item">
                 <div class="box"><i class="fa fa-list-alt icon"></i><br>
-                    <a class="btn btn-light action-button" ng-click="ucitajPristigle()" data-toggle="modal" data-target="#modalPoruke">poruke</a>
+                    <a class="btn btn-light action-button" ng-click="ucitajPristigleSve()" data-toggle="modal" data-target="#modalPoruke">poruke</a>
                 </div>
             </div>
             <div class="col item">
@@ -172,7 +172,7 @@
                                     <th> do </th>
                                     <th></th>
                                 </tr>
-                                <tr ng-repeat="reza in rezervacije | orderBy:od ">
+                                <tr ng-repeat="reza in rezervacijeSve | orderBy:od ">
                                     <td >{{reza.klijent.kime}}</td>
                                     <td>{{reza.id}}</td>
                                     <td>{{reza.smestaj.opis}}</td>

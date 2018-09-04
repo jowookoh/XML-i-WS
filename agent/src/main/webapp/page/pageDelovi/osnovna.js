@@ -144,6 +144,20 @@ livadeApp.controller('osnovnaCtrl', ['$scope','$state','$http', function ($scope
                 $scope.content = response;
             });
     }
+    $scope.ucitajPristigleSve = function() {
+        $scope.showDiv=true;
+        $scope.novaPoruka.tekst='';
+        $http.get('/api/rezervacija/mojeSve/'+$scope.ja.id)
+            .then(function(response) {
+                $scope.rezervacijeSve=response.data;
+                $scope.result = "Success";
+                $scope.content = response;
+            }, function(response) {
+                alert("reze lose");
+                $scope.result = "Error";
+                $scope.content = response;
+            });
+    }
 
 
 

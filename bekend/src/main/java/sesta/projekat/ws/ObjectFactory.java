@@ -24,7 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _RezervacijaResponse_QNAME = new QName("http://xml/ws/rezervacija", "rezervacijaResponse");
+    private final static QName _PorukaResponse_QNAME = new QName("http://xml/ws/poruka", "porukaResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: sesta.projekat.ws
