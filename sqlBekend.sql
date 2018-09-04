@@ -23,7 +23,7 @@ INSERT INTO `korisnik`(`id`,`adresa`,`ime`,`kime`,`lozinka`,`poslovni_maticni_br
 VALUES(5,'mitra mirica 3','adil','adil','adil','1234','adnic','admin');
 
 
-INSERT INTO `usluga`(`id`,`naziv`)VALUES(1,'tv');
+INSERT INTO `usluga`(`id`,`naziv`)VALUES(1,'televizor');
 INSERT INTO `usluga`(`id`,`naziv`)VALUES(2,'parking');
 INSERT INTO `usluga`(`id`,`naziv`)VALUES(3,'wifi');
 INSERT INTO `usluga`(`id`,`naziv`)VALUES(4,'dorucak');
@@ -85,6 +85,6 @@ INSERT INTO `usluga_smestaj`(`id`,`smestaj_id`,`usluga_id`)VALUES(5,3,1);
 INSERT INTO `usluga_smestaj`(`id`,`smestaj_id`,`usluga_id`)VALUES(6,3,2);
 
 INSERT INTO `slika`(`id`,`slika`,`smestaj_id`)VALUES(1,'https://barcentral.com.au/wp-content/uploads/fb3-2-256x256.jpg',1);
-INSERT INTO `slika`(`id`,`slika`,`smestaj_id`)VALUES(2,'http://www.euroturs.rs/wp-content/gallery/tr-kusadasi-hotelpak/Hotel-Pak-Kusadasi-Turska-07.jpg',1);
-INSERT INTO `slika`(`id`,`slika`,`smestaj_id`)VALUES(3,'http://www.airehotelalmeria.com/wp-content/uploads/2017/03/AIRE_Almeria_Hotel_722-1-256x256.jpg',1);
+INSERT INTO `slika`(`id`,`slika`,`smestaj_id`)VALUES(2,'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Gingerbread_House_Essex_CT.jpg/220px-Gingerbread_House_Essex_CT.jpg',1);
+INSERT INTO `slika`(`id`,`slika`,`smestaj_id`)VALUES(3,'https://upload.wikimedia.org/wikipedia/commons/9/96/Vasskertentrance.jpg',1);
 

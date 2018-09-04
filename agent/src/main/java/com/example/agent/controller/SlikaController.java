@@ -35,7 +35,7 @@ public class SlikaController {
 			GenerickiClient client = new GenerickiClient(SlikaRequest.class, SlikaResponse.class);
 			for (Slika slika : slike) {
 				SlikaRequest slikaRequest = new SlikaRequest();
-				slikaRequest.setSmestajBekendId(slika.getBekendId());
+				slikaRequest.setSmestajBekendId(slika.getSmestaj().getBekendId());
 				slikaRequest.setAdresa(slika.getSlika());
 				SlikaResponse slikaResponse = client.send(slikaRequest, "slika");
 				slika.setBekendId(slikaResponse.getBekendId());
